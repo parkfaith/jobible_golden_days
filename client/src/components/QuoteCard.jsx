@@ -1,7 +1,7 @@
-import React, { useState, useRef } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart } from 'lucide-react';
-import { captureElementToBlob, blobToFile, downloadBlob } from '../utils/captureCard';
+import { renderCardToBlob, blobToFile, downloadBlob } from '../utils/captureCard';
 
 const CATEGORY_LABELS = {
   bible: '말씀',
@@ -23,7 +23,6 @@ const CATEGORY_FONTS = {
 const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize = 'normal' }) => {
   const [notification, setNotification] = useState(false);
   const [isCapturing, setIsCapturing] = useState(false);
-  const captureRef = useRef(null);
 
   // 알림 메시지 표시
   const showNotification = (message) => {
@@ -32,16 +31,21 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
   };
 
   const handleShare = async () => {
-    if (isCapturing || !captureRef.current) return;
+    if (isCapturing) return;
 
     setIsCapturing(true);
 
     try {
-      // 1단계: 카드 이미지 캡처
-      const blob = await captureElementToBlob(captureRef.current);
+      // 1단계: Canvas API로 카드 이미지 생성
+      const blob = await renderCardToBlob({
+        bgImage: content.bgImage,
+        quote: content.quote,
+        author: content.author,
+        category: content.category,
+      });
 
       if (!blob) {
-        throw new Error('이미지 캡처 실패');
+        throw new Error('이미지 생성 실패');
       }
 
       const filename = `golden-days-${Date.now()}.png`;
@@ -85,53 +89,46 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
 
-      {/* === 캡처 대상 영역 === */}
-      <div ref={captureRef} className="absolute inset-0">
-        {/* 배경 이미지 (img 태그 — html2canvas 호환) */}
-        <img
-          src={content.bgImage}
-          alt=""
-          crossOrigin="anonymous"
-          className="absolute inset-0 w-full h-full object-cover z-0"
-        />
+      {/* 배경 이미지 */}
+      <img
+        src={content.bgImage}
+        alt=""
+        className="absolute inset-0 w-full h-full object-cover z-0"
+      />
 
-        {/* 가독성을 위한 어두운 오버레이 (명도 대비 7:1) */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
+      {/* 가독성을 위한 어두운 오버레이 (명도 대비 7:1) */}
+      <div className="absolute inset-0 bg-black/50 z-10" />
 
-        {/* 날짜 및 카테고리 표시 (캡처 시 숨김) */}
-        {!isCapturing && (
-          <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
-            {dateLabel && (
-              <span className="text-white/70 text-sm font-medium drop-shadow-sm">
-                {dateLabel}
-              </span>
-            )}
-            {content.category && (
-              <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
-                {CATEGORY_LABELS[content.category] || content.category}
-              </span>
-            )}
-          </div>
+      {/* 날짜 및 카테고리 표시 */}
+      <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
+        {dateLabel && (
+          <span className="text-white/70 text-sm font-medium drop-shadow-sm">
+            {dateLabel}
+          </span>
         )}
+        {content.category && (
+          <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
+            {CATEGORY_LABELS[content.category] || content.category}
+          </span>
+        )}
+      </div>
 
-        {/* 본문 콘텐츠 */}
-        <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
-          <div className="text-center max-w-2xl w-full flex flex-col items-center gap-8">
-            <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'} ${fontSize === 'large' ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'}`}>
-              &ldquo;{content.quote}&rdquo;
-            </p>
-            <p className={`text-white/90 font-sans font-medium mt-4 ${fontSize === 'large' ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
-              - {content.author}
-            </p>
-          </div>
-        </div>
-
-        {/* 워터마크 (캡처 이미지 하단) */}
-        <div className="absolute bottom-6 left-0 right-0 z-20 text-center">
-          <span className="text-white/30 text-xs tracking-widest">joBiBle Golden Days</span>
+      {/* 본문 콘텐츠 */}
+      <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
+        <div className="text-center max-w-2xl w-full flex flex-col items-center gap-8">
+          <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'} ${fontSize === 'large' ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'}`}>
+            &ldquo;{content.quote}&rdquo;
+          </p>
+          <p className={`text-white/90 font-sans font-medium mt-4 ${fontSize === 'large' ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
+            - {content.author}
+          </p>
         </div>
       </div>
-      {/* === 캡처 대상 영역 끝 === */}
+
+      {/* 워터마크 (하단) */}
+      <div className="absolute bottom-6 left-0 right-0 z-20 text-center">
+        <span className="text-white/30 text-xs tracking-widest">joBiBle Golden Days</span>
+      </div>
 
       {/* 즐겨찾기 & 공유 버튼 (캡처 영역 바깥) */}
       <motion.div

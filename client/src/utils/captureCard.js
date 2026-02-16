@@ -1,38 +1,142 @@
-import { toPng } from 'html-to-image';
-
 /**
- * DOM 요소를 PNG Blob으로 캡처
- * iOS Safari에서는 첫 호출 시 이미지가 누락되는 문제가 있어 최대 3회 재시도
- * @param {HTMLElement} element - 캡처 대상 DOM 요소
+ * Canvas API로 카드 이미지를 직접 그려서 Blob 생성
+ * html-to-image/html2canvas 없이 동작 — iOS Safari/Chrome 완벽 호환
+ *
+ * @param {Object} params
+ * @param {string} params.bgImage - 배경 이미지 경로
+ * @param {string} params.quote - 본문 텍스트
+ * @param {string} params.author - 저자
+ * @param {string} params.category - 카테고리 (bible, quote, proverb, poem, writing)
  * @returns {Promise<Blob>} PNG Blob
  */
-export const captureElementToBlob = async (element) => {
-  await document.fonts.ready;
+export const renderCardToBlob = async ({ bgImage, quote, author, category }) => {
+  const W = 1080;
+  const H = 1920;
 
-  const options = {
-    pixelRatio: Math.min(window.devicePixelRatio || 2, 3),
-    backgroundColor: '#000000',
-    cacheBust: true,
-    // Safari CORS 대응: 이미지를 inline data URL로 변환
-    imagePlaceholder: undefined,
-    skipAutoScale: true,
-  };
+  // 1. 배경 이미지 로드
+  const img = await loadImage(bgImage);
 
-  // iOS Safari 대응: 여러 번 호출해야 이미지가 제대로 렌더링됨
-  let dataUrl;
-  for (let i = 0; i < 3; i++) {
-    dataUrl = await toPng(element, options);
+  // 2. Canvas 생성 및 그리기
+  const canvas = document.createElement('canvas');
+  canvas.width = W;
+  canvas.height = H;
+  const ctx = canvas.getContext('2d');
+
+  // 배경 이미지 (cover 방식)
+  drawImageCover(ctx, img, W, H);
+
+  // 어두운 오버레이
+  ctx.fillStyle = 'rgba(0, 0, 0, 0.50)';
+  ctx.fillRect(0, 0, W, H);
+
+  // 카테고리별 폰트 결정
+  const isSerif = category === 'bible' || category === 'poem';
+  const quoteFont = isSerif ? 'Nanum Myeongjo' : 'Pretendard Variable, sans-serif';
+
+  // 본문 텍스트
+  const quoteFontSize = 54;
+  ctx.fillStyle = '#ffffff';
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  ctx.font = `bold ${quoteFontSize}px ${quoteFont}`;
+
+  const wrappedQuote = `\u201C${quote}\u201D`;
+  const lines = wrapText(ctx, wrappedQuote, W - 160);
+  const lineHeight = quoteFontSize * 1.6;
+  const totalTextHeight = lines.length * lineHeight;
+  const startY = (H - totalTextHeight) / 2;
+
+  // 텍스트 그림자
+  ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
+  ctx.shadowBlur = 8;
+  ctx.shadowOffsetX = 0;
+  ctx.shadowOffsetY = 2;
+
+  lines.forEach((line, i) => {
+    ctx.fillText(line, W / 2, startY + i * lineHeight + lineHeight / 2);
+  });
+
+  // 저자
+  ctx.shadowBlur = 0;
+  ctx.shadowOffsetY = 0;
+  ctx.font = `500 40px Pretendard Variable, sans-serif`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.fillText(`- ${author}`, W / 2, startY + totalTextHeight + 60);
+
+  // 워터마크
+  ctx.font = `400 20px Pretendard Variable, sans-serif`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
+  ctx.letterSpacing = '4px';
+  ctx.fillText('joBiBle Golden Days', W / 2, H - 60);
+
+  // 3. Canvas → Blob
+  return new Promise((resolve) => {
+    canvas.toBlob(resolve, 'image/png', 1.0);
+  });
+};
+
+/** 이미지 로드 헬퍼 */
+function loadImage(src) {
+  return new Promise((resolve, reject) => {
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => resolve(img);
+    img.onerror = reject;
+    img.src = src;
+  });
+}
+
+/** Canvas에 이미지를 object-fit: cover 방식으로 그리기 */
+function drawImageCover(ctx, img, canvasW, canvasH) {
+  const imgRatio = img.width / img.height;
+  const canvasRatio = canvasW / canvasH;
+  let sx, sy, sw, sh;
+
+  if (imgRatio > canvasRatio) {
+    sh = img.height;
+    sw = img.height * canvasRatio;
+    sx = (img.width - sw) / 2;
+    sy = 0;
+  } else {
+    sw = img.width;
+    sh = img.width / canvasRatio;
+    sx = 0;
+    sy = (img.height - sh) / 2;
   }
 
-  const res = await fetch(dataUrl);
-  return res.blob();
-};
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvasW, canvasH);
+}
+
+/** 텍스트 줄바꿈 처리 */
+function wrapText(ctx, text, maxWidth) {
+  const lines = [];
+  // 먼저 명시적 줄바꿈(\n) 기준으로 분리
+  const paragraphs = text.split('\n');
+
+  for (const paragraph of paragraphs) {
+    const words = paragraph.split('');
+    let currentLine = '';
+
+    for (const char of words) {
+      const testLine = currentLine + char;
+      const metrics = ctx.measureText(testLine);
+      if (metrics.width > maxWidth && currentLine) {
+        lines.push(currentLine);
+        currentLine = char;
+      } else {
+        currentLine = testLine;
+      }
+    }
+    if (currentLine) {
+      lines.push(currentLine);
+    }
+  }
+
+  return lines;
+}
 
 /**
  * Blob을 File 객체로 변환 (Web Share API용)
- * @param {Blob} blob - PNG Blob
- * @param {string} filename - 파일명
- * @returns {File}
  */
 export const blobToFile = (blob, filename = 'golden-days.png') => {
   return new File([blob], filename, { type: 'image/png' });
@@ -40,8 +144,6 @@ export const blobToFile = (blob, filename = 'golden-days.png') => {
 
 /**
  * Blob을 이미지 파일로 다운로드 (폴백용)
- * @param {Blob} blob - PNG Blob
- * @param {string} filename - 파일명
  */
 export const downloadBlob = (blob, filename = 'golden-days.png') => {
   const url = URL.createObjectURL(blob);
