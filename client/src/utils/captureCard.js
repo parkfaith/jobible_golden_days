@@ -1,4 +1,4 @@
-import html2canvas from 'html2canvas';
+import { toPng } from 'html-to-image';
 
 /**
  * DOM 요소를 PNG Blob으로 캡처
@@ -9,28 +9,15 @@ export const captureElementToBlob = async (element) => {
   // 폰트 로딩 완료 대기
   await document.fonts.ready;
 
-  const canvas = await html2canvas(element, {
-    useCORS: true,
-    allowTaint: false,
-    scale: Math.min(window.devicePixelRatio || 2, 3),
+  const dataUrl = await toPng(element, {
+    pixelRatio: Math.min(window.devicePixelRatio || 2, 3),
     backgroundColor: '#000000',
-    scrollX: 0,
-    scrollY: 0,
-    width: element.offsetWidth,
-    height: element.offsetHeight,
-    logging: false,
-    // backdrop-filter는 html2canvas가 지원하지 않으므로 복제 DOM에서 제거
-    onclone: (clonedDoc) => {
-      clonedDoc.querySelectorAll('[class*="backdrop-blur"]').forEach((el) => {
-        el.style.backdropFilter = 'none';
-        el.style.webkitBackdropFilter = 'none';
-      });
-    },
+    cacheBust: true,
   });
 
-  return new Promise((resolve) => {
-    canvas.toBlob(resolve, 'image/png', 1.0);
-  });
+  // dataURL → Blob 변환
+  const res = await fetch(dataUrl);
+  return res.blob();
 };
 
 /**

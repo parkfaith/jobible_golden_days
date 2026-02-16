@@ -37,17 +37,19 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
     setIsCapturing(true);
 
     try {
-      // 1단계: html2canvas로 카드 캡처
+      // 1단계: 카드 이미지 캡처
       const blob = await captureElementToBlob(captureRef.current);
 
       if (!blob) {
         throw new Error('이미지 캡처 실패');
       }
 
-      // 2단계: Web Share API Level 2 (파일 공유) 시도
-      const file = blobToFile(blob, `golden-days-${Date.now()}.png`);
+      const filename = `golden-days-${Date.now()}.png`;
+      const file = blobToFile(blob, filename);
 
-      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+      // 2단계: Web Share API 파일 공유 시도 (모바일)
+      // 비동기 캡처 후 user gesture가 만료될 수 있으므로 에러 시 다운로드 폴백
+      if (navigator.canShare?.({ files: [file] })) {
         try {
           await navigator.share({
             title: 'Golden Days - 오늘의 영감',
@@ -57,12 +59,12 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
           return;
         } catch (e) {
           if (e.name === 'AbortError') return;
-          console.warn('Web Share API 파일 공유 실패, 다운로드 폴백:', e);
+          // NotAllowedError 등 — 다운로드 폴백으로 진행
         }
       }
 
       // 3단계: 폴백 - 이미지 다운로드
-      downloadBlob(blob, `golden-days-${Date.now()}.png`);
+      downloadBlob(blob, filename);
       showNotification('이미지가 저장되었습니다');
 
     } catch (error) {
@@ -96,19 +98,21 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
         {/* 가독성을 위한 어두운 오버레이 (명도 대비 7:1) */}
         <div className="absolute inset-0 bg-black/50 z-10" />
 
-        {/* 날짜 및 카테고리 표시 */}
-        <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
-          {dateLabel && (
-            <span className="text-white/70 text-sm font-medium drop-shadow-sm">
-              {dateLabel}
-            </span>
-          )}
-          {content.category && (
-            <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
-              {CATEGORY_LABELS[content.category] || content.category}
-            </span>
-          )}
-        </div>
+        {/* 날짜 및 카테고리 표시 (캡처 시 숨김) */}
+        {!isCapturing && (
+          <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
+            {dateLabel && (
+              <span className="text-white/70 text-sm font-medium drop-shadow-sm">
+                {dateLabel}
+              </span>
+            )}
+            {content.category && (
+              <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
+                {CATEGORY_LABELS[content.category] || content.category}
+              </span>
+            )}
+          </div>
+        )}
 
         {/* 본문 콘텐츠 */}
         <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
@@ -124,7 +128,7 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
 
         {/* 워터마크 (캡처 이미지 하단) */}
         <div className="absolute bottom-6 left-0 right-0 z-20 text-center">
-          <span className="text-white/30 text-xs tracking-widest">Golden Days</span>
+          <span className="text-white/30 text-xs tracking-widest">joBiBle Golden Days</span>
         </div>
       </div>
       {/* === 캡처 대상 영역 끝 === */}
