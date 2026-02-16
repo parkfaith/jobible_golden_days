@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-02-16]
 
+### Phase 2 Step 1~2: 카테고리 홈 & 오늘의 이야기 미리보기 (Category Hub & Today's Story Preview)
+
+- **홈 화면 전면 재구성 (Redesign Home as Category Hub)**: 기존 전체화면 카드 뷰어를 세로 스크롤 카테고리 허브로 전환. 오늘의 이야기 미리보기 + 카테고리 그리드 + 즐겨찾기 섹션을 한 페이지에 배치.
+- **CardViewer 분리 (Extract CardViewer Component)**: 전체화면 카드 뷰어를 별도 컴포넌트로 분리. 탭 시 fixed 오버레이로 표시하여 홈 스크롤 위치 보존. 뒤로가기 버튼 + 브라우저 뒤로가기(popstate) 지원.
+- **오늘의 이야기 미리보기 (Today's Story Preview)**: 160x220px 가로 스크롤 미리보기 카드. snap 스크롤 + peek 효과(360px 뷰포트에서 1.8개 표시). 카테고리 배지 + 인용문 3줄 + 저자 표시.
+- **카테고리 그리드 (Category Grid)**: 2열 그리드로 카테고리별 콘텐츠 탐색. 배경 이미지 + 어두운 오버레이 + 아이콘 + 라벨 + 콘텐츠 수 표시. 빈 카테고리(시, 글귀) 자동 숨김.
+- **즐겨찾기 인라인 섹션 (Inline Favorites Section)**: 기존 모달 방식에서 홈 하단 인라인 섹션으로 변경. 저장된 글귀 목록을 바로 확인 가능.
+- **달력 기능 제거 (Remove Calendar Feature)**: react-calendar 관련 코드 및 import 완전 제거. 단순화된 인터페이스.
+- **categories 메타데이터 export (Add Categories Metadata)**: `data/index.js`에 `categories` 배열 export 추가. CategoryGrid에서 활용.
+- **scrollbar-hide 유틸리티 (Add Scrollbar Hide Utility)**: 가로 스크롤 미리보기에서 스크롤바 숨김을 위한 CSS 유틸리티 추가.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/components/CardViewer.jsx` (신규 — 전체화면 카드 뷰어)
+- `client/src/components/TodayPreview.jsx` (신규 — 오늘의 이야기 가로 스크롤 미리보기)
+- `client/src/components/CategoryGrid.jsx` (신규 — 카테고리 2열 그리드)
+- `client/src/pages/Home.jsx` (전면 재작성 — 카테고리 허브 + view 상태 관리)
+- `client/src/data/index.js` (categories export 추가)
+- `client/src/index.css` (scrollbar-hide 유틸리티 추가)
+- `CHANGELOG.md`
+
 ### 아이콘 & 로고 적용 (App Icon & Logo)
 
 - **PWA 아이콘 적용 (Apply PWA Icons)**: 제공된 아이콘 이미지에서 PWA용 아이콘(192x192, 512x512), Apple Touch Icon(180x180), favicon(32x32) 생성 및 적용. 기존 favicon.svg 제거.

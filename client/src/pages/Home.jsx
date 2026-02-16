@@ -1,12 +1,10 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { getDailyContent } from '../utils/dailyCurator';
 import allContent from '../data';
-import QuoteCard from '../components/QuoteCard';
-import { ChevronLeft, ChevronRight, Calendar as CalendarIcon, Heart, Type, X } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
-import Calendar from 'react-calendar';
-import 'react-calendar/dist/Calendar.css';
-import '../styles/calendar.css';
+import { Heart, Type } from 'lucide-react';
+import CardViewer from '../components/CardViewer';
+import TodayPreview from '../components/TodayPreview';
+import CategoryGrid from '../components/CategoryGrid';
 
 // 카테고리 라벨 (즐겨찾기 목록에서 사용)
 const CATEGORY_LABELS = {
@@ -17,16 +15,6 @@ const CATEGORY_LABELS = {
   writing: '글귀',
 };
 
-// 날짜를 한국어 형식으로 포맷
-const formatDateLabel = (date) => {
-  const y = date.getFullYear();
-  const m = date.getMonth() + 1;
-  const d = date.getDate();
-  const days = ['일', '월', '화', '수', '목', '금', '토'];
-  const day = days[date.getDay()];
-  return `${y}년 ${m}월 ${d}일 ${day}요일`;
-};
-
 // 즐겨찾기 localStorage 헬퍼
 const getFavorites = () => JSON.parse(localStorage.getItem('golden-days-favorites') || '[]');
 const saveFavorites = (favs) => localStorage.setItem('golden-days-favorites', JSON.stringify(favs));
@@ -35,49 +23,12 @@ const saveFavorites = (favs) => localStorage.setItem('golden-days-favorites', JS
 const getSavedFontSize = () => localStorage.getItem('golden-days-font-size') || 'normal';
 
 const Home = () => {
-  const [selectedDate, setSelectedDate] = useState(() => new Date());
-  const [contents, setContents] = useState(() => getDailyContent());
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [showCalendar, setShowCalendar] = useState(false);
-  const [showFavorites, setShowFavorites] = useState(false);
   const [favorites, setFavorites] = useState(() => getFavorites());
   const [fontSize, setFontSize] = useState(() => getSavedFontSize());
-
-  // 스와이프 감지용
-  const touchStartX = useRef(0);
-  const touchEndX = useRef(0);
-
-  const handleNext = () => {
-    setCurrentIndex((prev) => (prev + 1) % contents.length);
-  };
-
-  const handlePrev = () => {
-    setCurrentIndex((prev) => (prev - 1 + contents.length) % contents.length);
-  };
-
-  // 스와이프 핸들러
-  const handleTouchStart = (e) => {
-    touchStartX.current = e.touches[0].clientX;
-  };
-
-  const handleTouchEnd = (e) => {
-    touchEndX.current = e.changedTouches[0].clientX;
-    const diff = touchStartX.current - touchEndX.current;
-    const SWIPE_THRESHOLD = 50;
-
-    if (Math.abs(diff) > SWIPE_THRESHOLD) {
-      if (diff > 0) handleNext();
-      else handlePrev();
-    }
-  };
-
-  const handleDateChange = (date) => {
-    const newContent = getDailyContent(date);
-    setSelectedDate(date);
-    setContents(newContent);
-    setCurrentIndex(0);
-    setShowCalendar(false);
-  };
+  const [view, setView] = useState('home');
+  const [viewerContents, setViewerContents] = useState([]);
+  const [viewerStartIndex, setViewerStartIndex] = useState(0);
+  const [todayContents] = useState(() => getDailyContent());
 
   // 즐겨찾기 토글
   const handleToggleFavorite = (id) => {
@@ -94,213 +45,135 @@ const Home = () => {
     setFontSize(next);
   };
 
-  // 즐겨찾기 목록에서 항목 선택 시
-  const handleFavoriteSelect = (item) => {
-    // 현재 날짜의 콘텐츠에 포함되어 있으면 해당 인덱스로 이동
-    const idx = contents.findIndex(c => c.id === item.id);
-    if (idx !== -1) {
-      setCurrentIndex(idx);
-    } else {
-      // 현재 날짜에 없으면 단독으로 표시
-      setContents([item]);
-      setCurrentIndex(0);
-    }
-    setShowFavorites(false);
-  };
+  // 뷰어 열기 (pushState로 브라우저 뒤로가기 지원)
+  const openViewer = useCallback((contents, startIndex = 0) => {
+    setViewerContents(contents);
+    setViewerStartIndex(startIndex);
+    setView('viewer');
+    window.history.pushState({ view: 'viewer' }, '');
+  }, []);
+
+  // 뷰어 닫기
+  const closeViewer = useCallback(() => {
+    setView('home');
+  }, []);
+
+  // 브라우저 뒤로가기 이벤트 처리
+  useEffect(() => {
+    const handlePopState = () => {
+      if (view === 'viewer') {
+        setView('home');
+      }
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [view]);
+
+  // 뷰어에서 뒤로가기 버튼 클릭 시 history도 정리
+  const handleViewerBack = useCallback(() => {
+    window.history.back();
+  }, []);
 
   // 즐겨찾기된 콘텐츠 목록 조회
   const favoriteItems = allContent.filter(item => favorites.includes(item.id));
 
-  if (contents.length === 0) return <div className="text-center p-10">Loading...</div>;
-
   return (
-    <div className="relative w-full h-screen bg-secondary overflow-hidden">
-      {/* Header / Top Bar */}
-      <header className="absolute top-0 left-0 right-0 z-30 p-4 flex justify-between items-center bg-gradient-to-b from-black/20 to-transparent">
-        <div className="flex flex-col" style={{ textShadow: '0 0 6px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3)' }}>
-          <span className="text-[#C8915A] text-sm font-light tracking-widest">joBiBle</span>
-          <h1 className="text-[#A7672A] text-lg font-bold leading-tight">Golden Days</h1>
+    <div className="w-full min-h-screen bg-secondary">
+      {/* 헤더 (sticky) */}
+      <header className="sticky top-0 z-30 px-5 py-4 flex justify-between items-center bg-secondary/95 backdrop-blur-sm">
+        <div className="flex flex-col">
+          <span className="text-[#C8915A] text-sm font-light tracking-widest" style={{ textShadow: '0 0 4px rgba(0,0,0,0.1)' }}>joBiBle</span>
+          <h1 className="text-[#A7672A] text-lg font-bold leading-tight" style={{ textShadow: '0 0 4px rgba(0,0,0,0.1)' }}>Golden Days</h1>
         </div>
         <div className="flex items-center gap-1">
           {/* 글씨 크기 토글 */}
           <button
             onClick={handleToggleFontSize}
-            className={`text-white p-3 hover:bg-white/10 rounded-full transition-colors ${fontSize === 'large' ? 'bg-white/15' : ''}`}
+            className={`text-text p-3 hover:bg-black/5 rounded-full transition-colors ${fontSize === 'large' ? 'bg-black/10' : ''}`}
             aria-label="글씨 크기 변경"
           >
             <Type size={24} />
           </button>
-          {/* 즐겨찾기 목록 */}
-          <button
-            onClick={() => setShowFavorites(true)}
-            className="text-white p-3 hover:bg-white/10 rounded-full transition-colors relative"
-            aria-label="즐겨찾기 목록"
-          >
-            <Heart size={24} />
-            {favorites.length > 0 && (
-              <span className="absolute top-1 right-1 w-4 h-4 bg-red-500 rounded-full text-[10px] text-white flex items-center justify-center font-bold">
-                {favorites.length > 9 ? '9+' : favorites.length}
-              </span>
-            )}
-          </button>
-          {/* 달력 */}
-          <button
-            onClick={() => setShowCalendar(true)}
-            className="text-white p-3 hover:bg-white/10 rounded-full transition-colors"
-            aria-label="달력 열기"
-          >
-            <CalendarIcon size={28} />
-          </button>
         </div>
       </header>
 
-      {/* 메인 콘텐츠 (스와이프 가능) */}
-      <div
-        className="w-full h-full"
-        onTouchStart={handleTouchStart}
-        onTouchEnd={handleTouchEnd}
-      >
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`${currentIndex}-${contents[0].id}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="w-full h-full"
-          >
-            <QuoteCard
-              content={contents[currentIndex]}
-              dateLabel={formatDateLabel(selectedDate)}
-              isFavorite={favorites.includes(contents[currentIndex].id)}
-              onToggleFavorite={handleToggleFavorite}
-              fontSize={fontSize}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
+      {/* 메인 콘텐츠 (세로 스크롤) */}
+      <main className="pb-8">
+        {/* 오늘의 이야기 미리보기 (가로 스크롤) */}
+        <TodayPreview
+          contents={todayContents}
+          favorites={favorites}
+          onCardTap={(idx) => openViewer(todayContents, idx)}
+        />
 
-      {/* Bottom Controls Area */}
-      <div className="absolute bottom-0 left-0 right-0 z-30 p-6 pb-8 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-between md:justify-center md:gap-12">
-        <button
-          onClick={handlePrev}
-          className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full text-white transition-all transform active:scale-95 border border-white/10"
-          aria-label="이전 글귀"
-        >
-          <ChevronLeft size={24} />
-        </button>
+        {/* 카테고리 그리드 */}
+        <CategoryGrid
+          onCategoryTap={(items) => openViewer(items, 0)}
+        />
 
-        <div className="flex gap-2">
-          {contents.map((_, idx) => (
-            <div
-              key={idx}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-white w-4' : 'bg-white/40'}`}
-            />
-          ))}
-        </div>
+        {/* 즐겨찾기 섹션 (인라인) */}
+        <section className="px-5">
+          <div className="flex items-center gap-2 mb-3">
+            <Heart size={20} className="text-red-400" />
+            <h2 className="text-xl font-bold text-text">내가 저장한 글귀</h2>
+            {favoriteItems.length > 0 && (
+              <span className="text-sm text-text/50">({favoriteItems.length})</span>
+            )}
+          </div>
 
-        <button
-          onClick={handleNext}
-          className="p-3 bg-white/10 hover:bg-white/20 backdrop-blur-md rounded-full text-white transition-all transform active:scale-95 border border-white/10"
-          aria-label="다음 글귀"
-        >
-          <ChevronRight size={24} />
-        </button>
-      </div>
-
-      {/* Calendar Modal */}
-      <AnimatePresence>
-        {showCalendar && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          >
-            <div className="bg-secondary p-6 rounded-2xl w-full max-w-sm relative shadow-2xl">
-              <button
-                onClick={() => setShowCalendar(false)}
-                className="absolute top-4 right-4 text-text/60 hover:text-text transition-colors"
-              >
-                <X size={24} />
-              </button>
-              <h2 className="text-xl font-bold text-text mb-4 text-center">지난 영감 찾아보기</h2>
-              <div className="calendar-container">
-                <Calendar
-                  onChange={handleDateChange}
-                  value={selectedDate}
-                  maxDate={new Date()}
-                  className="w-full rounded-lg border-none font-sans text-text"
-                  calendarType="gregory"
-                  formatDay={(locale, date) => date.getDate()}
-                  prev2Label={null}
-                  next2Label={null}
-                />
-              </div>
+          {favoriteItems.length === 0 ? (
+            <div className="text-center text-text/50 py-12 text-lg bg-white/40 rounded-2xl">
+              아직 저장한 글귀가 없습니다
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Favorites Modal */}
-      <AnimatePresence>
-        {showFavorites && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 z-50 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4"
-          >
-            <div className="bg-secondary p-6 rounded-2xl w-full max-w-sm relative shadow-2xl max-h-[80vh] flex flex-col">
-              <button
-                onClick={() => setShowFavorites(false)}
-                className="absolute top-4 right-4 text-text/60 hover:text-text transition-colors"
-              >
-                <X size={24} />
-              </button>
-              <h2 className="text-xl font-bold text-text mb-4 text-center">내가 저장한 글귀</h2>
-
-              {favoriteItems.length === 0 ? (
-                <div className="text-center text-text/50 py-12 text-lg">
-                  아직 저장한 글귀가 없습니다
-                </div>
-              ) : (
-                <div className="overflow-y-auto flex-1 space-y-3 pr-1">
-                  {favoriteItems.map((item) => (
-                    <div
-                      key={item.id}
-                      className="bg-white/60 rounded-xl p-4 cursor-pointer hover:bg-white/80 transition-colors active:scale-[0.98] transform"
-                      onClick={() => handleFavoriteSelect(item)}
-                    >
-                      <div className="flex items-start justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <span className="inline-block bg-primary/20 text-accent text-xs font-medium px-2 py-0.5 rounded-full mb-2">
-                            {CATEGORY_LABELS[item.category] || item.category}
-                          </span>
-                          <p className="text-text text-base font-medium leading-snug line-clamp-2 break-keep">
-                            "{item.quote}"
-                          </p>
-                          <p className="text-text/60 text-sm mt-1">- {item.author}</p>
-                        </div>
-                        <button
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleToggleFavorite(item.id);
-                          }}
-                          className="text-red-400 hover:text-red-500 p-1 flex-shrink-0"
-                          aria-label="즐겨찾기 해제"
-                        >
-                          <Heart size={18} fill="currentColor" />
-                        </button>
-                      </div>
+          ) : (
+            <div className="space-y-3">
+              {favoriteItems.map((item) => (
+                <div
+                  key={item.id}
+                  className="bg-white/60 rounded-xl p-4 cursor-pointer hover:bg-white/80 transition-colors active:scale-[0.98] transform"
+                  onClick={() => openViewer([item], 0)}
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <span className="inline-block bg-primary/20 text-accent text-xs font-medium px-2 py-0.5 rounded-full mb-2">
+                        {CATEGORY_LABELS[item.category] || item.category}
+                      </span>
+                      <p className="text-text text-base font-medium leading-snug line-clamp-2 break-keep">
+                        &ldquo;{item.quote}&rdquo;
+                      </p>
+                      <p className="text-text/60 text-sm mt-1">- {item.author}</p>
                     </div>
-                  ))}
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleToggleFavorite(item.id);
+                      }}
+                      className="text-red-400 hover:text-red-500 p-1 flex-shrink-0"
+                      aria-label="즐겨찾기 해제"
+                    >
+                      <Heart size={18} fill="currentColor" />
+                    </button>
+                  </div>
                 </div>
-              )}
+              ))}
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </section>
+      </main>
+
+      {/* CardViewer 오버레이 (스크롤 위치 보존) */}
+      {view === 'viewer' && (
+        <div className="fixed inset-0 z-50">
+          <CardViewer
+            contents={viewerContents}
+            startIndex={viewerStartIndex}
+            favorites={favorites}
+            onToggleFavorite={handleToggleFavorite}
+            fontSize={fontSize}
+            onBack={handleViewerBack}
+          />
+        </div>
+      )}
     </div>
   );
 };
