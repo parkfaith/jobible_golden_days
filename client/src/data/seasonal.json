@@ -1,0 +1,202 @@
+[
+  {
+    "id": "s-seollal-01",
+    "quote": "새해 복 많이 받으세요. 올 한 해도 건강하시고 행복하세요.",
+    "author": "새해 덕담",
+    "source": "전통 인사",
+    "bgImage": "/images/bg-01.jpg",
+    "season": "설날"
+  },
+  {
+    "id": "s-seollal-02",
+    "quote": "여호와는 너를 지키시는 이시라 여호와께서 네 오른쪽에서 네 그늘이 되시나니",
+    "author": "시편 121:5",
+    "source": "개역한글",
+    "bgImage": "/images/bg-05.jpg",
+    "season": "설날"
+  },
+  {
+    "id": "s-seollal-03",
+    "quote": "만수무강하시고, 가정에 웃음꽃이 활짝 피는 한 해가 되시길 바랍니다.",
+    "author": "새해 덕담",
+    "source": "전통 인사",
+    "bgImage": "/images/bg-10.jpg",
+    "season": "설날"
+  },
+  {
+    "id": "s-seollal-04",
+    "quote": "범사에 네가 강건하기를 내가 간구하노라",
+    "author": "요한삼서 1:2",
+    "source": "개역한글",
+    "bgImage": "/images/bg-15.jpg",
+    "season": "설날"
+  },
+  {
+    "id": "s-seollal-05",
+    "quote": "새해에는 모든 소원 이루시고, 하시는 일마다 잘 되시길 기원합니다.",
+    "author": "새해 덕담",
+    "source": "전통 인사",
+    "bgImage": "/images/bg-20.jpg",
+    "season": "설날"
+  },
+  {
+    "id": "s-chuseok-01",
+    "quote": "더도 말고 덜도 말고 한가위만 같아라.",
+    "author": "한국 속담",
+    "source": "전통",
+    "bgImage": "/images/bg-02.jpg",
+    "season": "추석"
+  },
+  {
+    "id": "s-chuseok-02",
+    "quote": "여호와여 주의 일을 생각하고 주의 행한 옛적 기이한 일을 되새기며",
+    "author": "시편 77:11",
+    "source": "개역한글",
+    "bgImage": "/images/bg-08.jpg",
+    "season": "추석"
+  },
+  {
+    "id": "s-chuseok-03",
+    "quote": "풍성한 한가위 보내시고, 가족과 함께 행복한 시간 되세요.",
+    "author": "추석 인사",
+    "source": "전통 인사",
+    "bgImage": "/images/bg-12.jpg",
+    "season": "추석"
+  },
+  {
+    "id": "s-chuseok-04",
+    "quote": "감사함으로 그 문에 들어가며 찬송함으로 그 궁정에 들어가서 그에게 감사하며 그 이름을 송축할지어다",
+    "author": "시편 100:4",
+    "source": "개역한글",
+    "bgImage": "/images/bg-18.jpg",
+    "season": "추석"
+  },
+  {
+    "id": "s-chuseok-05",
+    "quote": "넉넉한 마음으로 나누고, 감사하는 마음으로 거두는 한가위 되세요.",
+    "author": "추석 인사",
+    "source": "전통 인사",
+    "bgImage": "/images/bg-25.jpg",
+    "season": "추석"
+  },
+  {
+    "id": "s-parents-01",
+    "quote": "네 부모를 공경하라 그리하면 네 하나님 여호와가 네게 준 땅에서 네 생명이 길리라",
+    "author": "출애굽기 20:12",
+    "source": "개역한글",
+    "bgImage": "/images/bg-03.jpg",
+    "season": "어버이날"
+  },
+  {
+    "id": "s-parents-02",
+    "quote": "세상에서 가장 아름다운 소리는 어머니의 목소리이다.",
+    "author": "에이브러햄 링컨",
+    "source": "명언",
+    "bgImage": "/images/bg-07.jpg",
+    "season": "어버이날"
+  },
+  {
+    "id": "s-parents-03",
+    "quote": "부모의 마음은 바다보다 깊고, 하늘보다 넓다.",
+    "author": "한국 속담",
+    "source": "전통",
+    "bgImage": "/images/bg-14.jpg",
+    "season": "어버이날"
+  },
+  {
+    "id": "s-parents-04",
+    "quote": "마땅히 행할 길을 아이에게 가르치라 그리하면 늙어도 그것을 떠나지 아니하리라",
+    "author": "잠언 22:6",
+    "source": "개역한글",
+    "bgImage": "/images/bg-22.jpg",
+    "season": "어버이날"
+  },
+  {
+    "id": "s-parents-05",
+    "quote": "효도는 덕의 근본이요 교화의 시작이다.",
+    "author": "효경",
+    "source": "고전",
+    "bgImage": "/images/bg-30.jpg",
+    "season": "어버이날"
+  },
+  {
+    "id": "s-christmas-01",
+    "quote": "오늘 다윗의 동네에 너희를 위하여 구주가 나셨으니 곧 그리스도 주시니라",
+    "author": "누가복음 2:11",
+    "source": "개역한글",
+    "bgImage": "/images/bg-04.jpg",
+    "season": "크리스마스"
+  },
+  {
+    "id": "s-christmas-02",
+    "quote": "하나님이 세상을 이처럼 사랑하사 독생자를 주셨으니 이는 저를 믿는 자마다 멸망치 않고 영생을 얻게 하려 하심이니라",
+    "author": "요한복음 3:16",
+    "source": "개역한글",
+    "bgImage": "/images/bg-09.jpg",
+    "season": "크리스마스"
+  },
+  {
+    "id": "s-christmas-03",
+    "quote": "지극히 높은 곳에서는 하나님께 영광이요 땅에서는 기뻐하심을 입은 사람들 중에 평화로다",
+    "author": "누가복음 2:14",
+    "source": "개역한글",
+    "bgImage": "/images/bg-16.jpg",
+    "season": "크리스마스"
+  },
+  {
+    "id": "s-christmas-04",
+    "quote": "사랑은 오래 참고 사랑은 온유하며 투기하는 자가 되지 아니하며",
+    "author": "고린도전서 13:4",
+    "source": "개역한글",
+    "bgImage": "/images/bg-28.jpg",
+    "season": "크리스마스"
+  },
+  {
+    "id": "s-christmas-05",
+    "quote": "따뜻한 성탄절 보내시고, 사랑하는 사람들과 함께 행복한 시간 되세요.",
+    "author": "성탄 인사",
+    "source": "인사",
+    "bgImage": "/images/bg-35.jpg",
+    "season": "크리스마스"
+  },
+  {
+    "id": "s-newyear-01",
+    "quote": "여호와를 앙망하는 자는 새 힘을 얻으리니 독수리의 날개치며 올라감 같을 것이요",
+    "author": "이사야 40:31",
+    "source": "개역한글",
+    "bgImage": "/images/bg-06.jpg",
+    "season": "새해"
+  },
+  {
+    "id": "s-newyear-02",
+    "quote": "천 리 길도 한 걸음부터 시작된다.",
+    "author": "노자",
+    "source": "도덕경",
+    "bgImage": "/images/bg-11.jpg",
+    "season": "새해"
+  },
+  {
+    "id": "s-newyear-03",
+    "quote": "새해에는 새로운 마음으로, 감사와 기쁨이 넘치는 한 해가 되시길 바랍니다.",
+    "author": "새해 인사",
+    "source": "인사",
+    "bgImage": "/images/bg-19.jpg",
+    "season": "새해"
+  },
+  {
+    "id": "s-newyear-04",
+    "quote": "내가 너로 큰 민족을 이루고 네게 복을 주어 네 이름을 창대케 하리니 너는 복의 근원이 될지라",
+    "author": "창세기 12:2",
+    "source": "개역한글",
+    "bgImage": "/images/bg-24.jpg",
+    "season": "새해"
+  },
+  {
+    "id": "s-newyear-05",
+    "quote": "어제는 역사이고, 내일은 미스터리이며, 오늘은 선물이다.",
+    "author": "엘리너 루스벨트",
+    "source": "명언",
+    "bgImage": "/images/bg-32.jpg",
+    "season": "새해"
+  }
+]

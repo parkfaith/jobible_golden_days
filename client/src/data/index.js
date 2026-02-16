@@ -3,6 +3,8 @@ import quotes from './quotes.json';
 import proverbs from './proverbs.json';
 import poems from './poems.json';
 import writings from './writings.json';
+import seasonal from './seasonal.json';
+import seasons from './seasons.json';
 
 // 카테고리 자동 부여
 const withCategory = (items, category) =>
@@ -24,6 +26,10 @@ export const categories = [
   { key: 'poem',    label: '시',   icon: '🌸', items: withCategory(poems, 'poem') },
   { key: 'writing', label: '글귀', icon: '✍️', items: withCategory(writings, 'writing') },
 ];
+
+// 절기 콘텐츠 (allContent에 포함하지 않음 — 일반 큐레이터 대상 아님)
+export const seasonalContent = seasonal.map(item => ({ ...item, category: 'seasonal' }));
+export { seasons };
 
 export default allContent;
 export { bible, quotes, proverbs, poems, writings };

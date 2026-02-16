@@ -17,7 +17,7 @@ const CATEGORY_FONTS = {
   quote: 'font-sans',       // Pretendard — 깔끔하고 현대적
   proverb: 'font-sans',     // Pretendard — 가독성 우선
   poem: 'font-serif',       // 나눔명조 — 서정적, 문학적
-  writing: 'font-handwriting', // 나눔펜스크립트 — 캘리그래피 감성
+  writing: 'font-sans',        // Pretendard — 어르신 가독성 우선
 };
 
 const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize = 'normal' }) => {

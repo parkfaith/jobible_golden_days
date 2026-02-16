@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { getDailyContent } from '../utils/dailyCurator';
+import React, { useState, useEffect, useCallback, useMemo } from 'react';
+import { getDailyContent, getRevisitContent } from '../utils/dailyCurator';
+import { detectCurrentSeason, getSeasonalContent } from '../utils/seasonDetector';
 import allContent from '../data';
 import { Heart, Type } from 'lucide-react';
 import CardViewer from '../components/CardViewer';
 import TodayPreview from '../components/TodayPreview';
 import CategoryGrid from '../components/CategoryGrid';
+import SeasonalBanner from '../components/SeasonalBanner';
+import RevisitSection from '../components/RevisitSection';
 
 // 카테고리 라벨 (즐겨찾기 목록에서 사용)
 const CATEGORY_LABELS = {
@@ -29,6 +32,14 @@ const Home = () => {
   const [viewerContents, setViewerContents] = useState([]);
   const [viewerStartIndex, setViewerStartIndex] = useState(0);
   const [todayContents] = useState(() => getDailyContent());
+  const revisitContents = useMemo(() => getRevisitContent(), []);
+
+  // 절기 감지 (날짜 기반, 렌더링마다 재계산할 필요 없음)
+  const activeSeason = useMemo(() => detectCurrentSeason(), []);
+  const seasonContents = useMemo(
+    () => activeSeason ? getSeasonalContent(activeSeason.key) : [],
+    [activeSeason]
+  );
 
   // 즐겨찾기 토글
   const handleToggleFavorite = (id) => {
@@ -99,12 +110,29 @@ const Home = () => {
 
       {/* 메인 콘텐츠 (세로 스크롤) */}
       <main className="pb-8">
+        {/* 절기 배너 (해당 시기에만 표시) */}
+        {activeSeason && seasonContents.length > 0 && (
+          <SeasonalBanner
+            season={activeSeason}
+            contents={seasonContents}
+            onTap={(contents) => openViewer(contents, 0)}
+          />
+        )}
+
         {/* 오늘의 이야기 미리보기 (가로 스크롤) */}
         <TodayPreview
           contents={todayContents}
           favorites={favorites}
           onCardTap={(idx) => openViewer(todayContents, idx)}
         />
+
+        {/* 다시 만나는 글귀 (8~14일 전 콘텐츠 추천) */}
+        {revisitContents.length > 0 && (
+          <RevisitSection
+            contents={revisitContents}
+            onCardTap={(contents, idx) => openViewer(contents, idx)}
+          />
+        )}
 
         {/* 카테고리 그리드 */}
         <CategoryGrid

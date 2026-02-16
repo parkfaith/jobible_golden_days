@@ -4,6 +4,49 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-02-16]
 
+### 콘텐츠 신선도 기능 (Content Freshness)
+
+- **7일 중복 제거 (7-Day Deduplication)**: `dailyCurator.js`의 일일 콘텐츠 선택에 최근 7일 중복 방지 로직 추가. 과거 7일간 노출된 콘텐츠를 제외하고 새로운 항목 우선 선택. 폴백 안전장치 포함 (후보 부족 시 셔플 순서대로 채움). 결정론적 특성 유지 (localStorage 불필요, 순수 계산).
+- **"다시 만나는 글귀" 섹션 (Revisit Section)**: 홈 화면에 8~14일 전 콘텐츠 중 오늘 미선택 항목 3개를 추천하는 섹션 추가. 배경 이미지 + 카테고리 배지 + 인용문 카드 형태. 탭 시 CardViewer 진입.
+- **알고리즘 리팩토링 (Algorithm Refactoring)**: 기존 `getDailyContent` 내부 로직을 `_getRawDailyContent`(내부 함수)로 추출하여 과거 날짜 계산용으로 활용. `getRevisitContent` 신규 export 추가. 순환 참조 방지 설계 (과거 결과는 원본 로직으로 계산).
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/dailyCurator.js` (7일 중복 제거 + getRevisitContent 추가)
+- `client/src/components/RevisitSection.jsx` (신규 — "다시 만나는 글귀" UI)
+- `client/src/pages/Home.jsx` (RevisitSection 통합)
+- `CHANGELOG.md`
+
+### Phase 2 Step 6: 시/좋은글 콘텐츠 확충 (Poems & Writings Content)
+
+- **시(詩) 콘텐츠 15편 작성 (Add 15 Poems)**: 저작권 만료 한국 시인의 대표작 15편 추가 (ID 51~65). 김소월(3편), 윤동주(4편), 한용운(2편), 김영랑, 김춘수, 이상화, 김수영, 유치환, 이해인 각 1편. 진달래꽃, 서시, 별 헤는 밤, 님의 침묵, 꽃 등 어르신 세대에 친숙한 시 선정.
+- **좋은글(글귀) 콘텐츠 15편 작성 (Add 15 Writings)**: 성경 구절 7편 + 전통 지혜/명언 8편 (ID 71~85). 시편 23편, 전도서 3장, 잠언, 이사야서 등 위로와 감사의 말씀. 세네카, 헬렌 켈러 등 저작권 만료 명언. 70대 이상 어르신에게 위로·감사·지혜를 전하는 글귀 중심.
+- **카테고리 그리드 활성화 (Activate Category Grid)**: 기존 빈 배열이었던 시/글귀 카테고리에 콘텐츠가 추가되어 홈 화면 카테고리 그리드에 자동 표시. dailyCurator 일일 선택 풀에도 자동 포함.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/poems.json` (빈 배열 → 15편)
+- `client/src/data/writings.json` (빈 배열 → 15편)
+- `CHANGELOG.md`
+
+### Phase 2 Step 3+4: 절기 시스템 + 절기 콘텐츠 (Seasonal System & Content)
+
+- **절기 자동 감지 (Auto Season Detection)**: 날짜 기반으로 5개 절기(설날, 추석, 어버이날, 크리스마스, 새해) 자동 감지. 음력 명절(설날/추석)은 2026~2030년 양력 날짜 하드코딩, 고정 기념일은 month/day ± range 계산. 우선순위: 명절 > 기념일.
+- **절기 배너 (Seasonal Banner)**: 홈 상단에 절기 배너 자동 표시. 배경 이미지 + 아이콘 + 라벨 + 콘텐츠 수. 탭 시 CardViewer로 절기 전용 콘텐츠 탐색. 절기 없는 날에는 배너 숨김.
+- **절기 콘텐츠 데이터 (Seasonal Content Data)**: 절기별 5편씩 총 25편 작성. 설날(덕담/성경), 추석(한가위 인사/성경), 어버이날(효도 명언/성경), 크리스마스(성탄 성경), 새해(소망 명언/성경). 기존 bg 이미지 재사용.
+- **절기 달력 데이터 (Season Calendar Data)**: `seasons.json`에 5개 절기 정의. 음력 명절 2026~2030년 양력 변환 포함. 외부 API 불필요, 오프라인 지원.
+- **seasonDetector 유틸리티 (Season Detector Utility)**: `detectCurrentSeason()` — 활성 절기 반환, `getSeasonalContent(key)` — 해당 절기 콘텐츠 필터링. allContent/dailyCurator에 영향 없음 (별도 관리).
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/seasons.json` (신규 — 절기 달력 데이터)
+- `client/src/data/seasonal.json` (신규 — 절기 콘텐츠 25편)
+- `client/src/data/index.js` (seasonal/seasons import + export 추가)
+- `client/src/utils/seasonDetector.js` (신규 — 절기 감지 유틸리티)
+- `client/src/components/SeasonalBanner.jsx` (신규 — 절기 배너 UI)
+- `client/src/pages/Home.jsx` (배너 삽입 + useMemo)
+- `CHANGELOG.md`
+
 ### Phase 2 Step 1~2: 카테고리 홈 & 오늘의 이야기 미리보기 (Category Hub & Today's Story Preview)
 
 - **홈 화면 전면 재구성 (Redesign Home as Category Hub)**: 기존 전체화면 카드 뷰어를 세로 스크롤 카테고리 허브로 전환. 오늘의 이야기 미리보기 + 카테고리 그리드 + 즐겨찾기 섹션을 한 페이지에 배치.
