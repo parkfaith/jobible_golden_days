@@ -1,0 +1,29 @@
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Nanum+Pen+Script&display=swap");
+
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Pretendard Variable", "Pretendard", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-serif: "Nanum Myeongjo", "Batang", serif;
+  --font-handwriting: "Nanum Pen Script", cursive;
+
+  --color-primary: #8B9D83; /* Sage Green */
+  --color-secondary: #E5E1D8; /* Sand Beige */
+  --color-accent: #3A4D39; /* Deep Forest Green */
+  --color-text: #2C3E50; /* Dark Slate Blue */
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-secondary);
+  color: var(--color-text);
+}
+
+/* Calendar Styles Override */
+.react-calendar {
+  width: 100%;
+  background: transparent;
+  border: none;
+  font-family: var(--font-sans);
+}

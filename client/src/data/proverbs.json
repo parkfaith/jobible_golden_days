@@ -1,0 +1,58 @@
+[
+  {
+    "id": 28,
+    "quote": "천 리 길도 한 걸음부터.",
+    "author": "노자",
+    "source": "도덕경, 공개 도메인",
+    "bgImage": "/images/bg-28.jpg"
+  },
+  {
+    "id": 30,
+    "quote": "세월이 흐르면 다 알게 된다.",
+    "author": "한국 속담",
+    "source": "전통",
+    "bgImage": "/images/bg-30.jpg"
+  },
+  {
+    "id": 32,
+    "quote": "넘어지지 않는 것이 중요한 것이 아니라 일어서는 것이 중요하다.",
+    "author": "한국 속담",
+    "source": "전통",
+    "bgImage": "/images/bg-32.jpg"
+  },
+  {
+    "id": 34,
+    "quote": "배움에는 나이가 없다.",
+    "author": "한국 속담",
+    "source": "전통",
+    "bgImage": "/images/bg-34.jpg"
+  },
+  {
+    "id": 40,
+    "quote": "꽃이 진다고 봄이 가는 것은 아니다.",
+    "author": "한국 속담",
+    "source": "전통",
+    "bgImage": "/images/bg-40.jpg"
+  },
+  {
+    "id": 46,
+    "quote": "느리게 가도 멈추지만 않으면 된다.",
+    "author": "공자",
+    "source": "논어, 공개 도메인",
+    "bgImage": "/images/bg-46.jpg"
+  },
+  {
+    "id": 48,
+    "quote": "물은 너무 맑으면 고기가 없고 사람은 너무 살피면 벗이 없다.",
+    "author": "한비자",
+    "source": "공개 도메인 (BC 280-BC 233)",
+    "bgImage": "/images/bg-48.jpg"
+  },
+  {
+    "id": 50,
+    "quote": "곧은 나무 먼저 찍힌다. 겸손하라.",
+    "author": "장자",
+    "source": "장자, 공개 도메인",
+    "bgImage": "/images/bg-50.jpg"
+  }
+]

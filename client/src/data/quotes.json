@@ -1,0 +1,114 @@
+[
+  {
+    "id": 26,
+    "quote": "오늘이라는 날은 두 번 다시 오지 않는다는 것을 잊지 말라.",
+    "author": "단테",
+    "source": "공개 도메인 (1265-1321)",
+    "bgImage": "/images/bg-26.jpg"
+  },
+  {
+    "id": 27,
+    "quote": "인생은 속도가 아니라 방향이다.",
+    "author": "괴테",
+    "source": "공개 도메인 (1749-1832)",
+    "bgImage": "/images/bg-27.jpg"
+  },
+  {
+    "id": 29,
+    "quote": "지혜의 시작은 자기 자신을 아는 것이다.",
+    "author": "소크라테스",
+    "source": "공개 도메인 (BC 470-BC 399)",
+    "bgImage": "/images/bg-29.jpg"
+  },
+  {
+    "id": 31,
+    "quote": "아침에 도를 들으면 저녁에 죽어도 좋다.",
+    "author": "공자",
+    "source": "논어, 공개 도메인",
+    "bgImage": "/images/bg-31.jpg"
+  },
+  {
+    "id": 33,
+    "quote": "행복은 미덕의 보상이 아니라 미덕 그 자체이다.",
+    "author": "스피노자",
+    "source": "에티카, 공개 도메인 (1632-1677)",
+    "bgImage": "/images/bg-33.jpg"
+  },
+  {
+    "id": 35,
+    "quote": "감사할 줄 아는 사람은 행복을 놓치지 않는다.",
+    "author": "키케로",
+    "source": "공개 도메인 (BC 106-BC 43)",
+    "bgImage": "/images/bg-35.jpg"
+  },
+  {
+    "id": 36,
+    "quote": "시간은 가장 공정한 것이다. 누구에게나 하루에 스물네 시간을 준다.",
+    "author": "토마스 헉슬리",
+    "source": "공개 도메인 (1825-1895)",
+    "bgImage": "/images/bg-36.jpg"
+  },
+  {
+    "id": 37,
+    "quote": "나이 드는 것은 의무이다. 성숙해지는 것은 선택이다.",
+    "author": "벤자민 프랭클린",
+    "source": "공개 도메인 (1706-1790)",
+    "bgImage": "/images/bg-37.jpg"
+  },
+  {
+    "id": 38,
+    "quote": "가장 어두운 밤도 끝나고 해는 뜬다.",
+    "author": "빅토르 위고",
+    "source": "공개 도메인 (1802-1885)",
+    "bgImage": "/images/bg-38.jpg"
+  },
+  {
+    "id": 39,
+    "quote": "삶이 있는 한 희망이 있다.",
+    "author": "키케로",
+    "source": "공개 도메인 (BC 106-BC 43)",
+    "bgImage": "/images/bg-39.jpg"
+  },
+  {
+    "id": 41,
+    "quote": "삶에서 가장 중요한 날은 태어난 날과 왜 태어났는지 알게 된 날이다.",
+    "author": "마크 트웨인",
+    "source": "공개 도메인 (1835-1910)",
+    "bgImage": "/images/bg-41.jpg"
+  },
+  {
+    "id": 42,
+    "quote": "단순하게 살아라. 그래야 다른 사람들도 단순하게 살 수 있다.",
+    "author": "톨스토이",
+    "source": "공개 도메인 (1828-1910)",
+    "bgImage": "/images/bg-42.jpg"
+  },
+  {
+    "id": 43,
+    "quote": "오래 살기를 바라거든 늙음을 맞이할 줄 알아야 한다.",
+    "author": "벤자민 프랭클린",
+    "source": "공개 도메인 (1706-1790)",
+    "bgImage": "/images/bg-43.jpg"
+  },
+  {
+    "id": 44,
+    "quote": "인내는 쓰나 그 열매는 달다.",
+    "author": "장 자크 루소",
+    "source": "공개 도메인 (1712-1778)",
+    "bgImage": "/images/bg-44.jpg"
+  },
+  {
+    "id": 45,
+    "quote": "오늘 할 수 있는 일을 내일로 미루지 마라.",
+    "author": "벤자민 프랭클린",
+    "source": "공개 도메인 (1706-1790)",
+    "bgImage": "/images/bg-45.jpg"
+  },
+  {
+    "id": 49,
+    "quote": "매일 밤 잠자리에 들 때 나는 죽고 아침에 눈뜰 때 새로 태어난다.",
+    "author": "마하트마 간디",
+    "source": "공개 도메인 (1869-1948)",
+    "bgImage": "/images/bg-49.jpg"
+  }
+]
