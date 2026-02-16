@@ -233,6 +233,8 @@ const Home = () => {
                   className="w-full rounded-lg border-none font-sans text-text"
                   calendarType="gregory"
                   formatDay={(locale, date) => date.getDate()}
+                  prev2Label={null}
+                  next2Label={null}
                 />
               </div>
             </div>

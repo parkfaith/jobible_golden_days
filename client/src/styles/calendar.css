@@ -5,18 +5,34 @@
   font-family: 'Pretendard Variable', 'Pretendard', sans-serif;
 }
 
-/* 년/월 네비게이션 버튼 */
+/* 년/월 네비게이션 영역 */
 .react-calendar__navigation {
-  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
 .react-calendar__navigation button {
-  color: #2C3E50; /* 진한 텍스트로 가독성 확보 */
+  color: #2C3E50;
   min-width: 44px;
+  min-height: 44px;
   background: none;
-  font-size: 1.5em; /* 폰트 크기 대폭 확대 */
-  font-weight: 800; /* 굵게 */
-  padding: 10px;
+  font-size: 1.1em;
+  font-weight: 700;
+  padding: 8px 4px;
+  border: none;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* 년/월 라벨 (가운데 버튼) */
+.react-calendar__navigation__label {
+  flex-grow: 1;
+  font-size: 1.2em !important;
+  font-weight: 800 !important;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .react-calendar__navigation button:disabled {
@@ -26,7 +42,7 @@
 
 .react-calendar__navigation button:enabled:hover,
 .react-calendar__navigation button:enabled:focus {
-  background-color: #EDE8D0; /* 부드러운 배경색 */
+  background-color: #EDE8D0;
   color: #3A4D39;
   border-radius: 12px;
 }

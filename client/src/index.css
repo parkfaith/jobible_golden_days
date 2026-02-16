@@ -20,10 +20,3 @@ body {
   color: var(--color-text);
 }
 
-/* Calendar Styles Override */
-.react-calendar {
-  width: 100%;
-  background: transparent;
-  border: none;
-  font-family: var(--font-sans);
-}
