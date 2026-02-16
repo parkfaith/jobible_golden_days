@@ -117,9 +117,9 @@ const Home = () => {
     <div className="relative w-full h-screen bg-secondary overflow-hidden">
       {/* Header / Top Bar */}
       <header className="absolute top-0 left-0 right-0 z-30 p-4 flex justify-between items-center bg-gradient-to-b from-black/20 to-transparent">
-        <div className="flex flex-col">
-          <span className="text-white/90 text-sm font-light tracking-widest drop-shadow-sm">joBiBle</span>
-          <h1 className="text-white text-lg font-bold drop-shadow-sm opacity-80 leading-tight">Golden Days</h1>
+        <div className="flex flex-col" style={{ textShadow: '0 0 6px rgba(0,0,0,0.5), 0 1px 3px rgba(0,0,0,0.3)' }}>
+          <span className="text-[#C8915A] text-sm font-light tracking-widest">joBiBle</span>
+          <h1 className="text-[#A7672A] text-lg font-bold leading-tight">Golden Days</h1>
         </div>
         <div className="flex items-center gap-1">
           {/* 글씨 크기 토글 */}

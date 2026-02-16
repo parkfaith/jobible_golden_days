@@ -55,6 +55,59 @@ client/src/
 
 **Environment:** `VITE_KAKAO_JS_KEY` — 카카오톡 공유 SDK 키 (`.env` 파일).
 
+## Tech Stack
+
+| 구분 | 기술 | 버전 |
+|------|------|------|
+| Framework | React | 19.2 |
+| Build Tool | Vite | 7.3 |
+| CSS | Tailwind CSS | 4.1 (CSS-first, `@theme`) |
+| Animation | Framer Motion | 12.x |
+| Icons | Lucide React | 0.564 |
+| Calendar | react-calendar | 6.0 |
+| PWA | vite-plugin-pwa (Workbox) | 1.2 |
+| Lint | ESLint | 9.x |
+| 외부 SDK | Kakao JavaScript SDK | 2.7.4 (CDN) |
+
+**사용하지 않는 것들:** React Router(라우팅 없음), 상태 관리 라이브러리(Redux/Zustand 등), 백엔드/DB(Phase 2 예정), 테스트 프레임워크(미설정)
+
+## Technical Details
+
+### 일일 콘텐츠 선택 알고리즘 (`dailyCurator.js`)
+1. 날짜 → 시드 변환: `year * 10000 + month * 100 + day` (같은 날짜 = 같은 시드)
+2. **Mulberry32** PRNG로 의사 난수 생성 (균등 분포, 결정론적)
+3. **Fisher-Yates 셔플**로 카테고리별 콘텐츠 무작위 정렬 (편향 없음)
+4. 성경 2~3개 + 기타(명언/속담) 2~3개 = 총 5개 선택
+5. 최종 5개를 다시 셔플하여 카테고리 순서 섞기
+
+### 데이터 구조
+- JSON 파일에 `category` 필드 없음 → `data/index.js`에서 import 시 자동 부여
+- 콘텐츠 스키마: `{ id, quote, author, source, bgImage }`
+- 카테고리 추가 시: 해당 JSON 파일에 항목 추가 → `data/index.js`에 import만 하면 자동 반영
+
+### 공유 기능 폴백 체인 (`QuoteCard.jsx`)
+1. **카카오톡 SDK** (`window.Kakao.Share.sendDefault`) — Feed 템플릿
+2. **Web Share API** (`navigator.share`) — 모바일 기본 공유 시트
+3. **클립보드 복사** (`navigator.clipboard.writeText`) — 최종 폴백
+
+### localStorage 키
+| 키 | 값 형식 | 용도 |
+|---|---------|------|
+| `golden-days-favorites` | `number[]` (id 배열) | 즐겨찾기 목록 |
+| `golden-days-font-size` | `"normal"` \| `"large"` | 폰트 크기 설정 |
+
+### 이미지
+- 50장 로컬 저장 (`public/images/bg-01.jpg` ~ `bg-50.jpg`)
+- Unsplash 원본에서 w=800, q=70으로 최적화 다운로드, 총 약 5MB
+- PWA precache에 포함되어 오프라인에서도 표시
+
+### 폰트 전략
+| Tailwind 클래스 | 폰트 | 적용 카테고리 |
+|----------------|------|-------------|
+| `font-sans` | Pretendard Variable | 명언, 속담, 저자 이름(전체) |
+| `font-serif` | Nanum Myeongjo | 성경, 시 |
+| `font-handwriting` | Nanum Pen Script | 글귀 |
+
 ## Project Rules (필수 준수)
 
 1. **언어**: 모든 응답과 코드 주석은 **한국어**로 작성. 기술 용어는 영어 병기 가능 (예: 변수(Variable))

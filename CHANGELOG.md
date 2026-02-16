@@ -4,6 +4,41 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-02-16]
 
+### 아이콘 & 로고 적용 (App Icon & Logo)
+
+- **PWA 아이콘 적용 (Apply PWA Icons)**: 제공된 아이콘 이미지에서 PWA용 아이콘(192x192, 512x512), Apple Touch Icon(180x180), favicon(32x32) 생성 및 적용. 기존 favicon.svg 제거.
+- **헤더 로고 이미지 교체 (Replace Header Logo)**: 기존 텍스트("joBiBle" + "Golden Days")를 로고 이미지(`logo.png`)로 교체.
+- **PWA 설정 업데이트 (Update PWA Config)**: `vite.config.js`의 `includeAssets`에 favicon.png, logo.png, apple-touch-icon.png 추가. `index.html` favicon 경로를 PNG로 변경.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/public/pwa-192x192.png` (신규 — PWA 아이콘 192x192)
+- `client/public/pwa-512x512.png` (신규 — PWA 아이콘 512x512)
+- `client/public/apple-touch-icon.png` (신규 — Apple Touch Icon 180x180)
+- `client/public/favicon.png` (신규 — 파비콘 32x32)
+- `client/public/logo.png` (신규 — 헤더 로고)
+- `client/public/favicon.svg` (삭제)
+- `client/src/pages/Home.jsx` (헤더 텍스트 → 로고 이미지)
+- `client/vite.config.js` (includeAssets 업데이트)
+- `client/index.html` (favicon 경로 변경)
+- `CHANGELOG.md`
+
+### 이미지 캡처 공유 기능 (Image Capture & Share)
+
+- **이미지 캡처 공유 (Image Capture Share)**: 공유 버튼 탭 시 html2canvas로 카드 화면(배경 이미지 + 오버레이 + 글귀 + 저자)을 PNG 이미지로 캡처. Web Share API Level 2로 카카오톡/문자/갤러리 등에 이미지 파일 직접 공유 가능.
+- **공유 폴백 체인 개선 (Improve Share Fallback Chain)**: 이미지 캡처 → Web Share API (파일 공유) → 이미지 다운로드 → 텍스트 클립보드 복사. 기존 카카오톡 SDK 직접 호출 제거 (Web Share API가 카카오톡 포함).
+- **배경 이미지 방식 전환 (Switch Background to img Tag)**: CSS `background-image` → `<img>` 태그로 전환하여 html2canvas 호환성 확보.
+- **캡처 영역 분리 (Separate Capture Area)**: 카드 콘텐츠(캡처 대상)와 UI 버튼(캡처 제외)을 구조적으로 분리. 캡처 이미지에 워터마크 "Golden Days" 추가.
+- **로딩 오버레이 추가 (Add Loading Overlay)**: 캡처 진행 중 스피너 + "이미지 생성 중..." 메시지 표시. 중복 클릭 방지.
+- **캡처 유틸리티 모듈 생성 (Create Capture Utility)**: `captureCard.js` — `captureElementToBlob`, `blobToFile`, `downloadBlob` 함수 분리.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/captureCard.js` (신규 — html2canvas 캡처 유틸리티)
+- `client/src/components/QuoteCard.jsx` (공유 로직 재작성, 배경 img 전환, 캡처 영역 분리)
+- `client/package.json` (html2canvas 의존성 추가)
+- `CHANGELOG.md`
+
 ### 카테고리별 글자체 차별화 (Category-based Font Styling)
 
 - **카테고리별 폰트 적용 (Apply Fonts per Category)**: 성경/시 → 나눔명조(Nanum Myeongjo, 격식·서정), 명언/속담 → Pretendard(기본, 가독성), 글귀 → 나눔펜스크립트(Nanum Pen Script, 캘리그래피). 저자 이름은 항상 Pretendard 유지.

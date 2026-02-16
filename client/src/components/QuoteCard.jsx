@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart } from 'lucide-react';
+import { captureElementToBlob, blobToFile, downloadBlob } from '../utils/captureCard';
 
 const CATEGORY_LABELS = {
   bible: '말씀',
@@ -20,117 +21,120 @@ const CATEGORY_FONTS = {
 };
 
 const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize = 'normal' }) => {
-  const [shared, setShared] = useState(false);
+  const [notification, setNotification] = useState(false);
+  const [isCapturing, setIsCapturing] = useState(false);
+  const captureRef = useRef(null);
 
-  // 클립보드 복사 폴백
-  const copyToClipboard = async (text) => {
-    await navigator.clipboard.writeText(text);
-    setShared(true);
-    setTimeout(() => setShared(false), 2000);
+  // 알림 메시지 표시
+  const showNotification = (message) => {
+    setNotification(message);
+    setTimeout(() => setNotification(false), 2500);
   };
 
   const handleShare = async () => {
-    const shareText = `"${content.quote}"\n- ${content.author}\n\n✨ Golden Days`;
+    if (isCapturing || !captureRef.current) return;
 
-    // 1순위: 카카오톡 공유 (SDK 초기화된 경우)
-    if (window.Kakao?.isInitialized()) {
-      try {
-        window.Kakao.Share.sendDefault({
-          objectType: 'feed',
-          content: {
+    setIsCapturing(true);
+
+    try {
+      // 1단계: html2canvas로 카드 캡처
+      const blob = await captureElementToBlob(captureRef.current);
+
+      if (!blob) {
+        throw new Error('이미지 캡처 실패');
+      }
+
+      // 2단계: Web Share API Level 2 (파일 공유) 시도
+      const file = blobToFile(blob, `golden-days-${Date.now()}.png`);
+
+      if (navigator.canShare && navigator.canShare({ files: [file] })) {
+        try {
+          await navigator.share({
             title: 'Golden Days - 오늘의 영감',
-            description: `"${content.quote}"\n- ${content.author}`,
-            imageUrl: content.bgImage,
-            link: {
-              mobileWebUrl: window.location.origin,
-              webUrl: window.location.origin,
-            },
-          },
-          buttons: [
-            {
-              title: '오늘의 영감 보기',
-              link: {
-                mobileWebUrl: window.location.origin,
-                webUrl: window.location.origin,
-              },
-            },
-          ],
-        });
-        return;
-      } catch (e) {
-        console.error('카카오 공유 실패, 폴백 사용:', e);
+            text: `"${content.quote}" - ${content.author}`,
+            files: [file],
+          });
+          return;
+        } catch (e) {
+          if (e.name === 'AbortError') return;
+          console.warn('Web Share API 파일 공유 실패, 다운로드 폴백:', e);
+        }
       }
-    }
 
-    // 2순위: Web Share API (모바일 기본 공유 시트)
-    if (navigator.share) {
+      // 3단계: 폴백 - 이미지 다운로드
+      downloadBlob(blob, `golden-days-${Date.now()}.png`);
+      showNotification('이미지가 저장되었습니다');
+
+    } catch (error) {
+      console.error('이미지 공유 실패:', error);
+      // 최종 폴백: 텍스트 클립보드 복사
       try {
-        await navigator.share({ title: 'Golden Days', text: shareText });
-      } catch (e) {
-        // 사용자가 공유 취소한 경우 무시
-        if (e.name !== 'AbortError') console.error(e);
+        const shareText = `"${content.quote}"\n- ${content.author}\n\n✨ Golden Days`;
+        await navigator.clipboard.writeText(shareText);
+        showNotification('텍스트가 복사되었습니다');
+      } catch (clipboardError) {
+        showNotification('공유에 실패했습니다');
       }
-      return;
+    } finally {
+      setIsCapturing(false);
     }
-
-    // 3순위: 클립보드 복사
-    await copyToClipboard(shareText);
   };
 
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
-      {/* 배경 이미지 */}
-      <div
-        className="absolute inset-0 bg-cover bg-center z-0 transition-opacity duration-1000"
-        style={{ backgroundImage: `url(${content.bgImage})` }}
-      />
 
-      {/* 가독성을 위한 어두운 오버레이 (PRD: 명도 대비 7:1) */}
-      <div className="absolute inset-0 bg-black/50 z-10" />
+      {/* === 캡처 대상 영역 === */}
+      <div ref={captureRef} className="absolute inset-0">
+        {/* 배경 이미지 (img 태그 — html2canvas 호환) */}
+        <img
+          src={content.bgImage}
+          alt=""
+          crossOrigin="anonymous"
+          className="absolute inset-0 w-full h-full object-cover z-0"
+        />
 
-      {/* 날짜 및 카테고리 표시 */}
-      <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
-        {dateLabel && (
-          <span className="text-white/70 text-sm font-medium drop-shadow-sm">
-            {dateLabel}
-          </span>
-        )}
-        {content.category && (
-          <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
-            {CATEGORY_LABELS[content.category] || content.category}
-          </span>
-        )}
+        {/* 가독성을 위한 어두운 오버레이 (명도 대비 7:1) */}
+        <div className="absolute inset-0 bg-black/50 z-10" />
+
+        {/* 날짜 및 카테고리 표시 */}
+        <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
+          {dateLabel && (
+            <span className="text-white/70 text-sm font-medium drop-shadow-sm">
+              {dateLabel}
+            </span>
+          )}
+          {content.category && (
+            <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
+              {CATEGORY_LABELS[content.category] || content.category}
+            </span>
+          )}
+        </div>
+
+        {/* 본문 콘텐츠 */}
+        <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
+          <div className="text-center max-w-2xl w-full flex flex-col items-center gap-8">
+            <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'} ${fontSize === 'large' ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'}`}>
+              &ldquo;{content.quote}&rdquo;
+            </p>
+            <p className={`text-white/90 font-sans font-medium mt-4 ${fontSize === 'large' ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
+              - {content.author}
+            </p>
+          </div>
+        </div>
+
+        {/* 워터마크 (캡처 이미지 하단) */}
+        <div className="absolute bottom-6 left-0 right-0 z-20 text-center">
+          <span className="text-white/30 text-xs tracking-widest">Golden Days</span>
+        </div>
       </div>
+      {/* === 캡처 대상 영역 끝 === */}
 
-      {/* 본문 콘텐츠 */}
-      <div className="relative z-20 p-8 text-center max-w-2xl w-full flex flex-col items-center gap-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'} ${fontSize === 'large' ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'}`}>
-            "{content.quote}"
-          </p>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-        >
-          <p className={`text-white/90 font-sans font-medium mt-4 ${fontSize === 'large' ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
-            - {content.author}
-          </p>
-        </motion.div>
-      </div>
-
-      {/* 즐겨찾기 & 공유 버튼 */}
+      {/* 즐겨찾기 & 공유 버튼 (캡처 영역 바깥) */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, delay: 1.0 }}
-        className="absolute bottom-28 right-6 z-20 flex flex-col gap-3"
+        className="absolute bottom-28 right-6 z-30 flex flex-col gap-3"
       >
         {onToggleFavorite && (
           <button
@@ -143,23 +147,39 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
         )}
         <button
           onClick={handleShare}
-          className="p-3 bg-white/15 hover:bg-white/25 backdrop-blur-sm rounded-full text-white transition-all active:scale-95"
-          aria-label="공유하기"
+          disabled={isCapturing}
+          className={`p-3 backdrop-blur-sm rounded-full text-white transition-all active:scale-95 ${isCapturing ? 'bg-white/30 cursor-wait' : 'bg-white/15 hover:bg-white/25'}`}
+          aria-label="이미지로 공유하기"
         >
           <Share2 size={22} />
         </button>
       </motion.div>
 
-      {/* 클립보드 복사 완료 알림 */}
+      {/* 캡처 중 로딩 오버레이 */}
       <AnimatePresence>
-        {shared && (
+        {isCapturing && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0 z-40 bg-black/60 flex flex-col items-center justify-center gap-4"
+          >
+            <div className="w-10 h-10 border-4 border-white/30 border-t-white rounded-full animate-spin" />
+            <p className="text-white text-2xl font-medium">이미지 생성 중...</p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* 알림 토스트 */}
+      <AnimatePresence>
+        {notification && (
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
-            className="absolute bottom-40 right-4 z-20 bg-black/70 text-white text-sm px-4 py-2 rounded-lg"
+            className="absolute bottom-40 right-4 z-50 bg-black/70 text-white text-lg px-5 py-3 rounded-lg"
           >
-            복사 완료!
+            {notification}
           </motion.div>
         )}
       </AnimatePresence>
