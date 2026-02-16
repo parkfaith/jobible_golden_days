@@ -7,8 +7,8 @@ const CategoryGrid = ({ onCategoryTap }) => {
   const visibleCategories = categories.filter(cat => cat.items.length > 0);
 
   return (
-    <section className="px-5 mb-6">
-      <h2 className="text-xl font-bold text-text mb-3">카테고리</h2>
+    <section className="px-5 mb-8">
+      <h2 className="text-2xl font-bold text-text mb-4">카테고리</h2>
       <div className="grid grid-cols-2 gap-3">
         {visibleCategories.map((cat) => (
           <motion.button

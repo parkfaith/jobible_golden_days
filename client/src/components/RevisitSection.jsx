@@ -22,10 +22,10 @@ const RevisitSection = ({ contents, onCardTap }) => {
   if (!contents || contents.length === 0) return null;
 
   return (
-    <section className="px-5 mb-6">
-      <div className="flex items-center gap-2 mb-3">
-        <RotateCcw size={20} className="text-primary" />
-        <h2 className="text-xl font-bold text-text">다시 만나는 글귀</h2>
+    <section className="px-5 mb-8">
+      <div className="flex items-center gap-2 mb-4">
+        <RotateCcw size={22} className="text-primary" />
+        <h2 className="text-2xl font-bold text-text">다시 만나는 글귀</h2>
       </div>
       <div className="space-y-3">
         {contents.map((item, idx) => (
@@ -43,14 +43,14 @@ const RevisitSection = ({ contents, onCardTap }) => {
             />
             <div className="absolute inset-0 bg-black/50" />
 
-            <div className="relative z-10 p-4 flex flex-col justify-end" style={{ minHeight: '100px' }}>
-              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full w-fit mb-2 ${CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-800'}`}>
+            <div className="relative z-10 p-4 flex flex-col justify-end" style={{ minHeight: '110px' }}>
+              <span className={`text-xs font-bold px-2.5 py-1 rounded-full w-fit mb-2 ${CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-800'}`}>
                 {CATEGORY_LABELS[item.category] || item.category}
               </span>
-              <p className="text-white text-base font-medium leading-snug line-clamp-2 break-keep">
+              <p className="text-white text-lg font-medium leading-snug line-clamp-2 break-keep">
                 &ldquo;{item.quote}&rdquo;
               </p>
-              <p className="text-white/70 text-sm mt-1">- {item.author}</p>
+              <p className="text-white/70 text-base mt-1">- {item.author}</p>
             </div>
           </motion.div>
         ))}

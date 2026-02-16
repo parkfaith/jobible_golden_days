@@ -89,9 +89,9 @@ const Home = () => {
   const favoriteItems = allContent.filter(item => favorites.includes(item.id));
 
   return (
-    <div className="w-full min-h-screen bg-secondary">
+    <div className="w-full app-bg">
       {/* 헤더 (sticky) */}
-      <header className="sticky top-0 z-30 px-5 py-4 flex justify-between items-center bg-secondary/95 backdrop-blur-sm">
+      <header className="sticky top-0 z-30 px-5 py-4 flex justify-between items-center bg-[#E5E1D8]/95 backdrop-blur-sm">
         <div className="flex flex-col">
           <span className="text-[#C8915A] text-sm font-light tracking-widest" style={{ textShadow: '0 0 4px rgba(0,0,0,0.1)' }}>joBiBle</span>
           <h1 className="text-[#A7672A] text-lg font-bold leading-tight" style={{ textShadow: '0 0 4px rgba(0,0,0,0.1)' }}>Golden Days</h1>
@@ -141,16 +141,16 @@ const Home = () => {
 
         {/* 즐겨찾기 섹션 (인라인) */}
         <section className="px-5">
-          <div className="flex items-center gap-2 mb-3">
-            <Heart size={20} className="text-red-400" />
-            <h2 className="text-xl font-bold text-text">내가 저장한 글귀</h2>
+          <div className="flex items-center gap-2 mb-4">
+            <Heart size={22} className="text-red-400" />
+            <h2 className="text-2xl font-bold text-text">내가 저장한 글귀</h2>
             {favoriteItems.length > 0 && (
-              <span className="text-sm text-text/50">({favoriteItems.length})</span>
+              <span className="text-base text-text/50">({favoriteItems.length})</span>
             )}
           </div>
 
           {favoriteItems.length === 0 ? (
-            <div className="text-center text-text/50 py-12 text-lg bg-white/40 rounded-2xl">
+            <div className="text-center text-text/50 py-12 text-xl bg-white/40 rounded-2xl">
               아직 저장한 글귀가 없습니다
             </div>
           ) : (
@@ -158,28 +158,28 @@ const Home = () => {
               {favoriteItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white/60 rounded-xl p-4 cursor-pointer hover:bg-white/80 transition-colors active:scale-[0.98] transform"
+                  className="bg-white/60 rounded-2xl p-5 cursor-pointer hover:bg-white/80 transition-colors active:scale-[0.98] transform shadow-sm"
                   onClick={() => openViewer([item], 0)}
                 >
-                  <div className="flex items-start justify-between gap-2">
+                  <div className="flex items-start justify-between gap-3">
                     <div className="flex-1 min-w-0">
-                      <span className="inline-block bg-primary/20 text-accent text-xs font-medium px-2 py-0.5 rounded-full mb-2">
+                      <span className="inline-block bg-primary/20 text-accent text-xs font-medium px-2.5 py-1 rounded-full mb-2">
                         {CATEGORY_LABELS[item.category] || item.category}
                       </span>
-                      <p className="text-text text-base font-medium leading-snug line-clamp-2 break-keep">
+                      <p className="text-text text-lg font-medium leading-snug line-clamp-2 break-keep">
                         &ldquo;{item.quote}&rdquo;
                       </p>
-                      <p className="text-text/60 text-sm mt-1">- {item.author}</p>
+                      <p className="text-text/60 text-base mt-1.5">- {item.author}</p>
                     </div>
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
                         handleToggleFavorite(item.id);
                       }}
-                      className="text-red-400 hover:text-red-500 p-1 flex-shrink-0"
+                      className="text-red-400 hover:text-red-500 p-2 flex-shrink-0"
                       aria-label="즐겨찾기 해제"
                     >
-                      <Heart size={18} fill="currentColor" />
+                      <Heart size={22} fill="currentColor" />
                     </button>
                   </div>
                 </div>

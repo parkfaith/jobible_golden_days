@@ -4,6 +4,28 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-02-16]
 
+### 배경 이미지 확충 + 글귀-이미지 테마 매칭 (Background Image Expansion & Quote-Image Matching)
+
+- **새 배경 이미지 24장 추가 (Add 24 New Background Images)**: Unsplash 무료 이미지 24장을 `public/images/bg-51.jpg` ~ `bg-74.jpg`로 추가. 기존 풍경 위주에서 꽃(장미/목련/들꽃), 성당/교회 건축, 비/눈 자연 풍경 등 다양한 테마로 확장. 총 배경 이미지 74장.
+- **글귀-이미지 테마 매칭 (Quote-Image Theme Matching)**: 글귀 내용과 이미지 분위기를 분석하여 최적 매칭 수행:
+  - **성경 구절 → 성당/교회 이미지**: "여호와는 나의 목자시니" → 성당 회랑(bg-57), "하나님의 평강" → 교회 내부(bg-59), "나의 빛이요 나의 구원" → 빛이 드는 성당 창(bg-64), "감사함으로 그 문에 들어가며" → 스테인드글라스 성당(bg-74), "지존자의 은밀한 곳" → 중세 건물(bg-58) 등
+  - **시 → 꽃/비/자연 이미지**: 진달래꽃 → 분홍 장미(bg-54), 산유화 → 만개한 들꽃(bg-55), 님의 침묵 → 비 맞는 흰 목련(bg-66), 꽃 → 밝은 핑크 장미(bg-68), 풀 → 빗방울 유리창 화분(bg-69), 겨울 편지 → 눈 덮인 단풍(bg-72) 등
+  - **명언 → 분위기 매칭**: "가장 어두운 밤도 끝나고 해는 뜬다" → 눈 내리는 거리(bg-73), "인내는 쓰나 그 열매는 달다" → 진분홍 장미(bg-63) 등
+  - **글귀 → 감성 매칭**: "행복은 습관이다" → 이슬 맺힌 빨강 장미(bg-62), "낙엽이 떨어지듯" → 붉은 꽃나무(bg-70) 등
+  - **절기 콘텐츠 → 테마 매칭**: 크리스마스 → 성당/눈 이미지, 어버이날 → 꽃 이미지 등
+- **기존 중복 이미지 해소 (Resolve Duplicate Images)**: 시/글귀 카테고리가 성경/명언과 동일 이미지를 재사용하던 문제 해소. 각 카테고리별 고유한 배경 이미지 확보.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/public/images/bg-51.jpg` ~ `bg-74.jpg` (신규 24장)
+- `client/src/data/bible.json` (8개 항목 bgImage 교체)
+- `client/src/data/poems.json` (14개 항목 bgImage 교체)
+- `client/src/data/writings.json` (6개 항목 bgImage 교체)
+- `client/src/data/quotes.json` (6개 항목 bgImage 교체)
+- `client/src/data/proverbs.json` (2개 항목 bgImage 교체)
+- `client/src/data/seasonal.json` (6개 항목 bgImage 교체)
+- `CHANGELOG.md`
+
 ### 콘텐츠 신선도 기능 (Content Freshness)
 
 - **7일 중복 제거 (7-Day Deduplication)**: `dailyCurator.js`의 일일 콘텐츠 선택에 최근 7일 중복 방지 로직 추가. 과거 7일간 노출된 콘텐츠를 제외하고 새로운 항목 우선 선택. 폴백 안전장치 포함 (후보 부족 시 셔플 순서대로 채움). 결정론적 특성 유지 (localStorage 불필요, 순수 계산).

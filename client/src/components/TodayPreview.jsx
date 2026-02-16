@@ -20,14 +20,14 @@ const CATEGORY_COLORS = {
 
 const TodayPreview = ({ contents, favorites, onCardTap }) => {
   return (
-    <section className="mb-6">
-      <h2 className="text-xl font-bold text-text px-5 mb-3">오늘의 이야기</h2>
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide px-5 pb-2">
+    <section className="mb-8 pt-2">
+      <h2 className="text-2xl font-bold text-text px-5 mb-4">오늘의 이야기</h2>
+      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pl-5 pr-3 pb-2">
         {contents.map((item, idx) => (
           <div
             key={item.id}
             onClick={() => onCardTap(idx)}
-            className="relative flex-shrink-0 w-[160px] h-[220px] rounded-2xl overflow-hidden snap-start cursor-pointer active:scale-[0.97] transition-transform"
+            className="relative flex-shrink-0 w-[200px] h-[260px] rounded-2xl overflow-hidden snap-start cursor-pointer active:scale-[0.97] transition-transform shadow-md"
           >
             {/* 배경 이미지 */}
             <img
@@ -39,23 +39,23 @@ const TodayPreview = ({ contents, favorites, onCardTap }) => {
             <div className="absolute inset-0 bg-black/45" />
 
             {/* 콘텐츠 */}
-            <div className="relative z-10 h-full flex flex-col justify-between p-3">
+            <div className="relative z-10 h-full flex flex-col justify-between p-4">
               {/* 상단: 카테고리 배지 + 즐겨찾기 */}
               <div className="flex items-start justify-between">
-                <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full ${CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-800'}`}>
+                <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-800'}`}>
                   {CATEGORY_LABELS[item.category] || item.category}
                 </span>
                 {favorites.includes(item.id) && (
-                  <Heart size={14} className="text-red-400" fill="currentColor" />
+                  <Heart size={16} className="text-red-400" fill="currentColor" />
                 )}
               </div>
 
               {/* 하단: 인용문 + 저자 */}
               <div>
-                <p className="text-white text-sm font-medium leading-snug line-clamp-3 break-keep mb-1">
+                <p className="text-white text-base font-medium leading-snug line-clamp-3 break-keep mb-1.5">
                   &ldquo;{item.quote}&rdquo;
                 </p>
-                <p className="text-white/70 text-xs truncate">
+                <p className="text-white/70 text-sm truncate">
                   - {item.author}
                 </p>
               </div>

@@ -18,6 +18,14 @@ body {
   font-family: var(--font-sans);
   background-color: var(--color-secondary);
   color: var(--color-text);
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* 모바일에서도 배경색이 확실히 보이도록 전체 래퍼에 그라데이션 */
+.app-bg {
+  background: linear-gradient(180deg, #E5E1D8 0%, #DCD7CC 50%, #E5E1D8 100%);
+  min-height: 100vh;
+  min-height: 100dvh;
 }
 
 /* 스크롤바 숨김 유틸리티 (가로 스크롤 미리보기용) */

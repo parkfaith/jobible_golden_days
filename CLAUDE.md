@@ -97,8 +97,9 @@ client/src/
 | `golden-days-font-size` | `"normal"` \| `"large"` | 폰트 크기 설정 |
 
 ### 이미지
-- 50장 로컬 저장 (`public/images/bg-01.jpg` ~ `bg-50.jpg`)
-- Unsplash 원본에서 w=800, q=70으로 최적화 다운로드, 총 약 5MB
+- 74장 로컬 저장 (`public/images/bg-01.jpg` ~ `bg-74.jpg`)
+- Unsplash 원본에서 w=800, q=70으로 최적화 다운로드
+- 테마: 풍경(bg-01~50), 꽃/장미/목련(bg-54~55,61~63,65~66,68,70), 성당/교회(bg-51,57~60,64,74), 비/눈/겨울(bg-52~53,56,67,69,71~73)
 - PWA precache에 포함되어 오프라인에서도 표시
 
 ### 폰트 전략
