@@ -2,6 +2,98 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-18]
+
+### 공유 이미지 폰트 크기 개선 (Improve Share Image Font Size)
+
+- **캡처 이미지 폰트 크기 화면과 동일하게 조정 (Match Capture Image Font Size with Screen)**: `captureCard.js`의 폰트 크기를 실제 화면 대비 정확한 비율(3배)로 조정. 본문 54px→108px (화면 36px×3), 저자 40px→72px (화면 24px×3), 설명 48px 추가 (화면 16px×3). Canvas 해상도 1080x1920 유지하여 파일 크기 최적화하면서도 화면과 동일한 시각적 경험 제공.
+- **캡처 이미지에 설명 포함 (Include Explanation in Capture Image)**: seasonal 콘텐츠의 `explanation` 필드를 캡처 이미지에도 표시. 저자 이름 아래 작은 글씨로 렌더링하여 공유된 이미지에서도 명절과 구절의 연관성 확인 가능. `QuoteCard.jsx`에서 `renderCardToBlob` 호출 시 explanation 파라미터 전달.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/captureCard.js` (폰트 크기 3배 조정, explanation 렌더링 추가)
+- `client/src/components/QuoteCard.jsx` (explanation 파라미터 전달)
+- `CHANGELOG.md`
+
+### 명절 콘텐츠 설명 추가 (Add Explanations for Seasonal Content)
+
+- **명절 콘텐츠에 설명 필드 추가 (Add Explanation Field to Seasonal Content)**: `seasonal.json`의 모든 25개 항목에 `explanation` 필드 추가. 각 성경 구절과 명절의 연관성을 간략하게 설명하여 어르신들이 "왜 이 글귀가 이 명절에 나오는지" 쉽게 이해할 수 있도록 개선. 설날(새해 축복·건강·인도하심), 추석(감사·추수), 어버이날(부모 공경·효도), 크리스마스(예수 탄생·사랑), 새해(새로운 힘·새 일·우선순위) 등 명절 주제 명확화.
+- **카드에 설명 표시 (Display Explanation on Card)**: `QuoteCard.jsx`에서 저자 이름 아래 설명을 작은 글씨(text-base/16px)로 표시. `content.explanation`이 있을 때만 조건부 렌더링하여 seasonal 콘텐츠에만 적용. 텍스트는 약간 투명(text-white/70)하게 처리하여 본문과 구분. 어르신 가독성을 위해 `leading-relaxed` 적용.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/seasonal.json` (25개 항목 모두에 explanation 필드 추가)
+- `client/src/components/QuoteCard.jsx` (설명 표시 로직 추가)
+- `CHANGELOG.md`
+
+### 프로젝트 규칙 및 명절 콘텐츠 기독교 테마 정책 확립 (Establish Christian Theme Policy for Project Rules & Seasonal Content)
+
+- **CLAUDE.md에 컨텐츠 테마 정책 추가 (Add Content Theme Policy to Project Rules)**: 프로젝트 규칙에 "컨텐츠 테마 정책" 항목 신설. 모든 컨텐츠는 성경 말씀과 기독교 신앙에 기반해야 하며, 일반 명언/속담/비기독교 내용 금지 명시. 성경 구절(개역한글), 찬송가 가사, 기독교 사상가 명언만 허용. 저작권 확인 필수(저자 사망 후 70년 경과).
+- **CLAUDE.md 전반 업데이트 (Update Project Documentation)**: Project Overview, Architecture, Key patterns, Technical Details, localStorage 키, 폰트 전략 섹션을 현재 상태에 맞게 전면 수정. 일일 콘텐츠 5개→7개, 폰트 크기 고정(large), 7일 중복 제거, proverbs 빈 배열, poems=찬송가, writings=성경 구절 반영.
+- **명절/계절 컨텐츠 성경 구절로 전면 교체 (Replace All Seasonal Content with Bible Verses)**: `seasonal.json`의 비기독교 컨텐츠 13개를 성경 구절로 교체. 설날·새해(민수기 6:24, 시편 23:6, 잠언 3:5-6, 이사야 43:19, 빌립보서 4:4, 마태복음 6:33), 추석(데살로니가전서 5:18, 시편 107:1, 시편 106:1), 어버이날(잠언 1:8, 에베소서 6:1, 잠언 23:25), 크리스마스(요한일서 4:19)로 명절 의미에 맞는 성경 말씀 선정.
+- **명절 콘텐츠 배경 이미지 재배치 (Rematch Seasonal Content Background Images)**: 각 성경 구절의 의미와 명절 분위기에 맞게 배경 이미지 11개 재배치. 설날(복→꽃bg-68, 여호와의 집→교회bg-58), 추석(감사→꽃bg-61/70, 성전 문→교회bg-57), 어버이날(부모 훈계/기쁨→꽃bg-62/66), 크리스마스(평화→겨울bg-73), 새해(독수리 날개→풍경bg-04, 기쁨→꽃bg-54, 그의 나라→교회bg-60). 구절 주제와 시각적 조화 강화.
+- **전체 데이터 기독교 통일 완료 (Complete Christian Content Unification)**: 일반 데이터(bible 26개 + quotes 16개 + poems 15개 + writings 15개) + 명절 데이터(seasonal 25개) = 총 97개 콘텐츠 모두 성경/기독교 주제로 완전 통일. 프로젝트 정체성 확립.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `CLAUDE.md` (컨텐츠 테마 정책 추가, 프로젝트 전반 현행화)
+- `client/src/data/seasonal.json` (13개 비기독교 컨텐츠 → 성경 구절, 11개 배경 이미지 재배치)
+- `CHANGELOG.md`
+
+### 전체 콘텐츠 기독교 주제로 통일 (Unify All Content with Christian Theme)
+
+- **속담 카테고리 완전 제거 (Remove Proverb Category)**: `proverbs.json`을 빈 배열로 변경. 속담 카테고리 및 관련 콘텐츠 완전 삭제. 카테고리 그리드에서 자동 숨김 처리됨.
+- **시(poems)를 기독교 찬송시로 교체 (Replace Poems with Christian Hymns)**: 기존 한국 전통 시 15편을 기독교 찬송가 가사 15편으로 전면 교체. 어메이징 그레이스, 내 평생에 가는 길, 거룩 거룩 거룩, 내 주는 강한 성이요 등 저작권 만료된 전통 찬송가 수록.
+- **글귀(writings)를 성경 구절로 교체 (Replace Writings with Bible Verses)**: 기존 일반 명언/지혜 글귀 15편을 성경 구절 15편으로 전면 교체. 시편, 잠언, 복음서, 서신서 등 위로와 소망의 말씀 중심. 개역한글판 사용 (저작권 만료).
+- **콘텐츠 통일성 확보 (Ensure Content Consistency)**: 전체 콘텐츠가 성경(26개) + 기독교 명언(16개) + 찬송시(15개) + 성경 구절(15개) = 총 72개로 통일. 순수 기독교/성경 주제 PWA로 정체성 명확화.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/proverbs.json` (빈 배열로 변경 - 속담 카테고리 제거)
+- `client/src/data/poems.json` (15개 한국 시 → 15개 기독교 찬송시)
+- `client/src/data/writings.json` (15개 일반 명언 → 15개 성경 구절)
+- `CHANGELOG.md`
+
+### UI 단순화 및 콘텐츠 확대 (Simplify UI & Expand Content)
+
+- **일일 콘텐츠 7개로 확대 (Expand Daily Content to 7 Items)**: 기존 5개에서 7개로 증가. 성경 3~4개 + 명언/속담/시/글귀 3~4개로 카테고리 균형 유지. 어르신들께 충분한 영감 제공.
+- **"다시 만나는 글귀" 섹션 제거 (Remove Revisit Section)**: 콘텐츠가 7개로 늘어남에 따라 중복 섹션 제거. 화면 단순화 및 스크롤 감소로 어르신 사용성 향상.
+- **폰트 크기 조절 기능 제거 (Remove Font Size Toggle)**: 기본 폰트를 `text-4xl` (36px)로 크게 고정. 헤더의 폰트 조절 버튼 제거로 UI 단순화. 70대 이상 어르신께 최적화된 큰 폰트 제공.
+- **오늘의 이야기 주석 업데이트 (Update Today's Story Comment)**: "가로 스크롤" → "세로 스택" 주석 정리.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/dailyCurator.js` (5개 → 7개 선택 로직)
+- `client/src/pages/Home.jsx` (RevisitSection 제거, 폰트 조절 버튼 제거, fontSize 상태 제거)
+- `client/src/components/CardViewer.jsx` (fontSize prop 제거)
+- `client/src/components/QuoteCard.jsx` (fontSize prop 제거, 기본 폰트 text-4xl 고정)
+- `CHANGELOG.md`
+
+## [2026-02-17]
+
+### 명언 콘텐츠 성경 주제로 전환 (Convert Quotes to Biblical Theme)
+
+- **성경 관련 명언으로 전면 교체 (Replace with Biblical Quotes)**: 기존 일반 명언 16개를 기독교 역사상 위대한 성인, 신학자, 종교개혁가들의 명언으로 전면 교체. 신앙·사랑·기도·겸손·은혜 등 성경적 주제 중심. 모든 인물은 저작권 만료 (사후 70년 이상 경과).
+- **명언 출처 인물 (Quote Authors)**: 아우구스티누스(고백록), 마틴 루터(종교개혁), 토마스 아퀴나스(신학대전), 찰스 스펄전(설교), 존 웨슬리(감리교), 이냐시오 로욜라(영신수련), 존 버니언(천로역정), 베르나르두스(클레르보), 아씨시의 프란치스코, 토마스 켐피스(그리스도를 본받아), 제롬(불가타), 윌리엄 템플(캔터베리), 요한 크리소스토무스(설교), 암브로시우스(밀라노), 그레고리우스 1세(교황), 성 패트릭(선교사).
+- **배경 이미지 재매칭 (Rematch Background Images)**: 명언 내용에 맞게 배경 이미지를 성당/교회(bg-51,57~60,64,74), 꽃/자연(bg-62,63,65~66,68), 빛(bg-27) 이미지로 재배치. 신앙적 분위기와 조화.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/quotes.json` (16개 명언 전면 교체 + bgImage 변경)
+- `CHANGELOG.md`
+
+### "오늘의 이야기" 레이아웃 개선 (Improve Today's Story Layout)
+
+- **세로 스택 레이아웃으로 전환 (Switch to Vertical Stack Layout)**: 기존 가로 스크롤 방식을 세로 스택 레이아웃으로 전면 변경. "다시 만나는 글귀" 섹션과 동일한 스타일로 통일하여 UI 일관성 확보.
+- **좌우 여백 문제 해결 (Fix Horizontal Padding Issue)**: 가로 스크롤 특성상 발생하던 카드가 화면 가장자리에 붙어 보이는 문제 완전 해결. 모든 섹션이 동일한 `px-5` (20px) 여백 적용.
+- **카드 레이아웃 최적화 (Optimize Card Layout)**: 고정 크기(200x260px)에서 반응형 높이(최소 110px)로 변경. 인용문 라인 클램프 3줄 → 2줄로 조정하여 가독성 향상.
+- **간편한 탐색 (Simplified Navigation)**: 5개 카드를 한눈에 확인 가능. 각 카드 탭 시 CardViewer에서 전체 내용 확인.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/components/TodayPreview.jsx` (가로 스크롤 → 세로 스택 레이아웃 전환)
+- `CHANGELOG.md`
+
 ## [2026-02-16]
 
 ### 배경 이미지 확충 + 글귀-이미지 테마 매칭 (Background Image Expansion & Quote-Image Matching)

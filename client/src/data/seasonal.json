@@ -1,11 +1,12 @@
 [
   {
     "id": "s-seollal-01",
-    "quote": "새해 복 많이 받으세요. 올 한 해도 건강하시고 행복하세요.",
-    "author": "새해 덕담",
-    "source": "전통 인사",
-    "bgImage": "/images/bg-01.jpg",
-    "season": "설날"
+    "quote": "여호와는 네게 복을 주시고 너를 지키시기를 원하며",
+    "author": "민수기 6:24",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-68.jpg",
+    "season": "설날",
+    "explanation": "새해를 맞아 하나님께서 주시는 복과 보호하심을 기원하는 말씀입니다"
   },
   {
     "id": "s-seollal-02",
@@ -13,15 +14,17 @@
     "author": "시편 121:5",
     "source": "개역한글",
     "bgImage": "/images/bg-05.jpg",
-    "season": "설날"
+    "season": "설날",
+    "explanation": "한 해를 시작하며 하나님의 보호하심을 구하는 말씀입니다"
   },
   {
     "id": "s-seollal-03",
-    "quote": "만수무강하시고, 가정에 웃음꽃이 활짝 피는 한 해가 되시길 바랍니다.",
-    "author": "새해 덕담",
-    "source": "전통 인사",
-    "bgImage": "/images/bg-10.jpg",
-    "season": "설날"
+    "quote": "이는 나의 평생에 선하심과 인자하심이 정녕 나를 따르리니 내가 여호와의 집에 영원히 거하리로다",
+    "author": "시편 23:6",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-58.jpg",
+    "season": "설날",
+    "explanation": "새해에도 변함없이 주님과 함께하길 소망하는 말씀입니다"
   },
   {
     "id": "s-seollal-04",
@@ -29,23 +32,26 @@
     "author": "요한삼서 1:2",
     "source": "개역한글",
     "bgImage": "/images/bg-15.jpg",
-    "season": "설날"
+    "season": "설날",
+    "explanation": "새해 건강과 강건함을 기원하는 축복의 말씀입니다"
   },
   {
     "id": "s-seollal-05",
-    "quote": "새해에는 모든 소원 이루시고, 하시는 일마다 잘 되시길 기원합니다.",
-    "author": "새해 덕담",
-    "source": "전통 인사",
+    "quote": "너는 마음을 다하여 여호와를 의뢰하고 네 명철을 의지하지 말라 너는 범사에 그를 인정하라 그리하면 네 길을 지도하시리라",
+    "author": "잠언 3:5-6",
+    "source": "성경 개역한글",
     "bgImage": "/images/bg-20.jpg",
-    "season": "설날"
+    "season": "설날",
+    "explanation": "새해 모든 일을 하나님께 맡기며 인도하심을 구하는 말씀입니다"
   },
   {
     "id": "s-chuseok-01",
-    "quote": "더도 말고 덜도 말고 한가위만 같아라.",
-    "author": "한국 속담",
-    "source": "전통",
-    "bgImage": "/images/bg-02.jpg",
-    "season": "추석"
+    "quote": "범사에 감사하라 이것이 그리스도 예수 안에서 너희를 향하신 하나님의 뜻이니라",
+    "author": "데살로니가전서 5:18",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-70.jpg",
+    "season": "추석",
+    "explanation": "추수감사의 명절에 모든 것을 감사하라는 말씀입니다"
   },
   {
     "id": "s-chuseok-02",
@@ -53,31 +59,35 @@
     "author": "시편 77:11",
     "source": "개역한글",
     "bgImage": "/images/bg-08.jpg",
-    "season": "추석"
+    "season": "추석",
+    "explanation": "한 해 동안 베풀어주신 은혜를 되돌아보는 말씀입니다"
   },
   {
     "id": "s-chuseok-03",
-    "quote": "풍성한 한가위 보내시고, 가족과 함께 행복한 시간 되세요.",
-    "author": "추석 인사",
-    "source": "전통 인사",
-    "bgImage": "/images/bg-12.jpg",
-    "season": "추석"
+    "quote": "여호와께 감사하라 그는 선하시며 그 인자하심이 영원함이로다",
+    "author": "시편 107:1",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-61.jpg",
+    "season": "추석",
+    "explanation": "풍성한 가을 추수를 주신 하나님께 감사하는 말씀입니다"
   },
   {
     "id": "s-chuseok-04",
     "quote": "감사함으로 그 문에 들어가며 찬송함으로 그 궁정에 들어가서 그에게 감사하며 그 이름을 송축할지어다",
     "author": "시편 100:4",
     "source": "개역한글",
-    "bgImage": "/images/bg-18.jpg",
-    "season": "추석"
+    "bgImage": "/images/bg-57.jpg",
+    "season": "추석",
+    "explanation": "감사와 찬송으로 주님께 나아가는 추석의 의미를 담은 말씀입니다"
   },
   {
     "id": "s-chuseok-05",
-    "quote": "넉넉한 마음으로 나누고, 감사하는 마음으로 거두는 한가위 되세요.",
-    "author": "추석 인사",
-    "source": "전통 인사",
+    "quote": "주께서 주신 것을 항상 기억하고 감사하며 주의 인자하심을 찬양하리로다",
+    "author": "시편 106:1",
+    "source": "성경 개역한글",
     "bgImage": "/images/bg-25.jpg",
-    "season": "추석"
+    "season": "추석",
+    "explanation": "주님께서 주신 모든 것에 감사하는 추석의 마음을 담은 말씀입니다"
   },
   {
     "id": "s-parents-01",
@@ -85,23 +95,26 @@
     "author": "출애굽기 20:12",
     "source": "개역한글",
     "bgImage": "/images/bg-03.jpg",
-    "season": "어버이날"
+    "season": "어버이날",
+    "explanation": "부모님을 공경하라는 십계명의 말씀입니다"
   },
   {
     "id": "s-parents-02",
-    "quote": "세상에서 가장 아름다운 소리는 어머니의 목소리이다.",
-    "author": "에이브러햄 링컨",
-    "source": "명언",
-    "bgImage": "/images/bg-55.jpg",
-    "season": "어버이날"
+    "quote": "내 아들아 네 아비의 훈계를 들으며 네 어미의 법을 떠나지 말라",
+    "author": "잠언 1:8",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-62.jpg",
+    "season": "어버이날",
+    "explanation": "부모님의 가르침을 따르라는 지혜의 말씀입니다"
   },
   {
     "id": "s-parents-03",
-    "quote": "부모의 마음은 바다보다 깊고, 하늘보다 넓다.",
-    "author": "한국 속담",
-    "source": "전통",
+    "quote": "자녀들아 주 안에서 너희 부모에게 순종하라 이것이 옳으니라",
+    "author": "에베소서 6:1",
+    "source": "성경 개역한글",
     "bgImage": "/images/bg-14.jpg",
-    "season": "어버이날"
+    "season": "어버이날",
+    "explanation": "부모님께 순종하는 것이 옳다는 말씀입니다"
   },
   {
     "id": "s-parents-04",
@@ -109,15 +122,17 @@
     "author": "잠언 22:6",
     "source": "개역한글",
     "bgImage": "/images/bg-22.jpg",
-    "season": "어버이날"
+    "season": "어버이날",
+    "explanation": "자녀 교육의 중요성을 강조하는 부모님에 대한 말씀입니다"
   },
   {
     "id": "s-parents-05",
-    "quote": "효도는 덕의 근본이요 교화의 시작이다.",
-    "author": "효경",
-    "source": "고전",
-    "bgImage": "/images/bg-65.jpg",
-    "season": "어버이날"
+    "quote": "네 부모를 즐겁게 하며 너를 낳은 어미를 기쁘게 하라",
+    "author": "잠언 23:25",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-66.jpg",
+    "season": "어버이날",
+    "explanation": "부모님을 기쁘게 해드리라는 효도의 말씀입니다"
   },
   {
     "id": "s-christmas-01",
@@ -125,7 +140,8 @@
     "author": "누가복음 2:11",
     "source": "개역한글",
     "bgImage": "/images/bg-74.jpg",
-    "season": "크리스마스"
+    "season": "크리스마스",
+    "explanation": "예수님의 탄생을 선포하는 크리스마스의 핵심 말씀입니다"
   },
   {
     "id": "s-christmas-02",
@@ -133,15 +149,17 @@
     "author": "요한복음 3:16",
     "source": "개역한글",
     "bgImage": "/images/bg-51.jpg",
-    "season": "크리스마스"
+    "season": "크리스마스",
+    "explanation": "우리를 위해 아들을 보내주신 하나님의 사랑을 담은 말씀입니다"
   },
   {
     "id": "s-christmas-03",
     "quote": "지극히 높은 곳에서는 하나님께 영광이요 땅에서는 기뻐하심을 입은 사람들 중에 평화로다",
     "author": "누가복음 2:14",
     "source": "개역한글",
-    "bgImage": "/images/bg-16.jpg",
-    "season": "크리스마스"
+    "bgImage": "/images/bg-73.jpg",
+    "season": "크리스마스",
+    "explanation": "예수님 탄생을 찬양하는 천사들의 노래입니다"
   },
   {
     "id": "s-christmas-04",
@@ -149,39 +167,44 @@
     "author": "고린도전서 13:4",
     "source": "개역한글",
     "bgImage": "/images/bg-59.jpg",
-    "season": "크리스마스"
+    "season": "크리스마스",
+    "explanation": "크리스마스의 의미인 사랑을 설명하는 말씀입니다"
   },
   {
     "id": "s-christmas-05",
-    "quote": "따뜻한 성탄절 보내시고, 사랑하는 사람들과 함께 행복한 시간 되세요.",
-    "author": "성탄 인사",
-    "source": "인사",
+    "quote": "우리가 사랑함은 그가 먼저 우리를 사랑하셨음이라",
+    "author": "요한일서 4:19",
+    "source": "성경 개역한글",
     "bgImage": "/images/bg-72.jpg",
-    "season": "크리스마스"
+    "season": "크리스마스",
+    "explanation": "하나님의 먼저 주신 사랑을 기억하는 크리스마스 말씀입니다"
   },
   {
     "id": "s-newyear-01",
     "quote": "여호와를 앙망하는 자는 새 힘을 얻으리니 독수리의 날개치며 올라감 같을 것이요",
     "author": "이사야 40:31",
     "source": "개역한글",
-    "bgImage": "/images/bg-06.jpg",
-    "season": "새해"
+    "bgImage": "/images/bg-04.jpg",
+    "season": "새해",
+    "explanation": "새해를 맞아 새로운 힘과 용기를 얻기를 소망하는 말씀입니다"
   },
   {
     "id": "s-newyear-02",
-    "quote": "천 리 길도 한 걸음부터 시작된다.",
-    "author": "노자",
-    "source": "도덕경",
+    "quote": "보라 내가 새 일을 행하리니 이제 나타낼 것이라 너희가 그것을 알지 못하겠느냐",
+    "author": "이사야 43:19",
+    "source": "성경 개역한글",
     "bgImage": "/images/bg-11.jpg",
-    "season": "새해"
+    "season": "새해",
+    "explanation": "새해에 하나님께서 새로운 일을 행하실 것을 약속하는 말씀입니다"
   },
   {
     "id": "s-newyear-03",
-    "quote": "새해에는 새로운 마음으로, 감사와 기쁨이 넘치는 한 해가 되시길 바랍니다.",
-    "author": "새해 인사",
-    "source": "인사",
-    "bgImage": "/images/bg-19.jpg",
-    "season": "새해"
+    "quote": "주 안에서 항상 기뻐하라 내가 다시 말하노니 기뻐하라",
+    "author": "빌립보서 4:4",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-54.jpg",
+    "season": "새해",
+    "explanation": "새해에도 주님 안에서 기쁨으로 살아가라는 말씀입니다"
   },
   {
     "id": "s-newyear-04",
@@ -189,14 +212,16 @@
     "author": "창세기 12:2",
     "source": "개역한글",
     "bgImage": "/images/bg-24.jpg",
-    "season": "새해"
+    "season": "새해",
+    "explanation": "새해 복과 번영을 약속하시는 하나님의 말씀입니다"
   },
   {
     "id": "s-newyear-05",
-    "quote": "어제는 역사이고, 내일은 미스터리이며, 오늘은 선물이다.",
-    "author": "엘리너 루스벨트",
-    "source": "명언",
-    "bgImage": "/images/bg-32.jpg",
-    "season": "새해"
+    "quote": "너희는 먼저 그의 나라와 그의 의를 구하라 그리하면 이 모든 것을 너희에게 더하시리라",
+    "author": "마태복음 6:33",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-60.jpg",
+    "season": "새해",
+    "explanation": "새해 우선순위를 바르게 하라는 주님의 가르침입니다"
   }
 ]

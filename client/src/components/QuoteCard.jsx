@@ -20,7 +20,7 @@ const CATEGORY_FONTS = {
   writing: 'font-sans',        // Pretendard — 어르신 가독성 우선
 };
 
-const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize = 'normal' }) => {
+const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
   const [notification, setNotification] = useState(false);
   const [isCapturing, setIsCapturing] = useState(false);
 
@@ -42,6 +42,7 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
         quote: content.quote,
         author: content.author,
         category: content.category,
+        explanation: content.explanation, // seasonal content 설명
       });
 
       if (!blob) {
@@ -116,12 +117,17 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite, fontSize 
       {/* 본문 콘텐츠 */}
       <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
         <div className="text-center max-w-2xl w-full flex flex-col items-center gap-8">
-          <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'} ${fontSize === 'large' ? 'text-4xl md:text-5xl' : 'text-3xl md:text-4xl'}`}>
+          <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep text-4xl md:text-5xl ${CATEGORY_FONTS[content.category] || 'font-sans'}`}>
             &ldquo;{content.quote}&rdquo;
           </p>
-          <p className={`text-white/90 font-sans font-medium mt-4 ${fontSize === 'large' ? 'text-2xl md:text-3xl' : 'text-xl md:text-2xl'}`}>
+          <p className="text-white/90 font-sans font-medium mt-4 text-2xl md:text-3xl">
             - {content.author}
           </p>
+          {content.explanation && (
+            <p className="text-white/70 font-sans text-base md:text-lg mt-4 max-w-xl leading-relaxed">
+              {content.explanation}
+            </p>
+          )}
         </div>
       </div>
 

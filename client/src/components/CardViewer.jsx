@@ -13,7 +13,7 @@ const formatDateLabel = (date) => {
   return `${y}년 ${m}월 ${d}일 ${day}요일`;
 };
 
-const CardViewer = ({ contents, startIndex = 0, favorites, onToggleFavorite, fontSize, onBack }) => {
+const CardViewer = ({ contents, startIndex = 0, favorites, onToggleFavorite, onBack }) => {
   const [currentIndex, setCurrentIndex] = useState(startIndex);
 
   // 스와이프 감지용
@@ -79,7 +79,6 @@ const CardViewer = ({ contents, startIndex = 0, favorites, onToggleFavorite, fon
               dateLabel={dateLabel}
               isFavorite={favorites.includes(contents[currentIndex]?.id)}
               onToggleFavorite={onToggleFavorite}
-              fontSize={fontSize}
             />
           </motion.div>
         </AnimatePresence>

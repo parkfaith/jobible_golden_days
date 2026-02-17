@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
-import { getDailyContent, getRevisitContent } from '../utils/dailyCurator';
+import { getDailyContent } from '../utils/dailyCurator';
 import { detectCurrentSeason, getSeasonalContent } from '../utils/seasonDetector';
 import allContent from '../data';
-import { Heart, Type } from 'lucide-react';
+import { Heart } from 'lucide-react';
 import CardViewer from '../components/CardViewer';
 import TodayPreview from '../components/TodayPreview';
 import CategoryGrid from '../components/CategoryGrid';
 import SeasonalBanner from '../components/SeasonalBanner';
-import RevisitSection from '../components/RevisitSection';
 
 // 카테고리 라벨 (즐겨찾기 목록에서 사용)
 const CATEGORY_LABELS = {
@@ -22,17 +21,12 @@ const CATEGORY_LABELS = {
 const getFavorites = () => JSON.parse(localStorage.getItem('golden-days-favorites') || '[]');
 const saveFavorites = (favs) => localStorage.setItem('golden-days-favorites', JSON.stringify(favs));
 
-// 폰트 크기 localStorage 헬퍼
-const getSavedFontSize = () => localStorage.getItem('golden-days-font-size') || 'normal';
-
 const Home = () => {
   const [favorites, setFavorites] = useState(() => getFavorites());
-  const [fontSize, setFontSize] = useState(() => getSavedFontSize());
   const [view, setView] = useState('home');
   const [viewerContents, setViewerContents] = useState([]);
   const [viewerStartIndex, setViewerStartIndex] = useState(0);
   const [todayContents] = useState(() => getDailyContent());
-  const revisitContents = useMemo(() => getRevisitContent(), []);
 
   // 절기 감지 (날짜 기반, 렌더링마다 재계산할 필요 없음)
   const activeSeason = useMemo(() => detectCurrentSeason(), []);
@@ -47,13 +41,6 @@ const Home = () => {
     const next = current.includes(id) ? current.filter(f => f !== id) : [...current, id];
     saveFavorites(next);
     setFavorites(next);
-  };
-
-  // 폰트 크기 토글
-  const handleToggleFontSize = () => {
-    const next = fontSize === 'normal' ? 'large' : 'normal';
-    localStorage.setItem('golden-days-font-size', next);
-    setFontSize(next);
   };
 
   // 뷰어 열기 (pushState로 브라우저 뒤로가기 지원)
@@ -91,20 +78,10 @@ const Home = () => {
   return (
     <div className="w-full app-bg">
       {/* 헤더 (sticky) */}
-      <header className="sticky top-0 z-30 px-5 py-4 flex justify-between items-center bg-[#E5E1D8]/95 backdrop-blur-sm">
+      <header className="sticky top-0 z-30 px-5 py-4 bg-[#E5E1D8]/95 backdrop-blur-sm">
         <div className="flex flex-col">
           <span className="text-[#C8915A] text-sm font-light tracking-widest" style={{ textShadow: '0 0 4px rgba(0,0,0,0.1)' }}>joBiBle</span>
           <h1 className="text-[#A7672A] text-lg font-bold leading-tight" style={{ textShadow: '0 0 4px rgba(0,0,0,0.1)' }}>Golden Days</h1>
-        </div>
-        <div className="flex items-center gap-1">
-          {/* 글씨 크기 토글 */}
-          <button
-            onClick={handleToggleFontSize}
-            className={`text-text p-3 hover:bg-black/5 rounded-full transition-colors ${fontSize === 'large' ? 'bg-black/10' : ''}`}
-            aria-label="글씨 크기 변경"
-          >
-            <Type size={24} />
-          </button>
         </div>
       </header>
 
@@ -119,20 +96,12 @@ const Home = () => {
           />
         )}
 
-        {/* 오늘의 이야기 미리보기 (가로 스크롤) */}
+        {/* 오늘의 이야기 */}
         <TodayPreview
           contents={todayContents}
           favorites={favorites}
           onCardTap={(idx) => openViewer(todayContents, idx)}
         />
-
-        {/* 다시 만나는 글귀 (8~14일 전 콘텐츠 추천) */}
-        {revisitContents.length > 0 && (
-          <RevisitSection
-            contents={revisitContents}
-            onCardTap={(contents, idx) => openViewer(contents, idx)}
-          />
-        )}
 
         {/* 카테고리 그리드 */}
         <CategoryGrid
@@ -197,7 +166,6 @@ const Home = () => {
             startIndex={viewerStartIndex}
             favorites={favorites}
             onToggleFavorite={handleToggleFavorite}
-            fontSize={fontSize}
             onBack={handleViewerBack}
           />
         </div>

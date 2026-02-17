@@ -7,9 +7,10 @@
  * @param {string} params.quote - 본문 텍스트
  * @param {string} params.author - 저자
  * @param {string} params.category - 카테고리 (bible, quote, proverb, poem, writing)
+ * @param {string} [params.explanation] - 선택적 설명 (seasonal content)
  * @returns {Promise<Blob>} PNG Blob
  */
-export const renderCardToBlob = async ({ bgImage, quote, author, category }) => {
+export const renderCardToBlob = async ({ bgImage, quote, author, category, explanation }) => {
   const W = 1080;
   const H = 1920;
 
@@ -33,35 +34,60 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category }) => 
   const isSerif = category === 'bible' || category === 'poem';
   const quoteFont = isSerif ? 'Nanum Myeongjo' : 'Pretendard Variable, sans-serif';
 
-  // 본문 텍스트
-  const quoteFontSize = 54;
+  // 본문 텍스트 (화면 36px × 3배 = 108px)
+  const quoteFontSize = 108;
   ctx.fillStyle = '#ffffff';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.font = `bold ${quoteFontSize}px ${quoteFont}`;
 
   const wrappedQuote = `\u201C${quote}\u201D`;
-  const lines = wrapText(ctx, wrappedQuote, W - 160);
-  const lineHeight = quoteFontSize * 1.6;
-  const totalTextHeight = lines.length * lineHeight;
+  const lines = wrapText(ctx, wrappedQuote, W - 200);
+  const lineHeight = quoteFontSize * 1.5;
+
+  // explanation이 있는 경우 총 높이 계산에 포함
+  const explanationFontSize = 48; // 화면 16px × 3배
+  let explanationLines = [];
+  let explanationHeight = 0;
+
+  if (explanation) {
+    ctx.font = `400 ${explanationFontSize}px Pretendard Variable, sans-serif`;
+    explanationLines = wrapText(ctx, explanation, W - 300);
+    explanationHeight = explanationLines.length * (explanationFontSize * 1.5) + 80; // 상단 여백 포함
+  }
+
+  const totalTextHeight = lines.length * lineHeight + 120 + explanationHeight; // 저자 영역 120px 포함
   const startY = (H - totalTextHeight) / 2;
 
   // 텍스트 그림자
   ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-  ctx.shadowBlur = 8;
+  ctx.shadowBlur = 12;
   ctx.shadowOffsetX = 0;
-  ctx.shadowOffsetY = 2;
+  ctx.shadowOffsetY = 3;
 
+  // 본문 그리기
+  ctx.font = `bold ${quoteFontSize}px ${quoteFont}`;
   lines.forEach((line, i) => {
     ctx.fillText(line, W / 2, startY + i * lineHeight + lineHeight / 2);
   });
 
-  // 저자
+  // 저자 (화면 24px × 3배 = 72px)
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
-  ctx.font = `500 40px Pretendard Variable, sans-serif`;
+  ctx.font = `500 72px Pretendard Variable, sans-serif`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
-  ctx.fillText(`- ${author}`, W / 2, startY + totalTextHeight + 60);
+  const authorY = startY + lines.length * lineHeight + 80;
+  ctx.fillText(`- ${author}`, W / 2, authorY);
+
+  // 설명 (explanation) - seasonal content만
+  if (explanation) {
+    ctx.font = `400 ${explanationFontSize}px Pretendard Variable, sans-serif`;
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
+    const explanationStartY = authorY + 80;
+    explanationLines.forEach((line, i) => {
+      ctx.fillText(line, W / 2, explanationStartY + i * (explanationFontSize * 1.5) + explanationFontSize / 2);
+    });
+  }
 
   // 워터마크
   ctx.font = `400 20px Pretendard Variable, sans-serif`;

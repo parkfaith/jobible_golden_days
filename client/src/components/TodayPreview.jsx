@@ -20,14 +20,15 @@ const CATEGORY_COLORS = {
 
 const TodayPreview = ({ contents, favorites, onCardTap }) => {
   return (
-    <section className="mb-8 pt-2">
-      <h2 className="text-2xl font-bold text-text px-5 mb-4">오늘의 이야기</h2>
-      <div className="flex gap-3 overflow-x-auto snap-x snap-mandatory scrollbar-hide pl-5 pr-3 pb-2">
+    <section className="px-5 mb-8 pt-2">
+      <h2 className="text-2xl font-bold text-text mb-4">오늘의 이야기</h2>
+      <div className="space-y-3">
         {contents.map((item, idx) => (
           <div
             key={item.id}
             onClick={() => onCardTap(idx)}
-            className="relative flex-shrink-0 w-[200px] h-[260px] rounded-2xl overflow-hidden snap-start cursor-pointer active:scale-[0.97] transition-transform shadow-md"
+            className="relative overflow-hidden rounded-2xl cursor-pointer active:scale-[0.98] transition-transform shadow-md"
+            style={{ minHeight: '110px' }}
           >
             {/* 배경 이미지 */}
             <img
@@ -36,12 +37,12 @@ const TodayPreview = ({ contents, favorites, onCardTap }) => {
               className="absolute inset-0 w-full h-full object-cover"
             />
             {/* 어두운 오버레이 */}
-            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-black/50" />
 
             {/* 콘텐츠 */}
-            <div className="relative z-10 h-full flex flex-col justify-between p-4">
+            <div className="relative z-10 p-4 flex flex-col justify-end" style={{ minHeight: '110px' }}>
               {/* 상단: 카테고리 배지 + 즐겨찾기 */}
-              <div className="flex items-start justify-between">
+              <div className="flex items-start justify-between mb-2">
                 <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-800'}`}>
                   {CATEGORY_LABELS[item.category] || item.category}
                 </span>
@@ -50,15 +51,13 @@ const TodayPreview = ({ contents, favorites, onCardTap }) => {
                 )}
               </div>
 
-              {/* 하단: 인용문 + 저자 */}
-              <div>
-                <p className="text-white text-base font-medium leading-snug line-clamp-3 break-keep mb-1.5">
-                  &ldquo;{item.quote}&rdquo;
-                </p>
-                <p className="text-white/70 text-sm truncate">
-                  - {item.author}
-                </p>
-              </div>
+              {/* 인용문 + 저자 */}
+              <p className="text-white text-lg font-medium leading-snug line-clamp-2 break-keep">
+                &ldquo;{item.quote}&rdquo;
+              </p>
+              <p className="text-white/70 text-base mt-1">
+                - {item.author}
+              </p>
             </div>
           </div>
         ))}

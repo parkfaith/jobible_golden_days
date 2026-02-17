@@ -30,11 +30,11 @@ const getSeedFromDate = (date) => {
 const bibleQuotes = allContent.filter(q => q.category === 'bible');
 const otherQuotes = allContent.filter(q => q.category !== 'bible');
 
-// 특정 날짜의 원본 5개 선택 (중복 제거 없는 기본 로직)
+// 특정 날짜의 원본 7개 선택 (중복 제거 없는 기본 로직)
 const _getRawDailyContent = (date) => {
   const seed = getSeedFromDate(date);
-  const bibleCount = mulberry32(seed) > 0.5 ? 3 : 2;
-  const otherCount = 5 - bibleCount;
+  const bibleCount = mulberry32(seed) > 0.5 ? 4 : 3;
+  const otherCount = 7 - bibleCount;
 
   const shuffledBible = seededShuffle(bibleQuotes, seed);
   const shuffledOther = seededShuffle(otherQuotes, seed + 9999);
@@ -63,8 +63,8 @@ export const getDailyContent = (date = new Date()) => {
   const seed = getSeedFromDate(date);
   const recentIds = getRecentContentIds(date, 7);
 
-  const bibleCount = mulberry32(seed) > 0.5 ? 3 : 2;
-  const otherCount = 5 - bibleCount;
+  const bibleCount = mulberry32(seed) > 0.5 ? 4 : 3;
+  const otherCount = 7 - bibleCount;
 
   // 셔플 후 최근 7일에 나왔던 항목 제외
   const shuffledBible = seededShuffle(bibleQuotes, seed);
