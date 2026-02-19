@@ -2,6 +2,84 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-19]
+
+### 캡처 이미지 폰트 화면 일치 (Fix Capture Font Mismatch)
+
+- **캡처 이미지 폰트를 화면과 동일하게 수정**: `captureCard.js`의 폰트 매핑에서 `weather`/`seasonal` 카테고리가 빠져있어 화면(Nanum Myeongjo)과 캡처(Pretendard)가 불일치하던 문제 수정. `isSerif` 조건에 `weather`, `seasonal` 추가.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/captureCard.js` (isSerif 조건에 weather/seasonal 추가)
+- `CHANGELOG.md`
+
+### PC 공유 시 클립보드 이미지 복사 지원 (Add Clipboard Image Copy for PC)
+
+- **Web Share API 미지원 시 클립보드 복사 우선**: PC 크롬 등에서 공유 버튼 클릭 시 `ClipboardItem` API로 이미지를 클립보드에 복사. 워드/카톡 등에 바로 `Ctrl+V`로 붙여넣기 가능. 클립보드 API 실패 시 기존 파일 다운로드로 폴백.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/components/QuoteCard.jsx` (클립보드 이미지 복사 로직 추가)
+- `CHANGELOG.md`
+
+### 공유 이미지에서 설명(explanation) 제거 (Remove Explanation from Share Image)
+
+- **캡처 이미지에서 explanation 텍스트 제거**: `captureCard.js`에서 explanation 렌더링 로직 및 높이 계산 제거. 공유 이미지는 본문 + 저자 + 워터마크만 포함하여 깔끔하게 정리.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/captureCard.js` (explanation 렌더링 제거)
+- `client/src/components/QuoteCard.jsx` (explanation 파라미터 전달 제거)
+- `CHANGELOG.md`
+
+### 날씨 기반 콘텐츠 배너 추가 (Add Weather-Based Content Banner)
+
+- **OpenWeatherMap API 연동**: 사용자 위치 기반 실시간 날씨 감지. 위치 권한 거부 시 서울 좌표 폴백. localStorage 캐시로 하루 1회만 API 호출 (자정/3시간 TTL 만료 시 갱신).
+- **4가지 날씨 분류**: 맑음(sunny), 흐림(cloudy), 비(rain), 눈(snow). OWM 날씨 코드를 4가지로 매핑하여 해당 날씨에 어울리는 성경 구절 제공.
+- **날씨별 성경 구절 13개**: sunny 4 + cloudy 3 + rain 3 + snow 3. 날씨 전용 배경 이미지 13장(bg-75~87) 추가 및 매칭.
+- **WeatherBanner 컴포넌트**: SeasonalBanner와 동일한 레이아웃. 날씨 아이콘 + 도시명 + 온도 표시. 탭하면 해당 날씨 전체 콘텐츠를 CardViewer로 열기.
+- **절기 우선 정책**: 설날/추석 등 절기 배너가 있으면 날씨 배너 숨김. 평상시에만 날씨 배너 표시.
+- **graceful degradation**: API 키 미설정, 네트워크 오류, 오프라인 시 배너 자체를 숨겨서 UX 영향 없음.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/weather.json` (신규 — 날씨별 성경 구절 13개)
+- `client/src/utils/weatherService.js` (신규 — API 호출, 캐시, 분류 로직)
+- `client/src/components/WeatherBanner.jsx` (신규 — 날씨 배너 UI)
+- `client/src/data/index.js` (weatherContent export 추가)
+- `client/src/pages/Home.jsx` (날씨 상태 관리 + 조건부 렌더링)
+- `client/src/components/QuoteCard.jsx` (weather/seasonal 카테고리 라벨·폰트 추가)
+- `client/.env`, `client/.env.example` (VITE_OPENWEATHER_API_KEY 추가)
+- `CHANGELOG.md`, `CLAUDE.md`
+
+### 날씨 전용 배경 이미지 13장 추가 (Add 13 Weather Background Images)
+
+- **Unsplash 이미지 13장 추가**: bg-75~bg-87, 날씨 테마별 전용 이미지
+  - 비(rain): bg-75(가로등+비), bg-76(유리창+빗방울), bg-77(풀잎+이슬)
+  - 눈(snow): bg-78(눈+나무), bg-79(눈+나뭇가지), bg-80(눈덮인 숲)
+  - 흐림(cloudy): bg-81(뭉게구름), bg-82(구름), bg-83(흐린하늘+몽생미셸)
+  - 맑음(sunny): bg-84(호수풍경), bg-85(일출), bg-86(파란하늘+구름), bg-87(해변)
+- **이미지 최적화**: 800px 리사이즈, JPEG q=70 — 총 1.1MB (13장)
+- **weather.json 이미지 교체**: 기존 다른 카테고리 공유 이미지 → 날씨 전용 이미지로 전면 교체
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/public/images/bg-75.jpg ~ bg-87.jpg` (신규 13장)
+- `client/src/data/weather.json` (bgImage 전면 교체)
+- `CHANGELOG.md`, `CLAUDE.md`
+
+### 명절 날짜 데이터 수정 (Fix Seasonal Holiday Date Ranges)
+
+- **설날 2026 종료일 수정**: end `2026-02-19` → `2026-02-18` (연휴 다음날까지만 표시)
+- **설날 2029/2030 날짜 보정**: 음력 변환 오류 수정 (2029: 2/11~2/15, 2030: 2/1~2/5)
+- **추석 전체 연도 날짜 수정**: 2027년(`10/11~10/17` → `9/13~9/17`), 2030년(`10/7~10/13` → `9/10~9/14`) 등 음력 변환 오류 전면 수정. 나무위키 기준 정확한 양력 날짜로 교체
+- **표시 범위 정책**: 법정 연휴(전날~다음날 3일) + 전후 하루 여유 = 총 5일간 배너 표시
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/seasons.json` (설날·추석 날짜 범위 전면 수정)
+- `CHANGELOG.md`
+
 ## [2026-02-18]
 
 ### 공유 이미지 폰트 크기 개선 (Improve Share Image Font Size)

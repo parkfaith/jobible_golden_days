@@ -39,8 +39,10 @@ client/src/
 │   ├── poems.json        # 찬송가 가사 (15개) - 클래식 찬송가 (18-19세기)
 │   ├── writings.json     # 성경 구절 (15개) - 추가 성경 말씀
 │   ├── seasonal.json     # 명절/계절 컨텐츠 (25개) - 모두 성경 구절
+│   ├── weather.json      # 날씨별 성경 구절 (13개) - 맑음/흐림/비/눈 4종
 │   └── index.js          # 전체 병합 + 카테고리 자동 부여
 ├── utils/dailyCurator.js # 날짜 기반 결정적 콘텐츠 선택 (Mulberry32 PRNG + Fisher-Yates 셔플)
+├── utils/weatherService.js # OpenWeatherMap API 호출 + 날씨 분류 + localStorage 캐시
 ├── styles/calendar.css   # react-calendar 스타일 오버라이드
 └── index.css             # Tailwind v4 테마 토큰 (@theme로 커스텀 색상 정의)
 ```
@@ -58,7 +60,7 @@ client/src/
 
 **PWA:** `vite-plugin-pwa` with Workbox, `autoUpdate` 전략. manifest와 서비스 워커는 `vite.config.js`에서 설정.
 
-**Environment:** `VITE_KAKAO_JS_KEY` — 카카오톡 공유 SDK 키 (`.env` 파일).
+**Environment:** `VITE_KAKAO_JS_KEY` — 카카오톡 공유 SDK 키 (`.env` 파일). `VITE_OPENWEATHER_API_KEY` — OpenWeatherMap API 키 (미설정 시 날씨 배너 숨김).
 
 ## Tech Stack
 
@@ -73,6 +75,7 @@ client/src/
 | PWA | vite-plugin-pwa (Workbox) | 1.2 |
 | Lint | ESLint | 9.x |
 | 외부 SDK | Kakao JavaScript SDK | 2.7.4 (CDN) |
+| 외부 API | OpenWeatherMap | 무료 tier (날씨 배너) |
 
 **사용하지 않는 것들:** React Router(라우팅 없음), 상태 관리 라이브러리(Redux/Zustand 등), 백엔드/DB(Phase 2 예정), 테스트 프레임워크(미설정)
 
@@ -92,6 +95,9 @@ client/src/
 - **명절 콘텐츠 스키마**: `{ id, quote, author, source, bgImage, season, explanation }`
   - `season`: 명절 이름 (설날, 추석, 어버이날, 크리스마스, 새해)
   - `explanation`: 해당 구절과 명절의 연관성 설명 (선택적, seasonal.json만 사용)
+- **날씨 콘텐츠 스키마**: `{ id, quote, author, source, bgImage, weather, explanation }`
+  - `weather`: 날씨 분류 (sunny, cloudy, rain, snow)
+  - `explanation`: 날씨와 구절의 연관성 설명
 - 카테고리 추가 시: 해당 JSON 파일에 항목 추가 → `data/index.js`에 import만 하면 자동 반영
 
 ### 공유 기능 폴백 체인 (`QuoteCard.jsx`)
@@ -103,11 +109,12 @@ client/src/
 | 키 | 값 형식 | 용도 |
 |---|---------|------|
 | `golden-days-favorites` | `number[]` (id 배열) | 즐겨찾기 목록 |
+| `golden-days-weather` | `{ timestamp, data: { weather, temp, description, city } }` | 날씨 API 캐시 (3시간/자정 만료) |
 
 ### 이미지
-- 74장 로컬 저장 (`public/images/bg-01.jpg` ~ `bg-74.jpg`)
+- 87장 로컬 저장 (`public/images/bg-01.jpg` ~ `bg-87.jpg`)
 - Unsplash 원본에서 w=800, q=70으로 최적화 다운로드
-- 테마: 풍경(bg-01~50), 꽃/장미/목련(bg-54~55,61~63,65~66,68,70), 성당/교회(bg-51,57~60,64,74), 비/눈/겨울(bg-52~53,56,67,69,71~73)
+- 테마: 풍경(bg-01~50), 꽃/장미/목련(bg-54~55,61~63,65~66,68,70), 성당/교회(bg-51,57~60,64,74), 비/눈/겨울(bg-52~53,56,67,69,71~73), 날씨 전용: 비(bg-75~77), 눈(bg-78~80), 흐림(bg-81~83), 맑음(bg-84~87)
 - PWA precache에 포함되어 오프라인에서도 표시
 
 ### 폰트 전략

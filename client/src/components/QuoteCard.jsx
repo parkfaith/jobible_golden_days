@@ -9,6 +9,8 @@ const CATEGORY_LABELS = {
   proverb: '속담',
   poem: '시',
   writing: '글귀',
+  weather: '날씨',
+  seasonal: '특별',
 };
 
 // 카테고리별 폰트 클래스 매핑
@@ -17,7 +19,9 @@ const CATEGORY_FONTS = {
   quote: 'font-sans',       // Pretendard — 깔끔하고 현대적
   proverb: 'font-sans',     // Pretendard — 가독성 우선
   poem: 'font-serif',       // 나눔명조 — 서정적, 문학적
-  writing: 'font-sans',        // Pretendard — 어르신 가독성 우선
+  writing: 'font-sans',     // Pretendard — 어르신 가독성 우선
+  weather: 'font-serif',    // 나눔명조 — 성경 구절
+  seasonal: 'font-serif',   // 나눔명조 — 성경 구절
 };
 
 const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
@@ -42,7 +46,6 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
         quote: content.quote,
         author: content.author,
         category: content.category,
-        explanation: content.explanation, // seasonal content 설명
       });
 
       if (!blob) {
@@ -68,9 +71,16 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
         }
       }
 
-      // 3단계: 폴백 - 이미지 다운로드
-      downloadBlob(blob, filename);
-      showNotification('이미지가 저장되었습니다');
+      // 3단계: 폴백 - 클립보드에 이미지 복사 시도, 실패 시 다운로드
+      try {
+        await navigator.clipboard.write([
+          new ClipboardItem({ 'image/png': blob }),
+        ]);
+        showNotification('이미지가 복사되었습니다');
+      } catch {
+        downloadBlob(blob, filename);
+        showNotification('이미지가 저장되었습니다');
+      }
 
     } catch (error) {
       console.error('이미지 공유 실패:', error);

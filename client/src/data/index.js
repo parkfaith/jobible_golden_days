@@ -4,6 +4,7 @@ import proverbs from './proverbs.json';
 import poems from './poems.json';
 import writings from './writings.json';
 import seasonal from './seasonal.json';
+import weather from './weather.json';
 import seasons from './seasons.json';
 
 // 카테고리 자동 부여
@@ -29,6 +30,8 @@ export const categories = [
 
 // 절기 콘텐츠 (allContent에 포함하지 않음 — 일반 큐레이터 대상 아님)
 export const seasonalContent = seasonal.map(item => ({ ...item, category: 'seasonal' }));
+// 날씨 콘텐츠 (allContent에 포함하지 않음 — 날씨 배너 전용)
+export const weatherContent = weather.map(item => ({ ...item, category: 'weather' }));
 export { seasons };
 
 export default allContent;

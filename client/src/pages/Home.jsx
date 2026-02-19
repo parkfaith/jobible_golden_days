@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { getDailyContent } from '../utils/dailyCurator';
 import { detectCurrentSeason, getSeasonalContent } from '../utils/seasonDetector';
-import allContent from '../data';
+import { fetchCurrentWeather, getWeatherContent, WEATHER_META } from '../utils/weatherService';
+import allContent, { weatherContent } from '../data';
 import { Heart } from 'lucide-react';
 import CardViewer from '../components/CardViewer';
 import TodayPreview from '../components/TodayPreview';
 import CategoryGrid from '../components/CategoryGrid';
 import SeasonalBanner from '../components/SeasonalBanner';
+import WeatherBanner from '../components/WeatherBanner';
 
 // 카테고리 라벨 (즐겨찾기 목록에서 사용)
 const CATEGORY_LABELS = {
@@ -34,6 +36,23 @@ const Home = () => {
     () => activeSeason ? getSeasonalContent(activeSeason.key) : [],
     [activeSeason]
   );
+
+  // 날씨 상태
+  const [weatherInfo, setWeatherInfo] = useState(null);
+
+  // 날씨 API 호출 (마운트 시 1회)
+  useEffect(() => {
+    let cancelled = false;
+    fetchCurrentWeather().then(result => {
+      if (!cancelled && result) setWeatherInfo(result);
+    });
+    return () => { cancelled = true; };
+  }, []);
+
+  const weatherMeta = weatherInfo ? WEATHER_META[weatherInfo.weather] : null;
+  const weatherContents = weatherInfo
+    ? getWeatherContent(weatherInfo.weather, weatherContent)
+    : [];
 
   // 즐겨찾기 토글
   const handleToggleFavorite = (id) => {
@@ -92,6 +111,16 @@ const Home = () => {
           <SeasonalBanner
             season={activeSeason}
             contents={seasonContents}
+            onTap={(contents) => openViewer(contents, 0)}
+          />
+        )}
+
+        {/* 날씨 배너 (절기 배너가 없을 때만 표시) */}
+        {!(activeSeason && seasonContents.length > 0) && weatherInfo && weatherContents.length > 0 && (
+          <WeatherBanner
+            weatherInfo={weatherInfo}
+            weatherMeta={weatherMeta}
+            contents={weatherContents}
             onTap={(contents) => openViewer(contents, 0)}
           />
         )}
