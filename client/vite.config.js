@@ -12,8 +12,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.png', 'logo.png', 'apple-touch-icon.png'],
       manifest: {
-        name: 'Golden Days',
-        short_name: 'GoldenDays',
+        name: 'joBiBle Golden Days',
+        short_name: 'joBiBle GoldenDays',
         description: 'Daily inspiration for your golden days',
         theme_color: '#8B9D83',
         background_color: '#E5E1D8',
