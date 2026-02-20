@@ -1,0 +1,12 @@
+{
+  "name": "golden-days-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "generate": "node generate-content.mjs",
+    "dry-run": "cross-env DRY_RUN=true node generate-content.mjs"
+  },
+  "dependencies": {
+    "openai": "^4.0.0"
+  }
+}

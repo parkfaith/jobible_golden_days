@@ -22,6 +22,17 @@ npm run preview  # 프로덕션 빌드 미리보기
 
 No test framework is configured yet.
 
+### 자동화 스크립트 (`scripts/` directory)
+
+```bash
+cd scripts
+npm install                                    # 의존성 설치 (openai)
+node generate-content.mjs                      # 콘텐츠 자동 생성 (OPENAI_API_KEY 필요)
+DRY_RUN=true node generate-content.mjs         # 더미 데이터로 테스트
+```
+
+GitHub Actions: 매주 월요일 09:00 KST 자동 실행 (`.github/workflows/weekly-content.yml`)
+
 ## Architecture
 
 **Client-only SPA** — React 19 + Vite 7, no backend (Phase 2 planned for CMS).
@@ -45,6 +56,20 @@ client/src/
 ├── utils/weatherService.js # OpenWeatherMap API 호출 + 날씨 분류 + localStorage 캐시
 ├── styles/calendar.css   # react-calendar 스타일 오버라이드
 └── index.css             # Tailwind v4 테마 토큰 (@theme로 커스텀 색상 정의)
+
+scripts/                    # 자동화 스크립트 (프론트엔드 런타임과 분리)
+├── package.json            # openai 의존성
+├── generate-content.mjs    # 메인 콘텐츠 생성 스크립트
+└── lib/
+    ├── openai-client.mjs   # OpenAI API 래퍼 (gpt-4o, 3회 재시도, DRY_RUN 지원)
+    ├── prompts.mjs         # 카테고리별 시스템/유저 프롬프트
+    ├── id-manager.mjs      # 전역 max ID + 1 순차 할당
+    ├── image-allocator.mjs # 미사용 이미지 우선 할당 → 최소 사용 재사용
+    ├── validator.mjs       # 스키마 검증 + 중복 검사 (텍스트/장절)
+    └── json-updater.mjs    # JSON 읽기/쓰기 유틸
+
+.github/workflows/
+└── weekly-content.yml      # 매주 월요일 09:00 KST 자동 실행 (OpenAI → JSON 추가 → 커밋/푸시)
 ```
 
 **Key patterns:**
@@ -60,7 +85,7 @@ client/src/
 
 **PWA:** `vite-plugin-pwa` with Workbox, `autoUpdate` 전략. manifest와 서비스 워커는 `vite.config.js`에서 설정.
 
-**Environment:** `VITE_KAKAO_JS_KEY` — 카카오톡 공유 SDK 키 (`.env` 파일). `VITE_OPENWEATHER_API_KEY` — OpenWeatherMap API 키 (미설정 시 날씨 배너 숨김).
+**Environment:** `VITE_KAKAO_JS_KEY` — 카카오톡 공유 SDK 키 (`.env` 파일). `VITE_OPENWEATHER_API_KEY` — OpenWeatherMap API 키 (미설정 시 날씨 배너 숨김). `OPENAI_API_KEY` — OpenAI API 키 (GitHub Secrets, 주간 콘텐츠 자동 생성용).
 
 ## Tech Stack
 
@@ -76,6 +101,7 @@ client/src/
 | Lint | ESLint | 9.x |
 | 외부 SDK | Kakao JavaScript SDK | 2.7.4 (CDN) |
 | 외부 API | OpenWeatherMap | 무료 tier (날씨 배너) |
+| 자동화 | GitHub Actions + OpenAI API (gpt-4o) | 매주 월요일 콘텐츠 자동 생성 |
 
 **사용하지 않는 것들:** React Router(라우팅 없음), 상태 관리 라이브러리(Redux/Zustand 등), 백엔드/DB(Phase 2 예정), 테스트 프레임워크(미설정)
 

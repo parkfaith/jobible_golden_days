@@ -2,6 +2,30 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-21]
+
+### 주간 자동 콘텐츠 생성 시스템 추가 (Add Weekly Auto Content Generation)
+
+- **OpenAI API 기반 자동 콘텐츠 생성**: 매주 월요일 GitHub Actions로 4개 카테고리(bible, quote, poem, writing)에 2개씩 총 8개의 새 콘텐츠를 자동 생성하고 JSON 파일에 추가 후 자동 커밋/푸시
+- **스크립트 구조**: `scripts/` 디렉토리에 메인 스크립트와 6개 유틸 모듈 (OpenAI 래퍼, 프롬프트, ID 관리, 이미지 할당, 검증, JSON 읽기/쓰기)
+- **중복 방지**: 텍스트 완전 일치 + 부분 포함 + 동일 장절 검사, 기존 콘텐츠 전체를 프롬프트에 포함
+- **에러 처리**: 지수 백오프 3회 재시도, 부분 실패 허용 (성공분만 커밋)
+- **DRY_RUN 모드**: API 미호출 더미 데이터 테스트 지원
+
+**신규 파일 목록 (New Files)**:
+
+- `scripts/package.json` (openai 의존성)
+- `scripts/generate-content.mjs` (메인 스크립트)
+- `scripts/lib/openai-client.mjs` (OpenAI API 래퍼)
+- `scripts/lib/prompts.mjs` (카테고리별 프롬프트)
+- `scripts/lib/id-manager.mjs` (ID 할당)
+- `scripts/lib/image-allocator.mjs` (이미지 할당)
+- `scripts/lib/validator.mjs` (스키마 검증 + 중복 검사)
+- `scripts/lib/json-updater.mjs` (JSON 읽기/쓰기)
+- `.github/workflows/weekly-content.yml` (GitHub Actions 워크플로우)
+- `docs/WEEKLY_CONTENT_PLAN.md` (구현 계획 문서)
+- `CHANGELOG.md`, `CLAUDE.md`
+
 ## [2026-02-19]
 
 ### 캡처 이미지 폰트 화면 일치 (Fix Capture Font Mismatch)
