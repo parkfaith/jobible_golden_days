@@ -103,5 +103,19 @@
     "author": "히브리서 13:6",
     "source": "성경 개역한글",
     "bgImage": "/images/bg-16.jpg"
+  },
+  {
+    "quote": "여호와께서 네게 복을 주시고 너를 지키시기를 원하며",
+    "author": "민수기 6:24",
+    "source": "성경 개역한글",
+    "id": 91,
+    "bgImage": "/images/bg-24.jpg"
+  },
+  {
+    "quote": "너희 염려를 다 주께 맡기라 이는 저가 너희를 권고하심이니라",
+    "author": "베드로전서 5:7",
+    "source": "성경 개역한글",
+    "id": 92,
+    "bgImage": "/images/bg-46.jpg"
   }
 ]
