@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-20]
+
+### 코드 정리 및 최적화 (Code Cleanup & Optimization)
+
+- **카카오 SDK 제거**: 카카오톡 공유 기능을 Canvas 이미지 캡처 방식으로 대체, SDK CDN 및 초기화 코드 제거
+- **PWA 설치 유도 배너 추가**: Android(beforeinstallprompt) / iOS(공유 버튼 안내) 대응, 설치 완료 또는 닫기 시 재표시 않음
+- **미사용 의존성 제거**: `clsx`, `tailwind-merge`, `date-fns`, `react-calendar` 4개 패키지 삭제
+- **미사용 코드 정리**: `getRevisitContent` 함수, `RevisitSection` 컴포넌트, `proverbs` 카테고리 잔재 제거
+- **PWA 오프라인 캐시 강화**: `vite.config.js`에 `globPatterns`로 jpg 이미지 87장 서비스 워커 프리캐시 포함
+- **CLAUDE.md 현행화**: 카카오 SDK 관련 기술 제거, 컴포넌트 구조 반영, 공유 기능 폴백 체인 업데이트
+
+**수정 파일 (Modified Files)**:
+
+- `client/index.html` (카카오 SDK CDN 제거)
+- `client/src/main.jsx` (카카오 SDK 초기화 제거)
+- `client/.env.example` (VITE_KAKAO_JS_KEY 제거)
+- `client/package.json` (미사용 의존성 4개 제거)
+- `client/vite.config.js` (globPatterns 추가)
+- `client/src/pages/Home.jsx` (InstallPrompt 추가, proverb 라벨 제거)
+- `client/src/components/QuoteCard.jsx` (proverb 라벨/폰트 제거)
+- `client/src/components/TodayPreview.jsx` (proverb 라벨/색상 제거)
+- `client/src/components/InstallPrompt.jsx` (신규)
+- `client/src/data/index.js` (proverbs import/카테고리 제거)
+- `client/src/utils/dailyCurator.js` (getRevisitContent 함수 제거)
+- `CLAUDE.md`, `CHANGELOG.md`
+
+**삭제 파일 (Deleted Files)**:
+
+- `client/src/components/RevisitSection.jsx` (미사용 컴포넌트)
+
+---
+
 ## [2026-02-21]
 
 ### 주간 자동 콘텐츠 생성 시스템 추가 (Add Weekly Auto Content Generation)

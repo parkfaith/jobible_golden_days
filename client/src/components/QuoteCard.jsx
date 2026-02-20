@@ -6,7 +6,6 @@ import { renderCardToBlob, blobToFile, downloadBlob } from '../utils/captureCard
 const CATEGORY_LABELS = {
   bible: '말씀',
   quote: '명언',
-  proverb: '속담',
   poem: '시',
   writing: '글귀',
   weather: '날씨',
@@ -17,7 +16,6 @@ const CATEGORY_LABELS = {
 const CATEGORY_FONTS = {
   bible: 'font-serif',      // 나눔명조 — 경건하고 격식 있는 느낌
   quote: 'font-sans',       // Pretendard — 깔끔하고 현대적
-  proverb: 'font-sans',     // Pretendard — 가독성 우선
   poem: 'font-serif',       // 나눔명조 — 서정적, 문학적
   writing: 'font-sans',     // Pretendard — 어르신 가독성 우선
   weather: 'font-serif',    // 나눔명조 — 성경 구절

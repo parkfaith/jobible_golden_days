@@ -39,22 +39,30 @@ GitHub Actions: 매주 월요일 09:00 KST 자동 실행 (`.github/workflows/wee
 
 ```
 client/src/
-├── main.jsx              # 진입점, Kakao SDK 초기화
+├── main.jsx              # 진입점
 ├── App.jsx               # Home 렌더링만 수행
-├── pages/Home.jsx        # 메인 페이지 (상태 관리: selectedDate, contents, currentIndex, showCalendar, favorites)
-├── components/QuoteCard.jsx  # 명언 카드 + 즐겨찾기 + 공유 기능 (카카오톡 → Web Share API → 클립보드 폴백)
+├── pages/Home.jsx        # 메인 페이지 (상태 관리: view, favorites, todayContents, weather 등)
+├── components/
+│   ├── QuoteCard.jsx     # 명언 카드 + 즐겨찾기 + 공유 기능 (Canvas 캡처 → Web Share API → 클립보드 폴백)
+│   ├── CardViewer.jsx    # 카드 뷰어 (좌우 스와이프)
+│   ├── TodayPreview.jsx  # 오늘의 이야기 목록
+│   ├── CategoryGrid.jsx  # 카테고리별 그리드
+│   ├── SeasonalBanner.jsx # 명절/절기 배너
+│   ├── WeatherBanner.jsx # 날씨 배너
+│   └── InstallPrompt.jsx # PWA 설치 유도 배너
 ├── data/
-│   ├── bible.json        # 성경 구절 (26개) - 주요 성경 말씀
-│   ├── quotes.json       # 기독교 명언 (16개) - 기독교 사상가, 목사 명언
-│   ├── proverbs.json     # 빈 배열 - 사용 안 함 (기독교 컨텐츠로 통일)
-│   ├── poems.json        # 찬송가 가사 (15개) - 클래식 찬송가 (18-19세기)
-│   ├── writings.json     # 성경 구절 (15개) - 추가 성경 말씀
-│   ├── seasonal.json     # 명절/계절 컨텐츠 (25개) - 모두 성경 구절
-│   ├── weather.json      # 날씨별 성경 구절 (13개) - 맑음/흐림/비/눈 4종
+│   ├── bible.json        # 성경 구절 - 주요 성경 말씀
+│   ├── quotes.json       # 기독교 명언 - 기독교 사상가, 목사 명언
+│   ├── poems.json        # 찬송가 가사 - 클래식 찬송가 (18-19세기)
+│   ├── writings.json     # 성경 구절 - 추가 성경 말씀
+│   ├── seasonal.json     # 명절/계절 컨텐츠 - 모두 성경 구절
+│   ├── weather.json      # 날씨별 성경 구절 - 맑음/흐림/비/눈 4종
 │   └── index.js          # 전체 병합 + 카테고리 자동 부여
-├── utils/dailyCurator.js # 날짜 기반 결정적 콘텐츠 선택 (Mulberry32 PRNG + Fisher-Yates 셔플)
-├── utils/weatherService.js # OpenWeatherMap API 호출 + 날씨 분류 + localStorage 캐시
-├── styles/calendar.css   # react-calendar 스타일 오버라이드
+├── utils/
+│   ├── dailyCurator.js   # 날짜 기반 결정적 콘텐츠 선택 (Mulberry32 PRNG + Fisher-Yates 셔플)
+│   ├── weatherService.js # OpenWeatherMap API 호출 + 날씨 분류 + localStorage 캐시
+│   ├── captureCard.js    # Canvas 기반 카드 이미지 생성 (공유용)
+│   └── seasonDetector.js # 명절/절기 감지
 └── index.css             # Tailwind v4 테마 토큰 (@theme로 커스텀 색상 정의)
 
 scripts/                    # 자동화 스크립트 (프론트엔드 런타임과 분리)
@@ -85,7 +93,7 @@ scripts/                    # 자동화 스크립트 (프론트엔드 런타임�
 
 **PWA:** `vite-plugin-pwa` with Workbox, `autoUpdate` 전략. manifest와 서비스 워커는 `vite.config.js`에서 설정.
 
-**Environment:** `VITE_KAKAO_JS_KEY` — 카카오톡 공유 SDK 키 (`.env` 파일). `VITE_OPENWEATHER_API_KEY` — OpenWeatherMap API 키 (미설정 시 날씨 배너 숨김). `OPENAI_API_KEY` — OpenAI API 키 (GitHub Secrets, 주간 콘텐츠 자동 생성용).
+**Environment:** `VITE_OPENWEATHER_API_KEY` — OpenWeatherMap API 키 (`.env` 파일, 미설정 시 날씨 배너 숨김). `OPENAI_API_KEY` — OpenAI API 키 (GitHub Secrets, 주간 콘텐츠 자동 생성용).
 
 ## Tech Stack
 
@@ -96,10 +104,8 @@ scripts/                    # 자동화 스크립트 (프론트엔드 런타임�
 | CSS | Tailwind CSS | 4.1 (CSS-first, `@theme`) |
 | Animation | Framer Motion | 12.x |
 | Icons | Lucide React | 0.564 |
-| Calendar | react-calendar | 6.0 |
 | PWA | vite-plugin-pwa (Workbox) | 1.2 |
 | Lint | ESLint | 9.x |
-| 외부 SDK | Kakao JavaScript SDK | 2.7.4 (CDN) |
 | 외부 API | OpenWeatherMap | 무료 tier (날씨 배너) |
 | 자동화 | GitHub Actions + OpenAI API (gpt-4o) | 매주 월요일 콘텐츠 자동 생성 |
 
@@ -126,16 +132,18 @@ scripts/                    # 자동화 스크립트 (프론트엔드 런타임�
   - `explanation`: 날씨와 구절의 연관성 설명
 - 카테고리 추가 시: 해당 JSON 파일에 항목 추가 → `data/index.js`에 import만 하면 자동 반영
 
-### 공유 기능 폴백 체인 (`QuoteCard.jsx`)
-1. **카카오톡 SDK** (`window.Kakao.Share.sendDefault`) — Feed 템플릿
-2. **Web Share API** (`navigator.share`) — 모바일 기본 공유 시트
-3. **클립보드 복사** (`navigator.clipboard.writeText`) — 최종 폴백
+### 공유 기능 폴백 체인 (`QuoteCard.jsx` + `captureCard.js`)
+1. **Canvas 이미지 캡처** → `renderCardToBlob()`으로 카드 이미지 생성
+2. **Web Share API** (`navigator.share`) — 모바일 기본 공유 시트 (이미지 첨부)
+3. **클립보드 이미지 복사** (`navigator.clipboard.write`) — PC 폴백
+4. **이미지 다운로드** — 최종 폴백
 
 ### localStorage 키
 | 키 | 값 형식 | 용도 |
 |---|---------|------|
 | `golden-days-favorites` | `number[]` (id 배열) | 즐겨찾기 목록 |
 | `golden-days-weather` | `{ timestamp, data: { weather, temp, description, city } }` | 날씨 API 캐시 (3시간/자정 만료) |
+| `golden-days-install-dismissed` | `'true'` | PWA 설치 배너 닫기 상태 |
 
 ### 이미지
 - 87장 로컬 저장 (`public/images/bg-01.jpg` ~ `bg-87.jpg`)

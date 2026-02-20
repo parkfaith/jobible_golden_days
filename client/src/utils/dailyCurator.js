@@ -88,25 +88,3 @@ export const getDailyContent = (date = new Date()) => {
 
   return seededShuffle(selected, seed + 7777);
 };
-
-// "다시 만나는 글귀" — 8~14일 전 콘텐츠 중 오늘 미선택 항목 추천
-export const getRevisitContent = (date = new Date(), count = 3) => {
-  const seed = getSeedFromDate(date);
-  const todayIds = new Set(getDailyContent(date).map(item => item.id));
-
-  // 8~14일 전 콘텐츠 수집 (중복 제거)
-  const revisitPool = new Map();
-  for (let i = 8; i <= 14; i++) {
-    const pastDate = new Date(date);
-    pastDate.setDate(pastDate.getDate() - i);
-    _getRawDailyContent(pastDate).forEach(item => {
-      if (!todayIds.has(item.id) && !revisitPool.has(item.id)) {
-        revisitPool.set(item.id, item);
-      }
-    });
-  }
-
-  // 시드 기반 셔플 후 count개 선택 (결정론적)
-  const poolArray = Array.from(revisitPool.values());
-  return seededShuffle(poolArray, seed + 5555).slice(0, count);
-};

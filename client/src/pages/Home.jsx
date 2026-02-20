@@ -9,12 +9,12 @@ import TodayPreview from '../components/TodayPreview';
 import CategoryGrid from '../components/CategoryGrid';
 import SeasonalBanner from '../components/SeasonalBanner';
 import WeatherBanner from '../components/WeatherBanner';
+import InstallPrompt from '../components/InstallPrompt';
 
 // 카테고리 라벨 (즐겨찾기 목록에서 사용)
 const CATEGORY_LABELS = {
   bible: '말씀',
   quote: '명언',
-  proverb: '속담',
   poem: '시',
   writing: '글귀',
 };
@@ -191,6 +191,9 @@ const Home = () => {
       <footer className="px-5 py-3 text-center text-text/30 text-[10px]">
         <p>&copy; {new Date().getFullYear()} joBiBle Golden Days &middot; Made by JunHyoung Park</p>
       </footer>
+
+      {/* PWA 설치 유도 배너 */}
+      <InstallPrompt />
 
       {/* CardViewer 오버레이 (스크롤 위치 보존) */}
       {view === 'viewer' && (

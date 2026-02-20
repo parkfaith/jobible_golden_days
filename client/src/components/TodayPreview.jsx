@@ -4,7 +4,6 @@ import { Heart } from 'lucide-react';
 const CATEGORY_LABELS = {
   bible: '말씀',
   quote: '명언',
-  proverb: '속담',
   poem: '시',
   writing: '글귀',
 };
@@ -13,7 +12,6 @@ const CATEGORY_LABELS = {
 const CATEGORY_COLORS = {
   bible: 'bg-amber-100 text-amber-800',
   quote: 'bg-blue-100 text-blue-800',
-  proverb: 'bg-green-100 text-green-800',
   poem: 'bg-pink-100 text-pink-800',
   writing: 'bg-purple-100 text-purple-800',
 };
