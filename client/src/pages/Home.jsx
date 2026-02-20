@@ -187,6 +187,11 @@ const Home = () => {
         </section>
       </main>
 
+      {/* 하단 푸터 */}
+      <footer className="px-5 py-3 text-center text-text/30 text-[10px]">
+        <p>&copy; {new Date().getFullYear()} joBiBle Golden Days &middot; Made by JunHyoung Park</p>
+      </footer>
+
       {/* CardViewer 오버레이 (스크롤 위치 보존) */}
       {view === 'viewer' && (
         <div className="fixed inset-0 z-50">
