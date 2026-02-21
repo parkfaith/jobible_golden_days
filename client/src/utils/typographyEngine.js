@@ -1,20 +1,105 @@
 /**
  * 타이포그래피 결정 엔진
- * 카테고리/텍스트 길이 기반으로 폰트 크기, 정렬, 핵심어 하이라이트를 자동 결정
+ * 카테고리/텍스트 길이 기반으로 폰트 크기, 정렬, 핵심어 하이라이트,
+ * 카테고리별 색상 테마, 글로우 효과를 자동 결정
  * QuoteCard(React)와 captureCard(Canvas)에서 공유
  */
 
-// 포인트 색상 — 어두운 배경 위 가독성 확보
-export const HIGHLIGHT_COLOR = '#F5D78E';
+// 하위 호환용 기본 하이라이트 색상
+export const HIGHLIGHT_COLOR = '#FFD700';
 
-// 카테고리별 기본 규칙
-const CATEGORY_DEFAULTS = {
-  bible:    { align: 'left',   maxSize: 40, minSize: 28 },
-  quote:    { align: 'center', maxSize: 42, minSize: 32 },
-  poem:     { align: 'center', maxSize: 38, minSize: 30 },
-  writing:  { align: 'left',   maxSize: 40, minSize: 28 },
-  weather:  { align: 'center', maxSize: 38, minSize: 30 },
-  seasonal: { align: 'center', maxSize: 38, minSize: 30 },
+// 카테고리별 전체 스타일 시스템
+const CATEGORY_STYLES = {
+  bible: {
+    align: 'left',
+    maxSize: 40,
+    minSize: 28,
+    highlightColor: '#FFD700',        // Pure Gold — 경건하고 장엄한
+    highlightScale: 1.25,
+    highlightWeight: 800,
+    overlayColor: 'rgba(10, 10, 30, 0.55)',
+    accentColor: 'rgba(255, 215, 0, 0.25)',
+    badgeBg: 'rgba(255, 215, 0, 0.20)',
+    badgeText: '#FFD700',
+    textShadow: { blur: 8, color: 'rgba(0,0,0,0.6)' },
+    highlightGlow: { blur: 12, color: 'rgba(255,215,0,0.6)' },
+    underlineHighlight: true,
+  },
+  quote: {
+    align: 'center',
+    maxSize: 42,
+    minSize: 32,
+    highlightColor: '#FF8C42',        // Warm Orange — 현대적이고 강렬한
+    highlightScale: 1.25,
+    highlightWeight: 800,
+    overlayColor: 'rgba(20, 15, 10, 0.50)',
+    accentColor: 'rgba(255, 140, 66, 0.25)',
+    badgeBg: 'rgba(255, 140, 66, 0.20)',
+    badgeText: '#FF8C42',
+    textShadow: { blur: 8, color: 'rgba(0,0,0,0.6)' },
+    highlightGlow: { blur: 10, color: 'rgba(255,140,66,0.6)' },
+    underlineHighlight: true,
+  },
+  poem: {
+    align: 'center',
+    maxSize: 38,
+    minSize: 30,
+    highlightColor: null,             // 하이라이트 없음 (찬송가 리듬 유지)
+    highlightScale: 1.0,
+    highlightWeight: 700,
+    overlayColor: 'rgba(15, 10, 25, 0.50)',
+    accentColor: 'rgba(200, 180, 220, 0.25)',
+    badgeBg: 'rgba(200, 180, 220, 0.20)',
+    badgeText: '#C8B4DC',
+    textShadow: { blur: 10, color: 'rgba(0,0,0,0.5)' },
+    highlightGlow: null,
+    underlineHighlight: false,
+  },
+  writing: {
+    align: 'left',
+    maxSize: 40,
+    minSize: 28,
+    highlightColor: '#87CEEB',        // Sky Blue — 담백하고 따뜻한
+    highlightScale: 1.20,
+    highlightWeight: 700,
+    overlayColor: 'rgba(10, 15, 20, 0.50)',
+    accentColor: 'rgba(135, 206, 235, 0.25)',
+    badgeBg: 'rgba(135, 206, 235, 0.20)',
+    badgeText: '#87CEEB',
+    textShadow: { blur: 8, color: 'rgba(0,0,0,0.5)' },
+    highlightGlow: { blur: 10, color: 'rgba(135,206,235,0.5)' },
+    underlineHighlight: true,
+  },
+  weather: {
+    align: 'center',
+    maxSize: 38,
+    minSize: 30,
+    highlightColor: '#98FB98',        // Pale Green — 자연스럽고 생기 있는
+    highlightScale: 1.20,
+    highlightWeight: 700,
+    overlayColor: 'rgba(10, 20, 10, 0.50)',
+    accentColor: 'rgba(152, 251, 152, 0.25)',
+    badgeBg: 'rgba(152, 251, 152, 0.20)',
+    badgeText: '#98FB98',
+    textShadow: { blur: 8, color: 'rgba(0,0,0,0.5)' },
+    highlightGlow: { blur: 10, color: 'rgba(152,251,152,0.5)' },
+    underlineHighlight: true,
+  },
+  seasonal: {
+    align: 'center',
+    maxSize: 38,
+    minSize: 30,
+    highlightColor: '#FF6B6B',        // Coral Red — 축제적이고 따뜻한
+    highlightScale: 1.25,
+    highlightWeight: 800,
+    overlayColor: 'rgba(25, 10, 10, 0.50)',
+    accentColor: 'rgba(255, 107, 107, 0.25)',
+    badgeBg: 'rgba(255, 107, 107, 0.20)',
+    badgeText: '#FF6B6B',
+    textShadow: { blur: 10, color: 'rgba(0,0,0,0.6)' },
+    highlightGlow: { blur: 12, color: 'rgba(255,107,107,0.6)' },
+    underlineHighlight: true,
+  },
 };
 
 // 하이라이트 핵심어 사전
@@ -36,8 +121,8 @@ const MAX_HIGHLIGHTS = 3;
  * 텍스트 길이 → px 단위 폰트 크기 계산 (선형 보간)
  */
 function computeFontSize(textLength, category) {
-  const defaults = CATEGORY_DEFAULTS[category] || CATEGORY_DEFAULTS.quote;
-  const { maxSize, minSize } = defaults;
+  const style = CATEGORY_STYLES[category] || CATEGORY_STYLES.quote;
+  const { maxSize, minSize } = style;
 
   const SHORT = 20;
   const LONG = 90;
@@ -96,10 +181,10 @@ function parseHighlights(quote, category) {
 /**
  * 메인 진입점 — content 객체 → 렌더링 스타일 결정
  * @param {Object} content - { category, quote, author, style? }
- * @returns {Object} 스타일 결정 결과
+ * @returns {Object} 스타일 결정 결과 (align, 폰트 크기, segments, style 테마)
  */
 export function resolveTypography(content) {
-  const defaults = CATEGORY_DEFAULTS[content.category] || CATEGORY_DEFAULTS.quote;
+  const catStyle = CATEGORY_STYLES[content.category] || CATEGORY_STYLES.quote;
   const overrides = content.style || {};
 
   const quoteFontSizePx = overrides.fontSize || computeFontSize(content.quote.length, content.category);
@@ -107,9 +192,22 @@ export function resolveTypography(content) {
   const segments = parseHighlights(content.quote, content.category);
 
   return {
-    align: overrides.align || defaults.align,
+    align: overrides.align || catStyle.align,
     quoteFontSizePx,
     authorFontSizePx,
     segments,
+    // 카테고리별 시각 테마
+    style: {
+      highlightColor: catStyle.highlightColor,
+      highlightScale: catStyle.highlightScale,
+      highlightWeight: catStyle.highlightWeight,
+      overlayColor: catStyle.overlayColor,
+      accentColor: catStyle.accentColor,
+      badgeBg: catStyle.badgeBg,
+      badgeText: catStyle.badgeText,
+      textShadow: catStyle.textShadow,
+      highlightGlow: catStyle.highlightGlow,
+      underlineHighlight: catStyle.underlineHighlight,
+    },
   };
 }

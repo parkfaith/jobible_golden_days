@@ -1,4 +1,4 @@
-import { resolveTypography, HIGHLIGHT_COLOR } from './typographyEngine';
+import { resolveTypography } from './typographyEngine';
 
 /**
  * Canvas API로 카드 이미지를 직접 그려서 Blob 생성
@@ -32,8 +32,8 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
   // 배경 이미지 (cover 방식)
   drawImageCover(ctx, img, W, H);
 
-  // 어두운 오버레이
-  ctx.fillStyle = 'rgba(0, 0, 0, 0.50)';
+  // 카테고리별 색조 오버레이
+  ctx.fillStyle = typo.style.overlayColor;
   ctx.fillRect(0, 0, W, H);
 
   // 카테고리별 폰트 결정
@@ -43,7 +43,7 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
   // 폰트 크기 (typographyEngine px × Canvas 스케일)
   const quoteFontSize = typo.quoteFontSizePx * SCALE;
   const authorFontSize = typo.authorFontSizePx * SCALE;
-  const highlightFontSize = Math.round(quoteFontSize * 1.15);
+  const highlightFontSize = Math.round(quoteFontSize * typo.style.highlightScale);
 
   // 정렬
   const align = typo.align;
@@ -63,9 +63,20 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
   const totalTextHeight = lines.length * lineHeight + authorFontSize + 80;
   const startY = (H - totalTextHeight) / 2;
 
-  // 텍스트 그림자
-  ctx.shadowColor = 'rgba(0, 0, 0, 0.5)';
-  ctx.shadowBlur = 12;
+  // 장식용 큰 따옴표 (배경)
+  ctx.save();
+  ctx.fillStyle = typo.style.accentColor;
+  ctx.font = 'bold 200px serif';
+  ctx.textAlign = 'left';
+  ctx.textBaseline = 'top';
+  const quoteMarkX = align === 'center' ? W * 0.06 : PAD - 30;
+  const quoteMarkY = startY - 60;
+  ctx.fillText('\u201C', quoteMarkX, quoteMarkY);
+  ctx.restore();
+
+  // 텍스트 그림자 (카테고리별)
+  ctx.shadowColor = typo.style.textShadow.color;
+  ctx.shadowBlur = typo.style.textShadow.blur * SCALE;
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 3;
 
@@ -79,9 +90,12 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
     font: quoteFont,
     align,
     maxWidth,
+    highlightStyle: typo.style,
+    scale: SCALE,
   });
 
   // 저자
+  ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
   ctx.font = `500 ${authorFontSize}px Pretendard Variable, sans-serif`;
@@ -105,10 +119,10 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
 
 /**
  * 하이라이트가 적용된 텍스트를 Canvas 줄 단위로 그리기
- * 전략: 기본 흰색 전체 그리기 → 하이라이트 키워드만 골드로 덮어 그리기
+ * 전략: 기본 흰색 전체 그리기 → 하이라이트 키워드를 색상+글로우+밑줄로 덮어 그리기
  */
 function drawHighlightedLines(ctx, lines, segments, opts) {
-  const { x, startY, lineHeight, fontSize, highlightFontSize, font, align, maxWidth } = opts;
+  const { x, startY, lineHeight, fontSize, highlightFontSize, font, align, highlightStyle, scale } = opts;
 
   // 하이라이트할 키워드 목록 추출
   const keywords = segments.filter(s => s.highlight).map(s => s.text);
@@ -122,8 +136,8 @@ function drawHighlightedLines(ctx, lines, segments, opts) {
     ctx.textAlign = align;
     ctx.fillText(line, x, lineY);
 
-    // 2단계: 하이라이트 키워드를 골드로 덮어 그리기
-    if (keywords.length === 0) return;
+    // 2단계: 하이라이트 키워드를 강렬하게 덮어 그리기
+    if (keywords.length === 0 || !highlightStyle.highlightColor) return;
 
     // 줄 전체 너비와 시작 x좌표 계산
     const lineWidth = ctx.measureText(line).width;
@@ -138,16 +152,41 @@ function drawHighlightedLines(ctx, lines, segments, opts) {
       while ((idx = line.indexOf(keyword, searchFrom)) !== -1) {
         const beforeText = line.substring(0, idx);
         const beforeWidth = ctx.measureText(beforeText).width;
+        const kwX = lineStartX + beforeWidth;
 
-        // 하이라이트 텍스트 덮어 그리기
-        ctx.fillStyle = HIGHLIGHT_COLOR;
-        ctx.font = `bold ${highlightFontSize}px ${font}`;
+        // 글로우 효과 (하이라이트 전용)
+        if (highlightStyle.highlightGlow) {
+          ctx.save();
+          ctx.shadowColor = highlightStyle.highlightGlow.color;
+          ctx.shadowBlur = highlightStyle.highlightGlow.blur * scale;
+          ctx.shadowOffsetX = 0;
+          ctx.shadowOffsetY = 0;
+        }
+
+        // 하이라이트 텍스트 덮어 그리기 (ExtraBold + 큰 크기 + 카테고리 색상)
+        ctx.fillStyle = highlightStyle.highlightColor;
+        ctx.font = `${highlightStyle.highlightWeight} ${highlightFontSize}px ${font}`;
         ctx.textAlign = 'left';
-        ctx.fillText(keyword, lineStartX + beforeWidth, lineY);
+        ctx.fillText(keyword, kwX, lineY);
+
+        if (highlightStyle.highlightGlow) {
+          ctx.restore();
+        }
+
+        // 밑줄 장식
+        if (highlightStyle.underlineHighlight) {
+          ctx.save();
+          const kwWidth = ctx.measureText(keyword).width;
+          ctx.fillStyle = highlightStyle.highlightColor;
+          ctx.globalAlpha = 0.4;
+          ctx.fillRect(kwX, lineY + highlightFontSize * 0.45, kwWidth, 3 * scale);
+          ctx.restore();
+        }
 
         // 복원
         ctx.font = `bold ${fontSize}px ${font}`;
         ctx.textAlign = align;
+        ctx.fillStyle = '#ffffff';
 
         searchFrom = idx + keyword.length;
       }

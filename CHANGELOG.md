@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-02-21]
 
+### 카테고리별 화려한 타이포그래피 스타일 시스템 (Vibrant Typography Styles)
+
+- **카테고리별 고유 색상 테마**: 성경(Gold), 명언(Orange), 찬송가(Purple), 글귀(Sky Blue), 날씨(Green), 절기(Coral Red)
+- **핵심어 하이라이트 강화**: 더 강렬한 색상 + 1.20~1.25배 크기 + ExtraBold(800) + 글로우 발광 + 밑줄 장식
+- **카테고리별 오버레이 색조**: 배경 오버레이에 미세한 색조 차이로 분위기 차별화
+- **장식용 큰 따옴표**: 본문 좌상단에 카테고리 색상 반투명 대형 따옴표 배경 장식
+- **카테고리 배지 색상**: 흰색 통일 → 카테고리별 테마 색상 배지
+- **하이라이트 펄스 애니메이션**: 화면에서 핵심어가 은은하게 호흡하는 효과
+- **카테고리별 텍스트 그림자**: 다중 그림자로 풍부한 깊이감
+
 ### 타이포그래피 엔진 추가 및 QuoteCard 개선 (Typography Engine & QuoteCard Enhancement)
 
 - **타이포그래피 자동 결정 엔진 추가**: 카테고리/텍스트 길이 기반으로 폰트 크기, 정렬, 핵심어 하이라이트를 자동 결정하는 공유 유틸리티
@@ -15,9 +25,10 @@ All notable changes to this project will be documented in this file.
 
 **수정 파일 (Modified Files)**:
 
-- `client/src/utils/typographyEngine.js` (신규 — 스타일 결정 엔진)
-- `client/src/components/QuoteCard.jsx` (rem→px, 정렬 동적화, 하이라이트 렌더링)
-- `client/src/utils/captureCard.js` (정렬/색상/크기 엔진 연동)
+- `client/src/utils/typographyEngine.js` (CATEGORY_STYLES 확장, style 테마 객체 반환)
+- `client/src/components/QuoteCard.jsx` (오버레이/하이라이트/그림자/장식따옴표/배지 화려하게)
+- `client/src/utils/captureCard.js` (Canvas에서 동일 효과 재현)
+- `client/src/index.css` (하이라이트 펄스 애니메이션)
 - `CHANGELOG.md`
 
 ---

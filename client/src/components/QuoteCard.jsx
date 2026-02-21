@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart } from 'lucide-react';
 import { renderCardToBlob, blobToFile, downloadBlob } from '../utils/captureCard';
-import { resolveTypography, HIGHLIGHT_COLOR } from '../utils/typographyEngine';
+import { resolveTypography } from '../utils/typographyEngine';
 
 const CATEGORY_LABELS = {
   bible: '말씀',
@@ -110,8 +110,8 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
 
-      {/* 가독성을 위한 어두운 오버레이 (명도 대비 7:1) */}
-      <div className="absolute inset-0 bg-black/50 z-10" />
+      {/* 카테고리별 색조 오버레이 (가독성 대비 7:1 유지) */}
+      <div className="absolute inset-0 z-10" style={{ backgroundColor: typo.style.overlayColor }} />
 
       {/* 날짜 및 카테고리 표시 */}
       <div className="absolute top-20 left-0 right-0 z-20 flex justify-center gap-3">
@@ -121,7 +121,10 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
           </span>
         )}
         {content.category && (
-          <span className="bg-white/15 backdrop-blur-sm text-white/80 text-xs font-medium px-3 py-1 rounded-full">
+          <span
+            className="backdrop-blur-sm text-xs font-medium px-3 py-1 rounded-full"
+            style={{ backgroundColor: typo.style.badgeBg, color: typo.style.badgeText }}
+          >
             {CATEGORY_LABELS[content.category] || content.category}
           </span>
         )}
@@ -129,20 +132,46 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
 
       {/* 본문 콘텐츠 */}
       <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
-        <div className={`max-w-2xl w-full flex flex-col gap-8 ${
+        <div className={`relative max-w-2xl w-full flex flex-col gap-8 ${
           typo.align === 'left' ? 'text-left items-start' :
           typo.align === 'right' ? 'text-right items-end' :
           'text-center items-center'
         }`}>
+          {/* 장식용 큰 따옴표 (배경) */}
+          <span
+            className="absolute font-serif select-none pointer-events-none"
+            style={{
+              top: '-40px',
+              left: typo.align === 'center' ? '-5%' : '-2%',
+              fontSize: '120px',
+              lineHeight: 1,
+              color: typo.style.accentColor,
+            }}
+            aria-hidden="true"
+          >
+            &ldquo;
+          </span>
+
           <p
-            className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'}`}
-            style={{ fontSize: `${typo.quoteFontSizePx}px` }}
+            className={`text-white font-bold leading-relaxed break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'}`}
+            style={{
+              fontSize: `${typo.quoteFontSizePx}px`,
+              textShadow: `0 2px ${typo.style.textShadow.blur}px ${typo.style.textShadow.color}, 0 0 30px rgba(0,0,0,0.3)`,
+            }}
           >
             &ldquo;{typo.segments.map((seg, i) =>
               seg.highlight ? (
-                <span key={i} style={{
-                  color: HIGHLIGHT_COLOR,
-                  fontSize: `${Math.round(typo.quoteFontSizePx * 1.15)}px`,
+                <span key={i} className="highlight-glow" style={{
+                  color: typo.style.highlightColor,
+                  fontSize: `${Math.round(typo.quoteFontSizePx * typo.style.highlightScale)}px`,
+                  fontWeight: typo.style.highlightWeight,
+                  textShadow: typo.style.highlightGlow
+                    ? `0 0 ${typo.style.highlightGlow.blur}px ${typo.style.highlightGlow.color}, 0 0 ${typo.style.highlightGlow.blur * 2}px ${typo.style.highlightGlow.color}`
+                    : 'none',
+                  borderBottom: typo.style.underlineHighlight
+                    ? `2px solid ${typo.style.highlightColor}66`
+                    : 'none',
+                  paddingBottom: typo.style.underlineHighlight ? '2px' : '0',
                 }}>
                   {seg.text}
                 </span>

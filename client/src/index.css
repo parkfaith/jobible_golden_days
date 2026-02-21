@@ -37,3 +37,12 @@ body {
   display: none;
 }
 
+/* 하이라이트 핵심어 은은한 펄스 애니메이션 */
+@keyframes highlight-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+.highlight-glow {
+  animation: highlight-pulse 3s ease-in-out infinite;
+}
+
