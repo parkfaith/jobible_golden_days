@@ -44,7 +44,7 @@ const TodayPreview = ({ contents, favorites, onCardTap }) => {
                 <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-800'}`}>
                   {CATEGORY_LABELS[item.category] || item.category}
                 </span>
-                {favorites.includes(item.id) && (
+                {favorites.includes(String(item.id)) && (
                   <Heart size={16} className="text-red-400" fill="currentColor" />
                 )}
               </div>

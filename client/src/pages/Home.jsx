@@ -2,7 +2,7 @@ import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { getDailyContent } from '../utils/dailyCurator';
 import { detectCurrentSeason, getSeasonalContent } from '../utils/seasonDetector';
 import { fetchCurrentWeather, getWeatherContent, WEATHER_META } from '../utils/weatherService';
-import allContent, { weatherContent } from '../data';
+import allContent, { weatherContent, seasonalContent } from '../data';
 import { Heart } from 'lucide-react';
 import CardViewer from '../components/CardViewer';
 import TodayPreview from '../components/TodayPreview';
@@ -17,10 +17,15 @@ const CATEGORY_LABELS = {
   quote: '명언',
   poem: '시',
   writing: '글귀',
+  weather: '날씨',
+  seasonal: '특별',
 };
 
-// 즐겨찾기 localStorage 헬퍼
-const getFavorites = () => JSON.parse(localStorage.getItem('golden-days-favorites') || '[]');
+// 즐겨찾기 localStorage 헬퍼 — ID를 문자열로 정규화하여 타입 불일치 방지
+const getFavorites = () => {
+  const raw = JSON.parse(localStorage.getItem('golden-days-favorites') || '[]');
+  return raw.map(id => String(id));
+};
 const saveFavorites = (favs) => localStorage.setItem('golden-days-favorites', JSON.stringify(favs));
 
 const Home = () => {
@@ -54,10 +59,11 @@ const Home = () => {
     ? getWeatherContent(weatherInfo.weather, weatherContent)
     : [];
 
-  // 즐겨찾기 토글
+  // 즐겨찾기 토글 — ID를 문자열로 정규화하여 숫자/문자열 혼재 방지
   const handleToggleFavorite = (id) => {
+    const idStr = String(id);
     const current = getFavorites();
-    const next = current.includes(id) ? current.filter(f => f !== id) : [...current, id];
+    const next = current.includes(idStr) ? current.filter(f => f !== idStr) : [...current, idStr];
     saveFavorites(next);
     setFavorites(next);
   };
@@ -91,8 +97,9 @@ const Home = () => {
     window.history.back();
   }, []);
 
-  // 즐겨찾기된 콘텐츠 목록 조회
-  const favoriteItems = allContent.filter(item => favorites.includes(item.id));
+  // 즐겨찾기된 콘텐츠 목록 조회 (절기/날씨 포함 전체 검색)
+  const favoriteItems = [...allContent, ...seasonalContent, ...weatherContent]
+    .filter(item => favorites.includes(String(item.id)));
 
   return (
     <div className="w-full app-bg">

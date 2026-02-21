@@ -77,7 +77,7 @@ const CardViewer = ({ contents, startIndex = 0, favorites, onToggleFavorite, onB
             <QuoteCard
               content={contents[currentIndex]}
               dateLabel={dateLabel}
-              isFavorite={favorites.includes(contents[currentIndex]?.id)}
+              isFavorite={favorites.includes(String(contents[currentIndex]?.id))}
               onToggleFavorite={onToggleFavorite}
             />
           </motion.div>
