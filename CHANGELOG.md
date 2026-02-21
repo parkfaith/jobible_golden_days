@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-21]
+
+### 타이포그래피 엔진 추가 및 QuoteCard 개선 (Typography Engine & QuoteCard Enhancement)
+
+- **타이포그래피 자동 결정 엔진 추가**: 카테고리/텍스트 길이 기반으로 폰트 크기, 정렬, 핵심어 하이라이트를 자동 결정하는 공유 유틸리티
+- **Galaxy Buddy4 글자 깨짐 수정**: Tailwind rem 단위(`text-4xl`)를 px 고정으로 전환하여 시스템 글꼴 크기 확대에 영향받지 않도록 개선
+- **카테고리별 정렬 다양화**: 성경/글귀는 좌측정렬, 명언/찬송가/날씨/절기는 중앙정렬 자동 적용
+- **핵심어 하이라이트**: 신앙 핵심어(여호와, 하나님, 예수 등) 자동 감지, 골드 색상 + 1.15배 크기 강조 (최대 3개)
+- **길이 적응형 폰트 크기**: 짧은 텍스트(~20자)는 크게, 긴 텍스트(~90자)는 작게 선형 보간
+- **캡처 이미지 동기화**: captureCard.js도 동일 엔진 사용하여 화면과 캡처 이미지 스타일 일치
+
+**수정 파일 (Modified Files)**:
+
+- `client/src/utils/typographyEngine.js` (신규 — 스타일 결정 엔진)
+- `client/src/components/QuoteCard.jsx` (rem→px, 정렬 동적화, 하이라이트 렌더링)
+- `client/src/utils/captureCard.js` (정렬/색상/크기 엔진 연동)
+- `CHANGELOG.md`
+
+---
+
 ## [2026-02-20]
 
 ### 코드 정리 및 최적화 (Code Cleanup & Optimization)

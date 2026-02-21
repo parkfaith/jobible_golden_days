@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart } from 'lucide-react';
 import { renderCardToBlob, blobToFile, downloadBlob } from '../utils/captureCard';
+import { resolveTypography, HIGHLIGHT_COLOR } from '../utils/typographyEngine';
 
 const CATEGORY_LABELS = {
   bible: '말씀',
@@ -26,6 +27,9 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
   const [notification, setNotification] = useState(false);
   const [isCapturing, setIsCapturing] = useState(false);
 
+  // 타이포그래피 엔진 — 카테고리/텍스트 길이 기반 자동 스타일 결정
+  const typo = resolveTypography(content);
+
   // 알림 메시지 표시
   const showNotification = (message) => {
     setNotification(message);
@@ -44,6 +48,7 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
         quote: content.quote,
         author: content.author,
         category: content.category,
+        typography: typo,
       });
 
       if (!blob) {
@@ -124,15 +129,38 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
 
       {/* 본문 콘텐츠 */}
       <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
-        <div className="text-center max-w-2xl w-full flex flex-col items-center gap-8">
-          <p className={`text-white font-bold leading-relaxed drop-shadow-md break-keep text-4xl md:text-5xl ${CATEGORY_FONTS[content.category] || 'font-sans'}`}>
-            &ldquo;{content.quote}&rdquo;
+        <div className={`max-w-2xl w-full flex flex-col gap-8 ${
+          typo.align === 'left' ? 'text-left items-start' :
+          typo.align === 'right' ? 'text-right items-end' :
+          'text-center items-center'
+        }`}>
+          <p
+            className={`text-white font-bold leading-relaxed drop-shadow-md break-keep ${CATEGORY_FONTS[content.category] || 'font-sans'}`}
+            style={{ fontSize: `${typo.quoteFontSizePx}px` }}
+          >
+            &ldquo;{typo.segments.map((seg, i) =>
+              seg.highlight ? (
+                <span key={i} style={{
+                  color: HIGHLIGHT_COLOR,
+                  fontSize: `${Math.round(typo.quoteFontSizePx * 1.15)}px`,
+                }}>
+                  {seg.text}
+                </span>
+              ) : (
+                <span key={i}>{seg.text}</span>
+              )
+            )}&rdquo;
           </p>
-          <p className="text-white/90 font-sans font-medium mt-4 text-2xl md:text-3xl">
+          <p
+            className="text-white/90 font-sans font-medium mt-4"
+            style={{ fontSize: `${typo.authorFontSizePx}px` }}
+          >
             - {content.author}
           </p>
           {content.explanation && (
-            <p className="text-white/70 font-sans text-base md:text-lg mt-4 max-w-xl leading-relaxed">
+            <p className="text-white/70 font-sans mt-4 max-w-xl leading-relaxed"
+              style={{ fontSize: `${Math.max(typo.authorFontSizePx - 4, 14)}px` }}
+            >
               {content.explanation}
             </p>
           )}

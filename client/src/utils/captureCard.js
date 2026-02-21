@@ -1,3 +1,5 @@
+import { resolveTypography, HIGHLIGHT_COLOR } from './typographyEngine';
+
 /**
  * Canvas API로 카드 이미지를 직접 그려서 Blob 생성
  * html-to-image/html2canvas 없이 동작 — iOS Safari/Chrome 완벽 호환
@@ -6,12 +8,17 @@
  * @param {string} params.bgImage - 배경 이미지 경로
  * @param {string} params.quote - 본문 텍스트
  * @param {string} params.author - 저자
- * @param {string} params.category - 카테고리 (bible, quote, proverb, poem, writing)
+ * @param {string} params.category - 카테고리 (bible, quote, poem, writing 등)
+ * @param {Object} [params.typography] - typographyEngine 결과 (없으면 내부 계산)
  * @returns {Promise<Blob>} JPEG Blob
  */
-export const renderCardToBlob = async ({ bgImage, quote, author, category }) => {
+export const renderCardToBlob = async ({ bgImage, quote, author, category, typography }) => {
   const W = 720;
   const H = 1280;
+  const SCALE = 2; // Canvas 2x 스케일
+
+  // 타이포그래피 결정 (외부 전달 또는 자체 계산)
+  const typo = typography || resolveTypography({ category, quote, author });
 
   // 1. 배경 이미지 로드
   const img = await loadImage(bgImage);
@@ -33,18 +40,27 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category }) => 
   const isSerif = category === 'bible' || category === 'poem' || category === 'weather' || category === 'seasonal';
   const quoteFont = isSerif ? 'Nanum Myeongjo' : 'Pretendard Variable, sans-serif';
 
-  // 본문 텍스트 (화면 36px × 2배 = 72px)
-  const quoteFontSize = 72;
+  // 폰트 크기 (typographyEngine px × Canvas 스케일)
+  const quoteFontSize = typo.quoteFontSizePx * SCALE;
+  const authorFontSize = typo.authorFontSizePx * SCALE;
+  const highlightFontSize = Math.round(quoteFontSize * 1.15);
+
+  // 정렬
+  const align = typo.align;
+  const PAD = 100;
+  const textX = align === 'left' ? PAD : align === 'right' ? W - PAD : W / 2;
+
   ctx.fillStyle = '#ffffff';
-  ctx.textAlign = 'center';
+  ctx.textAlign = align;
   ctx.textBaseline = 'middle';
   ctx.font = `bold ${quoteFontSize}px ${quoteFont}`;
 
   const wrappedQuote = `\u201C${quote}\u201D`;
-  const lines = wrapText(ctx, wrappedQuote, W - 200);
+  const maxWidth = W - PAD * 2;
+  const lines = wrapText(ctx, wrappedQuote, maxWidth);
   const lineHeight = quoteFontSize * 1.5;
 
-  const totalTextHeight = lines.length * lineHeight + 120; // 저자 영역 120px 포함
+  const totalTextHeight = lines.length * lineHeight + authorFontSize + 80;
   const startY = (H - totalTextHeight) / 2;
 
   // 텍스트 그림자
@@ -53,21 +69,29 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category }) => 
   ctx.shadowOffsetX = 0;
   ctx.shadowOffsetY = 3;
 
-  // 본문 그리기
-  ctx.font = `bold ${quoteFontSize}px ${quoteFont}`;
-  lines.forEach((line, i) => {
-    ctx.fillText(line, W / 2, startY + i * lineHeight + lineHeight / 2);
+  // 본문 그리기 (하이라이트 포함)
+  drawHighlightedLines(ctx, lines, typo.segments, {
+    x: textX,
+    startY,
+    lineHeight,
+    fontSize: quoteFontSize,
+    highlightFontSize,
+    font: quoteFont,
+    align,
+    maxWidth,
   });
 
-  // 저자 (화면 24px × 2배 = 48px)
+  // 저자
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
-  ctx.font = `500 48px Pretendard Variable, sans-serif`;
+  ctx.font = `500 ${authorFontSize}px Pretendard Variable, sans-serif`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+  ctx.textAlign = align;
   const authorY = startY + lines.length * lineHeight + 80;
-  ctx.fillText(`- ${author}`, W / 2, authorY);
+  ctx.fillText(`- ${author}`, textX, authorY);
 
-  // 워터마크
+  // 워터마크 (항상 중앙)
+  ctx.textAlign = 'center';
   ctx.font = `400 16px Pretendard Variable, sans-serif`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
   ctx.letterSpacing = '4px';
@@ -78,6 +102,58 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category }) => 
     canvas.toBlob(resolve, 'image/jpeg', 0.8);
   });
 };
+
+/**
+ * 하이라이트가 적용된 텍스트를 Canvas 줄 단위로 그리기
+ * 전략: 기본 흰색 전체 그리기 → 하이라이트 키워드만 골드로 덮어 그리기
+ */
+function drawHighlightedLines(ctx, lines, segments, opts) {
+  const { x, startY, lineHeight, fontSize, highlightFontSize, font, align, maxWidth } = opts;
+
+  // 하이라이트할 키워드 목록 추출
+  const keywords = segments.filter(s => s.highlight).map(s => s.text);
+
+  lines.forEach((line, i) => {
+    const lineY = startY + i * lineHeight + lineHeight / 2;
+
+    // 1단계: 기본 흰색으로 전체 줄 그리기
+    ctx.fillStyle = '#ffffff';
+    ctx.font = `bold ${fontSize}px ${font}`;
+    ctx.textAlign = align;
+    ctx.fillText(line, x, lineY);
+
+    // 2단계: 하이라이트 키워드를 골드로 덮어 그리기
+    if (keywords.length === 0) return;
+
+    // 줄 전체 너비와 시작 x좌표 계산
+    const lineWidth = ctx.measureText(line).width;
+    let lineStartX;
+    if (align === 'center') lineStartX = x - lineWidth / 2;
+    else if (align === 'right') lineStartX = x - lineWidth;
+    else lineStartX = x;
+
+    for (const keyword of keywords) {
+      let searchFrom = 0;
+      let idx;
+      while ((idx = line.indexOf(keyword, searchFrom)) !== -1) {
+        const beforeText = line.substring(0, idx);
+        const beforeWidth = ctx.measureText(beforeText).width;
+
+        // 하이라이트 텍스트 덮어 그리기
+        ctx.fillStyle = HIGHLIGHT_COLOR;
+        ctx.font = `bold ${highlightFontSize}px ${font}`;
+        ctx.textAlign = 'left';
+        ctx.fillText(keyword, lineStartX + beforeWidth, lineY);
+
+        // 복원
+        ctx.font = `bold ${fontSize}px ${font}`;
+        ctx.textAlign = align;
+
+        searchFrom = idx + keyword.length;
+      }
+    }
+  });
+}
 
 /** 이미지 로드 헬퍼 */
 function loadImage(src) {
@@ -111,22 +187,36 @@ function drawImageCover(ctx, img, canvasW, canvasH) {
   ctx.drawImage(img, sx, sy, sw, sh, 0, 0, canvasW, canvasH);
 }
 
-/** 텍스트 줄바꿈 처리 */
+/** 텍스트 줄바꿈 처리 — 단어(띄어쓰기) 단위로 줄바꿈, 단어 중간 잘림 방지 */
 function wrapText(ctx, text, maxWidth) {
   const lines = [];
-  // 먼저 명시적 줄바꿈(\n) 기준으로 분리
   const paragraphs = text.split('\n');
 
   for (const paragraph of paragraphs) {
-    const words = paragraph.split('');
+    const words = paragraph.split(' ');
     let currentLine = '';
 
-    for (const char of words) {
-      const testLine = currentLine + char;
+    for (const word of words) {
+      const testLine = currentLine ? `${currentLine} ${word}` : word;
       const metrics = ctx.measureText(testLine);
+
       if (metrics.width > maxWidth && currentLine) {
         lines.push(currentLine);
-        currentLine = char;
+        // 단어 자체가 maxWidth보다 긴 경우 글자 단위 폴백
+        if (ctx.measureText(word).width > maxWidth) {
+          let partial = '';
+          for (const char of word) {
+            if (ctx.measureText(partial + char).width > maxWidth && partial) {
+              lines.push(partial);
+              partial = char;
+            } else {
+              partial += char;
+            }
+          }
+          currentLine = partial;
+        } else {
+          currentLine = word;
+        }
       } else {
         currentLine = testLine;
       }
