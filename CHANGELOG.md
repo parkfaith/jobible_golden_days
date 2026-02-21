@@ -4,6 +4,27 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-02-21]
 
+### 어두운 배경 이미지 9장 밝은 꽃/보케 이미지로 교체 (Dark Background Image Replacement)
+
+- **교체 대상**: 밝기 분석(Pillow)으로 가장 어두운 비-날씨 이미지 9장 선별
+- **교체된 이미지**: bg-07(해바라기), bg-11(하트 보케), bg-22(청록 보케), bg-24(컬러 물방울), bg-42(흰 코스모스), bg-54(핑크 코스모스), bg-58(달리아), bg-64(벚꽃), bg-74(금잔화)
+- **날씨 전용 이미지 보존**: bg-67(비/눈), bg-75~77(비), bg-78~80(눈), bg-81~83(흐림), bg-84~87(맑음) 미교체
+- **최적화**: 원본 1~2MB → w=800, JPEG q=70으로 리사이즈 (평균 80KB)
+- **JSON 수정 불필요**: 파일명(bg-XX.jpg) 동일 유지
+
+**수정 파일 (Modified Files)**:
+
+- `client/public/images/bg-07.jpg` (밤하늘 → 해바라기)
+- `client/public/images/bg-11.jpg` (어두운 풍경 → 하트 보케)
+- `client/public/images/bg-22.jpg` (어두운 숲길 → 청록 보케)
+- `client/public/images/bg-24.jpg` (어두운 풍경 → 컬러풀 물방울)
+- `client/public/images/bg-42.jpg` (어두운 숲 항공 → 흰 코스모스)
+- `client/public/images/bg-54.jpg` (어두운 장미 → 핑크 코스모스)
+- `client/public/images/bg-58.jpg` (어두운 교회 내부 → 달리아)
+- `client/public/images/bg-64.jpg` (어두운 교회 내부 → 벚꽃)
+- `client/public/images/bg-74.jpg` (교회 내부 → 금잔화)
+- `CLAUDE.md` (이미지 테마 설명 업데이트)
+
 ### 카테고리별 화려한 타이포그래피 스타일 시스템 (Vibrant Typography Styles)
 
 - **카테고리별 고유 색상 테마**: 성경(Gold), 명언(Orange), 찬송가(Purple), 글귀(Sky Blue), 날씨(Green), 절기(Coral Red)
