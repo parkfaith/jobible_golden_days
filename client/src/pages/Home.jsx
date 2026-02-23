@@ -163,7 +163,7 @@ const Home = () => {
               {favoriteItems.map((item) => (
                 <div
                   key={item.id}
-                  className="bg-white/60 rounded-2xl p-5 cursor-pointer hover:bg-white/80 transition-colors active:scale-[0.98] transform shadow-sm"
+                  className="bg-white/60 rounded-2xl p-5 cursor-pointer hover:bg-white/80 hover:shadow-md hover:scale-[1.01] transition-all duration-300 active:scale-[0.98] transform shadow-sm border border-transparent hover:border-white/50"
                   onClick={() => openViewer([item], 0)}
                 >
                   <div className="flex items-start justify-between gap-3">

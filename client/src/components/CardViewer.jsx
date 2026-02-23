@@ -68,10 +68,10 @@ const CardViewer = ({ contents, startIndex = 0, favorites, onToggleFavorite, onB
         <AnimatePresence mode="wait">
           <motion.div
             key={`${currentIndex}-${contents[currentIndex]?.id}`}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 1.05 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
             className="w-full h-full"
           >
             <QuoteCard
@@ -100,7 +100,7 @@ const CardViewer = ({ contents, startIndex = 0, favorites, onToggleFavorite, onB
             {contents.map((_, idx) => (
               <div
                 key={idx}
-                className={`w-2 h-2 rounded-full transition-all duration-300 ${idx === currentIndex ? 'bg-white w-4' : 'bg-white/40'}`}
+                className={`h-2 rounded-full transition-all duration-500 ease-out flex-shrink-0 ${idx === currentIndex ? 'bg-white w-6 shadow-[0_0_8px_rgba(255,255,255,0.8)]' : 'bg-white/40 w-2'}`}
               />
             ))}
           </div>

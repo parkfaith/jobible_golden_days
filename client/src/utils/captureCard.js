@@ -13,9 +13,12 @@ import { resolveTypography } from './typographyEngine';
  * @returns {Promise<Blob>} JPEG Blob
  */
 export const renderCardToBlob = async ({ bgImage, quote, author, category, typography }) => {
-  const W = 720;
-  const H = 1280;
-  const SCALE = 2; // Canvas 2x 스케일
+  // 모바일 화면 비율과 동일한 줄바꿈을 유도하기 위해 고해상도(1080x1920) 사용
+  const W = 1080;
+  const H = 1920;
+  // 사용자 화면 너비를 가져와 실제 화면 UI와 100% 동일한 줄바꿈 비율 강제 계산
+  const vw = typeof window !== 'undefined' ? window.innerWidth : 390;
+  const SCALE = W / vw;
 
   // 타이포그래피 결정 (외부 전달 또는 자체 계산)
   const typo = typography || resolveTypography({ category, quote, author });
@@ -38,16 +41,19 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
 
   // 카테고리별 폰트 결정
   const isSerif = category === 'bible' || category === 'poem' || category === 'weather' || category === 'seasonal';
-  const quoteFont = isSerif ? 'Nanum Myeongjo' : 'Pretendard Variable, sans-serif';
+  // 폰트 이름을 쌍따옴표로 정확히 묶어 캔버스 로드 실패 방지
+  const quoteFont = isSerif ? '"Nanum Myeongjo", serif' : '"Pretendard Variable", sans-serif';
 
-  // 폰트 크기 (typographyEngine px × Canvas 스케일)
+  // 폰트 크기
   const quoteFontSize = typo.quoteFontSizePx * SCALE;
   const authorFontSize = typo.authorFontSizePx * SCALE;
-  const highlightFontSize = Math.round(quoteFontSize * typo.style.highlightScale);
+  const highlightFontSize = quoteFontSize * typo.style.highlightScale;
 
-  // 정렬
+  // 화면 UI의 max-w-2xl (672px) 제한과 좌우 p-8(32px*2=64px) 패딩을 고려한 정확한 렌더링 구역
   const align = typo.align;
-  const PAD = 100;
+  const actualContainerWidth = Math.min(vw - 64, 672);
+  const maxWidth = actualContainerWidth * SCALE;
+  const PAD = (W - maxWidth) / 2; // 남은 공간을 좌우로 분배
   const textX = align === 'left' ? PAD : align === 'right' ? W - PAD : W / 2;
 
   ctx.fillStyle = '#ffffff';
@@ -56,12 +62,11 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
   ctx.font = `bold ${quoteFontSize}px ${quoteFont}`;
 
   const wrappedQuote = `\u201C${quote}\u201D`;
-  const maxWidth = W - PAD * 2;
   const lines = wrapText(ctx, wrappedQuote, maxWidth);
-  const lineHeight = quoteFontSize * 1.5;
+  const lineHeight = quoteFontSize * 1.65; // leading-relaxed (1.625)에 유사하게 맞춤
 
   const totalTextHeight = lines.length * lineHeight + authorFontSize + 80;
-  const startY = (H - totalTextHeight) / 2;
+  const startY = (H - totalTextHeight) / 2; // middle baseline 원상복구
 
   // 장식용 큰 따옴표 (배경)
   ctx.save();
@@ -98,18 +103,18 @@ export const renderCardToBlob = async ({ bgImage, quote, author, category, typog
   ctx.shadowColor = 'transparent';
   ctx.shadowBlur = 0;
   ctx.shadowOffsetY = 0;
-  ctx.font = `500 ${authorFontSize}px Pretendard Variable, sans-serif`;
+  ctx.font = `500 ${authorFontSize}px "Pretendard Variable", sans-serif`;
   ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
   ctx.textAlign = align;
   const authorY = startY + lines.length * lineHeight + 80;
   ctx.fillText(`- ${author}`, textX, authorY);
 
-  // 워터마크 (항상 중앙)
+  // 워터마크 (항상 중앙 하단)
   ctx.textAlign = 'center';
-  ctx.font = `400 16px Pretendard Variable, sans-serif`;
-  ctx.fillStyle = 'rgba(255, 255, 255, 0.3)';
-  ctx.letterSpacing = '4px';
-  ctx.fillText('joBiBle Golden Days', W / 2, H - 60);
+  ctx.font = `400 ${14 * SCALE}px "Pretendard Variable", sans-serif`;
+  ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+  ctx.letterSpacing = `${2 * SCALE}px`;
+  ctx.fillText('joBiBle Golden Days', W / 2, H - (30 * SCALE));
 
   // 3. Canvas → Blob (JPEG 80% 품질로 용량 절감)
   return new Promise((resolve) => {
@@ -173,13 +178,14 @@ function drawHighlightedLines(ctx, lines, segments, opts) {
           ctx.restore();
         }
 
-        // 밑줄 장식
+        // 밑줄 장식 (웹 화면의 Tailwind border-b-2 와 유사한 간격)
         if (highlightStyle.underlineHighlight) {
           ctx.save();
           const kwWidth = ctx.measureText(keyword).width;
           ctx.fillStyle = highlightStyle.highlightColor;
           ctx.globalAlpha = 0.4;
-          ctx.fillRect(kwX, lineY + highlightFontSize * 0.45, kwWidth, 3 * scale);
+          // middle 베이스라인에서 하단으로 살짝 내려서 밑줄 렌더링
+          ctx.fillRect(kwX, lineY + highlightFontSize * 0.45, kwWidth, 1.5 * scale);
           ctx.restore();
         }
 

@@ -15,7 +15,7 @@ const CategoryGrid = ({ onCategoryTap }) => {
             key={cat.key}
             whileTap={{ scale: 0.97 }}
             onClick={() => onCategoryTap(cat.items)}
-            className="relative overflow-hidden rounded-2xl text-left"
+            className="relative overflow-hidden rounded-2xl text-left hover:shadow-lg hover:scale-[1.02] transition-all duration-300 shadow-sm"
             style={{ minHeight: '120px' }}
           >
             {/* 배경 이미지 (첫 번째 항목의 bgImage) */}

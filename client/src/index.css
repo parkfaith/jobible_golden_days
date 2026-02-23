@@ -8,10 +8,16 @@
   --font-serif: "Nanum Myeongjo", "Batang", serif;
   --font-handwriting: "Nanum Pen Script", cursive;
 
-  --color-primary: #8B9D83; /* Sage Green */
-  --color-secondary: #E5E1D8; /* Sand Beige */
-  --color-accent: #3A4D39; /* Deep Forest Green */
-  --color-text: #2C3E50; /* Dark Slate Blue */
+  --color-primary: #8B9D83;
+  /* Sage Green */
+  --color-secondary: #E5E1D8;
+  /* Sand Beige */
+  --color-accent: #3A4D39;
+  /* Deep Forest Green */
+  --color-text: #2C3E50;
+  /* Dark Slate Blue */
+  --color-gold: #D4AF37;
+  /* Premium Gold for Senior visual appeal */
 }
 
 body {
@@ -33,16 +39,26 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
-/* 하이라이트 핵심어 은은한 펄스 애니메이션 */
+/* 하이라이트 핵심어 생동감 있는 펄스 애니메이션 (투명도 + 미세 밝기 변화) */
 @keyframes highlight-pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.8; }
-}
-.highlight-glow {
-  animation: highlight-pulse 3s ease-in-out infinite;
+
+  0%,
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+  }
+
+  50% {
+    opacity: 0.85;
+    filter: brightness(1.15);
+  }
 }
 
+.highlight-glow {
+  animation: highlight-pulse 4s ease-in-out infinite;
+}

@@ -103,11 +103,14 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
   return (
     <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
 
-      {/* 배경 이미지 */}
-      <img
+      {/* 배경 이미지 (천천히 확대되는 Slow Zoom 효과로 생동감 및 깊이감 부여) */}
+      <motion.img
         src={content.bgImage}
         alt=""
-        className="absolute inset-0 w-full h-full object-cover z-0"
+        className="absolute inset-0 w-full h-full object-cover z-0 origin-center"
+        initial={{ scale: 1.0 }}
+        animate={{ scale: 1.06 }}
+        transition={{ duration: 20, ease: "linear" }}
       />
 
       {/* 카테고리별 색조 오버레이 (가독성 대비 7:1 유지) */}
@@ -130,13 +133,16 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
         )}
       </div>
 
-      {/* 본문 콘텐츠 */}
+      {/* 본문 콘텐츠 (은은하게 떠오르는 애니메이션 적용) */}
       <div className="absolute inset-0 z-20 flex items-center justify-center p-8">
-        <div className={`relative max-w-2xl w-full flex flex-col gap-8 ${
-          typo.align === 'left' ? 'text-left items-start' :
-          typo.align === 'right' ? 'text-right items-end' :
-          'text-center items-center'
-        }`}>
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.0, delay: 0.2, ease: "easeOut" }}
+          className={`relative max-w-2xl w-full flex flex-col gap-8 ${typo.align === 'left' ? 'text-left items-start' :
+              typo.align === 'right' ? 'text-right items-end' :
+                'text-center items-center'
+            }`}>
           {/* 장식용 큰 따옴표 (배경) */}
           <span
             className="absolute font-serif select-none pointer-events-none"
@@ -193,7 +199,7 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
               {content.explanation}
             </p>
           )}
-        </div>
+        </motion.div>
       </div>
 
       {/* 워터마크 (하단) */}
@@ -211,19 +217,19 @@ const QuoteCard = ({ content, dateLabel, isFavorite, onToggleFavorite }) => {
         {onToggleFavorite && (
           <button
             onClick={() => onToggleFavorite(content.id)}
-            className={`p-3 backdrop-blur-sm rounded-full transition-all active:scale-95 ${isFavorite ? 'bg-red-500/30 text-red-300' : 'bg-white/15 hover:bg-white/25 text-white'}`}
+            className={`p-3 backdrop-blur-md rounded-full transition-all duration-300 active:scale-90 hover:shadow-lg ${isFavorite ? 'bg-red-500/30 text-red-300 hover:bg-red-500/40 hover:shadow-red-500/30' : 'bg-white/15 hover:bg-white/30 hover:shadow-white/20 text-white'}`}
             aria-label={isFavorite ? '즐겨찾기 해제' : '즐겨찾기 추가'}
           >
-            <Heart size={22} fill={isFavorite ? 'currentColor' : 'none'} />
+            <Heart size={24} fill={isFavorite ? 'currentColor' : 'none'} />
           </button>
         )}
         <button
           onClick={handleShare}
           disabled={isCapturing}
-          className={`p-3 backdrop-blur-sm rounded-full text-white transition-all active:scale-95 ${isCapturing ? 'bg-white/30 cursor-wait' : 'bg-white/15 hover:bg-white/25'}`}
+          className={`p-3 backdrop-blur-md rounded-full text-white transition-all duration-300 active:scale-90 hover:shadow-lg ${isCapturing ? 'bg-white/30 cursor-wait' : 'bg-white/15 hover:bg-white/30 hover:shadow-white/20'}`}
           aria-label="이미지로 공유하기"
         >
-          <Share2 size={22} />
+          <Share2 size={24} />
         </button>
       </motion.div>
 

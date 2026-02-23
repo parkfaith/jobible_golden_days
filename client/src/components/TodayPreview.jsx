@@ -25,7 +25,7 @@ const TodayPreview = ({ contents, favorites, onCardTap }) => {
           <div
             key={item.id}
             onClick={() => onCardTap(idx)}
-            className="relative overflow-hidden rounded-2xl cursor-pointer active:scale-[0.98] transition-transform shadow-md"
+            className="relative overflow-hidden rounded-2xl cursor-pointer hover:shadow-lg hover:scale-[1.01] active:scale-[0.98] transition-all duration-300 shadow-md"
             style={{ minHeight: '110px' }}
           >
             {/* 배경 이미지 */}

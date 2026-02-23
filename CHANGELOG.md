@@ -2,9 +2,39 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2026-02-21]
+## [2026-02-23]
 
-### 어두운 배경 이미지 9장 밝은 꽃/보케 이미지로 교체 (Dark Background Image Replacement)
+### 시니어 맞춤형 화려한 UI/UX 효과 강화 (Enhance Senior-Friendly Flashy UI/UX)
+
+- **프리미엄 골드 포인트 및 입체감 추가**: `index.css`와 `typographyEngine.js`를 수정하여 핵심 구절 강조 부분에 프리미엄 골드 색상과 넓은 글로우 효과(가독성 저하 없는 발광) 부여.
+- **슬로우 줌 및 페이드 텍스트 애니메이션**: 카드가 등장할 때 배경 이미지가 20초간 미세하게 확대되고(Slow-Zoom), 텍스트가 아래에서 위로 은은하게 떠오르는 애니메이션 적용 (`QuoteCard.jsx`).
+- **카드 전환 및 인디케이터 개선**: `CardViewer.jsx`에서 카드를 넘길 때 단순 페이드인 대신 커지면서 부드럽게 나타나는 애니메이션 추가. 인디케이터도 크기와 그림자로 더 역동적으로 표현.
+- **호버 및 액티브 피드백 강화**: 오늘 이야기, 카테고리 기호, 즐겨찾기 버튼 등에 터치 시 그림자가 짙어지고 크기가 미세하게 변하는 상호작용 피드백 도입.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/index.css`
+- `client/src/utils/typographyEngine.js`
+- `client/src/components/QuoteCard.jsx`
+- `client/src/components/CardViewer.jsx`
+- `client/src/pages/Home.jsx`
+- `client/src/components/TodayPreview.jsx`
+- `client/src/components/CategoryGrid.jsx`
+- `CHANGELOG.md`
+
+### 이미지 캡처 비율 동기화 로직 보완 (Canvas Capture Proportion Syncing)
+
+- **뷰포트-캔버스 다이내믹 스케일링**: Canvas 기반 이미지 캡처 도우미(`captureCard.js`) 로직 강화. 사용자 화면 너비(`window.innerWidth`)를 기준으로 1080x1920 해상도 Canvas에 비율을 맞춰 타이포그래피 줄바꿈이 웹 화면과 완벽히 일치하도록 고도화.
+- **밑줄/정렬 간격 최적화**: 화면의 CSS 스타일링(border-b-2 등)과 똑같은 형태·위치로 강조 밑줄이 그려지도록 미세 조정 적용.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/captureCard.js`
+- `CHANGELOG.md`
+
+---
+
+## [2026-02-21]
 
 - **교체 대상**: 밝기 분석(Pillow)으로 가장 어두운 비-날씨 이미지 9장 선별
 - **교체된 이미지**: bg-07(해바라기), bg-11(하트 보케), bg-22(청록 보케), bg-24(컬러 물방울), bg-42(흰 코스모스), bg-54(핑크 코스모스), bg-58(달리아), bg-64(벚꽃), bg-74(금잔화)
