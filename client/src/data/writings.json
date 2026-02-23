@@ -117,5 +117,19 @@
     "source": "성경 개역한글",
     "id": 92,
     "bgImage": "/images/bg-46.jpg"
+  },
+  {
+    "quote": "여호와는 나를 떠나지 아니하시며 나를 버리지 아니하시리로다",
+    "author": "여호수아 1:5",
+    "source": "성경 개역한글",
+    "id": 98,
+    "bgImage": "/images/bg-43.jpg"
+  },
+  {
+    "quote": "너희는 세상의 소금이니 소금이 만일 그 맛을 잃으면 무엇으로 짜게 하리요",
+    "author": "마태복음 5:13",
+    "source": "성경 개역한글",
+    "id": 99,
+    "bgImage": "/images/bg-48.jpg"
   }
 ]
