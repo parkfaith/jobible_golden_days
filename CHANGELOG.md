@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-24]
+
+### 카운터 추가 (Add Visitor Counter)
+
+- **방문자 카운터 뱃지 추가**: 홈 화면 하단 푸터 영역에 작게 표시되는 방문자 카운터 추가 (komarev.com 방문자 카운터 API 사용).
+- **투명도 조절 적용**: 평소에는 40% 투명도로 띄지 않게 보이고 호버 시 선명해지도록 처리.
+- **미사용 코드 정리**: `Home.jsx` 내 사용하지 않던 `closeViewer` 화살표 함수 삭제 (Lint 경고 해결).
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/pages/Home.jsx`
+- `CHANGELOG.md`
+
+---
+
 ## [2026-02-23]
 
 ### 시니어 맞춤형 화려한 UI/UX 효과 강화 (Enhance Senior-Friendly Flashy UI/UX)

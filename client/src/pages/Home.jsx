@@ -76,10 +76,7 @@ const Home = () => {
     window.history.pushState({ view: 'viewer' }, '');
   }, []);
 
-  // 뷰어 닫기
-  const closeViewer = useCallback(() => {
-    setView('home');
-  }, []);
+
 
   // 브라우저 뒤로가기 이벤트 처리
   useEffect(() => {
@@ -195,8 +192,15 @@ const Home = () => {
       </main>
 
       {/* 하단 푸터 */}
-      <footer className="px-5 py-3 text-center text-text/30 text-[10px]">
+      <footer className="px-5 py-6 flex flex-col items-center justify-center gap-3 text-center text-text/30 text-[10px]">
         <p>&copy; {new Date().getFullYear()} joBiBle Golden Days &middot; Made by JunHyoung Park</p>
+        <div className="opacity-40 hover:opacity-100 transition-opacity duration-300">
+          <img 
+            src="https://komarev.com/ghpvc/?username=parkfaith-jobible-golden-days&color=C8915A&style=flat&label=VISITORS" 
+            alt="visitor counter" 
+            loading="lazy"
+          />
+        </div>
       </footer>
 
       {/* PWA 설치 유도 배너 */}
