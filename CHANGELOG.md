@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-02-26]
+
+### 날짜 변경 자동 감지 및 콘텐츠 갱신 (Auto-Refresh on Date Change)
+
+- **날짜 변경 자동 감지**: 앱을 닫지 않고 계속 켜두는 어르신 사용 패턴을 고려하여, 자정이 지나면 콘텐츠를 자동으로 새로 불러오는 기능 추가. `visibilitychange` 이벤트(백그라운드 → 포그라운드 전환 시) + 60초 주기 타이머 이중 감지 방식으로 날짜 변경을 놓치지 않음.
+- **전체 일일 데이터 갱신**: 날짜가 바뀌면 오늘의 이야기(todayContents), 절기 배너(activeSeason), 날씨 정보(weatherInfo), 날짜 표시(todayLabel)를 모두 자동 갱신.
+- **오늘 날짜 표시 추가**: 헤더 우측에 "2026년 2월 26일 목요일" 형식으로 오늘 날짜 표시. 어르신 가독성을 고려한 적절한 크기(text-base).
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/pages/Home.jsx` (날짜 변경 감지 로직, 날짜 표시 UI, 상태 관리 변경)
+- `CHANGELOG.md`
+
+---
+
 ## [2026-02-24]
 
 ### 카운터 추가 (Add Visitor Counter)
