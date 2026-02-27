@@ -32,4 +32,3 @@ export const weatherContent = weather.map(item => ({ ...item, category: 'weather
 export { seasons };
 
 export default allContent;
-export { bible, quotes, poems, writings };

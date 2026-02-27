@@ -10,6 +10,7 @@ import CategoryGrid from '../components/CategoryGrid';
 import SeasonalBanner from '../components/SeasonalBanner';
 import WeatherBanner from '../components/WeatherBanner';
 import InstallPrompt from '../components/InstallPrompt';
+import VisitorCounter from '../components/VisitorCounter';
 
 // 오늘 날짜 문자열 (YYYY-MM-DD) — 날짜 변경 감지용
 const getDateString = () => {
@@ -254,12 +255,8 @@ const Home = () => {
       {/* 하단 푸터 */}
       <footer className="px-5 py-6 flex flex-col items-center justify-center gap-3 text-center text-text/30 text-[10px]">
         <p>&copy; {new Date().getFullYear()} joBiBle Golden Days &middot; Made by JunHyoung Park</p>
-        <div className="opacity-40 hover:opacity-100 transition-opacity duration-300">
-          <img 
-            src="https://komarev.com/ghpvc/?username=parkfaith-jobible-golden-days&color=C8915A&style=flat&label=VISITORS" 
-            alt="visitor counter" 
-            loading="lazy"
-          />
+        <div className="opacity-60 hover:opacity-100 transition-opacity duration-300">
+          <VisitorCounter />
         </div>
       </footer>
 

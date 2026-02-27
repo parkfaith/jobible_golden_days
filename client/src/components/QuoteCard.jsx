@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Share2, Heart } from 'lucide-react';
 import { renderCardToBlob, blobToFile, downloadBlob } from '../utils/captureCard';
