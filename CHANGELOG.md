@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-03-02]
+
+### 날씨별 성경 콘텐츠 대폭 추가 (Expand Weather Bible Content)
+
+- **맑음(sunny) 콘텐츠 확대**: 4개 → 15개. 봄철 맑은 날 반복 노출 문제 해결. 잠언, 이사야, 시편 등 다양한 성경 구절 추가.
+- **흐림(cloudy) 콘텐츠 확대**: 3개 → 8개. 고린도전서, 요한복음 등 위로와 소망의 말씀 추가.
+- **비(rain) 콘텐츠 확대**: 3개 → 8개. 에스겔, 마태복음, 욥기 등 비와 관련된 성경 구절 추가.
+- **눈(snow) 콘텐츠 확대**: 3개 → 7개. 욥기, 이사야, 다니엘 등 눈과 관련된 말씀 추가.
+- **총 날씨 콘텐츠**: 13개 → 38개 (약 3배 증가)
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/data/weather.json` (날씨별 성경 구절 25개 추가)
+- `CHANGELOG.md`
+
+---
+
 ## [2026-02-26]
 
 ### 날짜 변경 자동 감지 및 콘텐츠 갱신 (Auto-Refresh on Date Change)

@@ -36,6 +36,105 @@
     "explanation": "밝은 햇살 속에서 빛을 창조하신 하나님을 묵상합니다"
   },
   {
+    "id": "w-sunny-05",
+    "quote": "의인의 길은 돋는 햇빛 같아서 점점 빛나여 원만한 광명에 이르거니와",
+    "author": "잠언 4:18",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-01.jpg",
+    "weather": "sunny",
+    "explanation": "햇살 가득한 날, 의로운 삶이 점점 빛나리라는 소망의 말씀입니다"
+  },
+  {
+    "id": "w-sunny-06",
+    "quote": "여호와 하나님은 해요 방패시라 여호와께서 은혜와 영화를 주시며 정직히 행하는 자에게 좋은 것을 아끼지 아니하실 것임이니이다",
+    "author": "시편 84:11",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-03.jpg",
+    "weather": "sunny",
+    "explanation": "밝은 날, 해와 같이 비추시는 하나님의 은혜를 감사합니다"
+  },
+  {
+    "id": "w-sunny-07",
+    "quote": "일어나라 빛을 발하라 이는 네 빛이 이르렀고 여호와의 영광이 네 위에 임하였음이니라",
+    "author": "이사야 60:1",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-05.jpg",
+    "weather": "sunny",
+    "explanation": "환한 아침, 하나님의 영광 안에서 새롭게 일어나라는 격려의 말씀입니다"
+  },
+  {
+    "id": "w-sunny-08",
+    "quote": "나 여호와가 네 하나님이라 네 오른손을 붙들고 네게 이르기를 두려워 말라 내가 너를 도우리라 하리라",
+    "author": "이사야 41:13",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-08.jpg",
+    "weather": "sunny",
+    "explanation": "맑은 하늘 아래, 우리 손을 꼭 잡아주시는 하나님의 사랑을 느낍니다"
+  },
+  {
+    "id": "w-sunny-09",
+    "quote": "너는 내게 생명의 길을 보이시리니 주의 앞에는 기쁨이 충만하며 주의 오른쪽에는 영원한 즐거움이 있나이다",
+    "author": "시편 16:11",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-12.jpg",
+    "weather": "sunny",
+    "explanation": "화창한 날, 주님 안에서 충만한 기쁨과 즐거움을 누리는 말씀입니다"
+  },
+  {
+    "id": "w-sunny-10",
+    "quote": "여호와를 기뻐하라 저가 네 마음의 소원을 이루어 주시리로다",
+    "author": "시편 37:4",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-15.jpg",
+    "weather": "sunny",
+    "explanation": "맑고 좋은 날, 여호와를 기뻐하며 소원을 맡기는 말씀입니다"
+  },
+  {
+    "id": "w-sunny-11",
+    "quote": "여호와의 자비가 끝이 없으심이로다 이것이 아침마다 새로우니 주의 성실하심이 크도소이다",
+    "author": "예레미야애가 3:22-23",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-18.jpg",
+    "weather": "sunny",
+    "explanation": "밝은 아침, 매일 새로운 하나님의 자비를 감사하는 말씀입니다"
+  },
+  {
+    "id": "w-sunny-12",
+    "quote": "온 땅이여 여호와께 즐거이 부를지어다 기쁘게 섬기며 노래하면서 그 앞에 나아갈지어다",
+    "author": "시편 100:1-2",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-20.jpg",
+    "weather": "sunny",
+    "explanation": "맑은 날, 온 세상이 기쁘게 하나님을 찬양하는 말씀입니다"
+  },
+  {
+    "id": "w-sunny-13",
+    "quote": "들의 백합화가 어떻게 자라는가 생각하여 보라 수고도 아니하고 길쌈도 아니하느니라",
+    "author": "마태복음 6:28",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-22.jpg",
+    "weather": "sunny",
+    "explanation": "화창한 봄날, 꽃들을 보며 하나님의 돌보심을 묵상하는 말씀입니다"
+  },
+  {
+    "id": "w-sunny-14",
+    "quote": "하나님이 지으신 모든 것을 보시니 보시기에 심히 좋았더라",
+    "author": "창세기 1:31",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-25.jpg",
+    "weather": "sunny",
+    "explanation": "아름다운 날, 하나님이 창조하신 세상의 아름다움을 감사합니다"
+  },
+  {
+    "id": "w-sunny-15",
+    "quote": "의의 태양이 떠올라서 치료하는 광선을 발하리니 너희가 나가서 외양간에서 나온 송아지 같이 뛰리라",
+    "author": "말라기 4:2",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-28.jpg",
+    "weather": "sunny",
+    "explanation": "밝은 햇살 아래, 치유하시는 하나님의 빛을 기대하는 말씀입니다"
+  },
+  {
     "id": "w-cloudy-01",
     "quote": "내가 구름 속에 나의 무지개를 두었나니 이것이 나의 세상과의 언약의 징거가 될 것이라",
     "author": "창세기 9:13",
@@ -61,6 +160,51 @@
     "bgImage": "/images/bg-83.jpg",
     "weather": "cloudy",
     "explanation": "구름 낀 날, 보이지 않아도 의로우신 하나님을 신뢰하는 말씀입니다"
+  },
+  {
+    "id": "w-cloudy-04",
+    "quote": "이제는 거울로 보는 것 같이 희미하나 그 때에는 얼굴과 얼굴을 대하여 볼 것이요",
+    "author": "고린도전서 13:12",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-44.jpg",
+    "weather": "cloudy",
+    "explanation": "흐린 날처럼 지금은 희미하지만, 언젠가 분명히 보게 될 것이라는 소망입니다"
+  },
+  {
+    "id": "w-cloudy-05",
+    "quote": "우리가 낙심하지 아니하노니 겉사람은 후패하나 우리의 속사람은 날로 새롭도다",
+    "author": "고린도후서 4:16",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-46.jpg",
+    "weather": "cloudy",
+    "explanation": "흐린 날씨에도 낙심하지 않고, 속사람이 날로 새로워지는 은혜를 묵상합니다"
+  },
+  {
+    "id": "w-cloudy-06",
+    "quote": "네 길을 여호와께 맡기라 저를 의지하면 저가 이루시고 네 의를 빛 같이 나타내시리라",
+    "author": "시편 37:5-6",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-48.jpg",
+    "weather": "cloudy",
+    "explanation": "구름 낀 하늘 아래서도 하나님께 길을 맡기면 빛을 보게 되리라는 약속입니다"
+  },
+  {
+    "id": "w-cloudy-07",
+    "quote": "내가 산을 향하여 눈을 들리라 나의 도움이 어디서 올꼬 나의 도움이 천지를 지으신 여호와에게서로다",
+    "author": "시편 121:1-2",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-36.jpg",
+    "weather": "cloudy",
+    "explanation": "흐린 날에도 하늘을 바라보며, 도움이 여호와에게서 옴을 고백하는 말씀입니다"
+  },
+  {
+    "id": "w-cloudy-08",
+    "quote": "너희는 마음에 근심하지 말라 하나님을 믿으니 또 나를 믿으라",
+    "author": "요한복음 14:1",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-38.jpg",
+    "weather": "cloudy",
+    "explanation": "흐린 날처럼 마음이 무거울 때, 근심을 내려놓으라는 예수님의 위로입니다"
   },
   {
     "id": "w-rain-01",
@@ -90,6 +234,51 @@
     "explanation": "비 내리는 날, 인내 후에 기쁨이 오리라는 소망의 말씀입니다"
   },
   {
+    "id": "w-rain-04",
+    "quote": "내가 비를 그 때에 내리리니 복된 비가 되리라",
+    "author": "에스겔 34:26",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-52.jpg",
+    "weather": "rain",
+    "explanation": "비 오는 날, 하나님이 내려주시는 비가 복이 됨을 감사하는 말씀입니다"
+  },
+  {
+    "id": "w-rain-05",
+    "quote": "수고하고 무거운 짐 진 자들아 다 내게로 오라 내가 너희를 쉬게 하리라",
+    "author": "마태복음 11:28",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-53.jpg",
+    "weather": "rain",
+    "explanation": "비 내리는 날, 지친 마음을 쉬게 해주시는 예수님의 초대입니다"
+  },
+  {
+    "id": "w-rain-06",
+    "quote": "저녁에는 울음이 기숙할지라도 아침에는 기쁨이 오리로다",
+    "author": "시편 30:5",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-56.jpg",
+    "weather": "rain",
+    "explanation": "비 오는 날도 지나가고, 기쁨의 아침이 오리라는 소망의 말씀입니다"
+  },
+  {
+    "id": "w-rain-07",
+    "quote": "그가 땅에 비를 내리시고 밭에 물을 보내시며 낮은 자를 높이 드시고 슬퍼하는 자를 들어서 구원에 이르게 하시느니라",
+    "author": "욥기 5:10-11",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-67.jpg",
+    "weather": "rain",
+    "explanation": "비를 통해 생명을 주시고, 슬픈 자를 구원하시는 하나님의 섭리입니다"
+  },
+  {
+    "id": "w-rain-08",
+    "quote": "하나님은 우리의 피난처시요 힘이시니 환난 중에 만날 큰 도움이시라",
+    "author": "시편 46:1",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-69.jpg",
+    "weather": "rain",
+    "explanation": "비바람 치는 날, 하나님이 우리의 피난처가 되심을 고백하는 말씀입니다"
+  },
+  {
     "id": "w-snow-01",
     "quote": "네 죄가 주홍 같을지라도 눈과 같이 희어질 것이요 진홍 같이 붉을지라도 양털 같이 되리라",
     "author": "이사야 1:18",
@@ -115,5 +304,41 @@
     "bgImage": "/images/bg-80.jpg",
     "weather": "snow",
     "explanation": "눈을 내리시는 하나님의 놀라운 창조를 찬양하는 말씀입니다"
+  },
+  {
+    "id": "w-snow-04",
+    "quote": "하나님의 음성이 기이하게 울리며 우리의 알 수 없는 큰 일을 행하시느니라 눈에게 명하기를 땅 위에 내리라 하시며",
+    "author": "욥기 37:5-6",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-71.jpg",
+    "weather": "snow",
+    "explanation": "눈 내리는 날, 자연을 다스리시는 하나님의 위대하심을 찬양합니다"
+  },
+  {
+    "id": "w-snow-05",
+    "quote": "비와 눈이 하늘에서 내려서 그리로 돌아가지 아니하고 땅을 적시어서 소출이 나게 하며 싹이 나게 하여",
+    "author": "이사야 55:10",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-72.jpg",
+    "weather": "snow",
+    "explanation": "눈이 봄의 생명을 준비하듯, 하나님의 말씀도 반드시 열매를 맺습니다"
+  },
+  {
+    "id": "w-snow-06",
+    "quote": "그 옷이 눈 같이 희고 머리털이 깨끗한 양의 털 같은 이가 좌정하였는데",
+    "author": "다니엘 7:9",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-73.jpg",
+    "weather": "snow",
+    "explanation": "새하얀 눈을 보며, 거룩하고 영원하신 하나님의 모습을 묵상합니다"
+  },
+  {
+    "id": "w-snow-07",
+    "quote": "너는 눈의 곳간에 들어갔었느냐 우박의 곳간을 보았느냐",
+    "author": "욥기 38:22",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-56.jpg",
+    "weather": "snow",
+    "explanation": "눈 내리는 날, 인간이 헤아릴 수 없는 하나님의 신비를 묵상하는 말씀입니다"
   }
 ]
