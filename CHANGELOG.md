@@ -4,6 +4,19 @@ All notable changes to this project will be documented in this file.
 
 ## [2026-03-02]
 
+### 주간 콘텐츠 생성 스크립트 개선 (Improve Content Generation Script)
+
+- **quotes source 필드 품질 개선**: 프롬프트에서 source 예시를 `"출처, 공개 도메인"` → `"대표 저서명 또는 설교집, 공개 도메인"`으로 변경. OpenAI가 "출처"를 리터럴하게 사용하던 문제 해결.
+- **JSON 필드 순서 통일**: 자동 생성 항목의 필드 순서를 `{ id, quote, author, source, bgImage }`로 통일하여 기존 데이터와 일관성 확보.
+
+**수정 파일 목록 (Modified Files)**:
+
+- `scripts/lib/prompts.mjs` (quotes 프롬프트 source 예시 개선)
+- `scripts/generate-content.mjs` (JSON 필드 순서 통일)
+- `CHANGELOG.md`
+
+---
+
 ### 날씨별 성경 콘텐츠 대폭 추가 (Expand Weather Bible Content)
 
 - **맑음(sunny) 콘텐츠 확대**: 4개 → 15개. 봄철 맑은 날 반복 노출 문제 해결. 잠언, 이사야, 시편 등 다양한 성경 구절 추가.

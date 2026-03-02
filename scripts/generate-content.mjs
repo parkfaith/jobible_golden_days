@@ -94,8 +94,10 @@ async function main() {
 
       // ID + 이미지 할당
       const enriched = unique.slice(0, 2).map(item => ({
-        ...item,
         id: nextIds[idIndex],
+        quote: item.quote,
+        author: item.author,
+        source: item.source,
         bgImage: images[idIndex++],
       }));
 
