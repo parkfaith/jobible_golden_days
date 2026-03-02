@@ -131,5 +131,19 @@
     "source": "성경 개역한글",
     "id": 99,
     "bgImage": "/images/bg-48.jpg"
+  },
+  {
+    "quote": "주의 인자하심이 생명보다 나으므로 내 입술이 주를 찬양할 것이라",
+    "author": "시편 63:3",
+    "source": "성경 개역한글",
+    "id": 106,
+    "bgImage": "/images/bg-71.jpg"
+  },
+  {
+    "quote": "나의 하나님이 그리스도 예수 안에서 영광 가운데 그 풍성한 대로 너희 모든 쓸 것을 채우시리라",
+    "author": "빌립보서 4:19",
+    "source": "성경 개역한글",
+    "id": 107,
+    "bgImage": "/images/bg-44.jpg"
   }
 ]
