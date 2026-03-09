@@ -208,5 +208,12 @@
     "source": "개역한글판",
     "id": 101,
     "bgImage": "/images/bg-50.jpg"
+  },
+  {
+    "id": 108,
+    "quote": "하나님은 미쁘사 너희를 굳게 하시고 악한 자에게서 지키시리라",
+    "author": "데살로니가후서 3:3",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-34.jpg"
   }
 ]

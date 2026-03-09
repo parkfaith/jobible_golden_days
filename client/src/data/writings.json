@@ -145,5 +145,19 @@
     "source": "성경 개역한글",
     "id": 107,
     "bgImage": "/images/bg-44.jpg"
+  },
+  {
+    "id": 113,
+    "quote": "여호와께서 너를 지켜 모든 환난을 면케 하시며 또 네 영혼을 지키시리로다",
+    "author": "시편 121:7",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-04.jpg"
+  },
+  {
+    "id": 114,
+    "quote": "너희는 세상의 빛이라 산 위에 있는 동네가 숨기우지 못할 것이요",
+    "author": "마태복음 5:14",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-05.jpg"
   }
 ]
