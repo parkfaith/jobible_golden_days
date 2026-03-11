@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-03-11]
+
+### 날씨 콘텐츠 수 제한 (Limit Weather Content to 3)
+
+- **날씨 콘텐츠 전체 표시 → 3개로 제한**: 날씨별 15개 전체가 아닌 날짜 기반 랜덤 3개만 표시
+- 날짜 기반 결정론적 셔플(Mulberry32 PRNG) 적용 — 같은 날 + 같은 날씨 = 같은 3개 결과
+- 오늘의 이야기(7개)는 기존과 동일하게 유지
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/utils/weatherService.js` (getWeatherContent에 날짜 기반 3개 선택 로직 추가)
+- `CHANGELOG.md`
+
+---
+
 ## [2026-03-02]
 
 ### 주간 콘텐츠 생성 스크립트 개선 (Improve Content Generation Script)

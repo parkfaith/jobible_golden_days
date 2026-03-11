@@ -115,10 +115,26 @@ export const fetchCurrentWeather = async () => {
 };
 
 /**
- * 날씨 분류에 해당하는 콘텐츠를 필터링합니다.
+ * 날씨 분류에 해당하는 콘텐츠를 날짜 기반으로 3개 선택합니다.
+ * 같은 날짜 + 같은 날씨 = 같은 3개 결과 (결정론적)
  */
 export const getWeatherContent = (weatherType, weatherContentPool) => {
-  return weatherContentPool.filter(item => item.weather === weatherType);
+  const all = weatherContentPool.filter(item => item.weather === weatherType);
+  if (all.length <= 3) return all;
+
+  // 날짜 기반 시드로 결정론적 셔플
+  const d = new Date();
+  const seed = d.getFullYear() * 10000 + (d.getMonth() + 1) * 100 + d.getDate();
+  const shuffled = [...all];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    let t = (seed + i) + 0x6D2B79F5;
+    t = Math.imul(t ^ (t >>> 15), t | 1);
+    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+    const r = ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    const j = Math.floor(r * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled.slice(0, 3);
 };
 
 /**

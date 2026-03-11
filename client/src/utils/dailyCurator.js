@@ -58,7 +58,7 @@ const getRecentContentIds = (date, days = 7) => {
   return ids;
 };
 
-// 7일 중복 제거가 적용된 일일 콘텐츠 선택
+// 7일 중복 제거가 적용된 일일 콘텐츠 선택 (7개: 성경 3~4 + 기타 3~4)
 export const getDailyContent = (date = new Date()) => {
   const seed = getSeedFromDate(date);
   const recentIds = getRecentContentIds(date, 7);
