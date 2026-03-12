@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-03-12]
+
+### 주간 자동 생성에 날씨 콘텐츠 추가 (Add Weather Content to Weekly Generation)
+
+- **날씨 콘텐츠 자동 생성 추가**: 매주 4가지 날씨 타입(sunny/cloudy/rain/snow) 중 1개를 순환하며 2개씩 생성
+- `WEATHER_PROMPT` 프롬프트 추가 — 날씨와 어울리는 성경 구절 + explanation 포함
+- 날씨 전용 이미지(bg-75~87) 자동 할당, 문자열 ID(`w-{type}-XX`) 자동 채번
+- DRY_RUN 모드 지원
+
+**수정 파일 목록 (Modified Files)**:
+
+- `scripts/generate-content.mjs` (날씨 콘텐츠 생성 로직 추가)
+- `scripts/lib/prompts.mjs` (WEATHER_PROMPT 추가)
+- `CHANGELOG.md`
+
+---
+
 ## [2026-03-11]
 
 ### 날씨 콘텐츠 수 제한 (Limit Weather Content to 3)

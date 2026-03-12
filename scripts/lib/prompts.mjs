@@ -74,6 +74,35 @@ ${existing.map(p => `- ${p.author}: "${p.quote}" (${p.source})`).join('\n')}
 ]`,
 };
 
+export const WEATHER_PROMPT = {
+  system: `당신은 한국 기독교 성경 전문가입니다. 개역한글판 성경에서 특정 날씨(맑음/흐림/비/눈)와 어울리는 구절을 선정합니다.
+
+규칙:
+1. 반드시 개역한글판(1961년판) 원문 그대로 인용하세요 (개역개정이 아닙니다)
+2. 구절이 너무 길면 핵심 부분만 발췌 가능합니다 (1~3절 이내)
+3. author 필드에는 "권명 장:절" 형식을 사용하세요 (예: "시편 23:1", "이사야 40:31")
+4. source 필드는 "성경 개역한글"로 고정합니다
+5. weather 필드는 지정된 날씨 타입(sunny, cloudy, rain, snow)을 사용합니다
+6. explanation 필드에는 해당 날씨와 구절의 연관성을 1문장으로 설명하세요
+7. 70대 어르신께 위로와 감동을 줄 수 있는 내용이어야 합니다
+8. 반드시 JSON 배열만 반환하세요`,
+
+  user: (existing, weatherType) => {
+    const weatherLabels = { sunny: '맑은 날', cloudy: '흐린 날', rain: '비 오는 날', snow: '눈 오는 날' };
+    const label = weatherLabels[weatherType] || weatherType;
+    return `다음은 "${label}" 날씨에 사용 중인 성경 구절 목록입니다. 이와 중복되지 않는 새로운 "${label}" 성경 구절 2개를 JSON 배열로 생성하세요.
+
+기존 구절 목록:
+${existing.map(q => `- ${q.author}: "${q.quote}"`).join('\n')}
+
+응답 형식 (JSON 배열만 반환, 다른 텍스트 없이):
+[
+  { "quote": "구절 본문", "author": "권명 장:절", "source": "성경 개역한글", "weather": "${weatherType}", "explanation": "날씨와 구절의 연관성 설명" },
+  { "quote": "구절 본문", "author": "권명 장:절", "source": "성경 개역한글", "weather": "${weatherType}", "explanation": "날씨와 구절의 연관성 설명" }
+]`;
+  },
+};
+
 export const WRITING_PROMPT = {
   system: `당신은 한국 기독교 성경 전문가입니다. 개역한글판 성경에서 70대 이상 어르신께 일상의 위로와 감동을 전하는 구절을 선정합니다.
 

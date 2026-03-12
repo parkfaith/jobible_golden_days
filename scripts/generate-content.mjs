@@ -14,7 +14,7 @@
 
 import { readJSON, writeJSON } from './lib/json-updater.mjs';
 import { generateContent, getDummyContent } from './lib/openai-client.mjs';
-import { BIBLE_PROMPT, QUOTE_PROMPT, POEM_PROMPT, WRITING_PROMPT } from './lib/prompts.mjs';
+import { BIBLE_PROMPT, QUOTE_PROMPT, POEM_PROMPT, WRITING_PROMPT, WEATHER_PROMPT } from './lib/prompts.mjs';
 import { getNextIds } from './lib/id-manager.mjs';
 import { allocateImages } from './lib/image-allocator.mjs';
 import { validateItems, checkDuplicates } from './lib/validator.mjs';
@@ -117,10 +117,93 @@ async function main() {
     }
   }
 
-  // 4. 결과 요약
+  // 4. 날씨 콘텐츠 생성 (4가지 날씨 타입 중 1개를 순환)
+  console.log('4. 날씨 콘텐츠 생성...');
+  const weather = await readJSON('weather.json');
+  console.log(`   weather: ${weather.length}개 기존 콘텐츠`);
+
+  // 주차 번호로 날씨 타입 순환 (sunny → cloudy → rain → snow)
+  const weatherTypes = ['sunny', 'cloudy', 'rain', 'snow'];
+  const weekNumber = Math.floor(Date.now() / (7 * 24 * 60 * 60 * 1000));
+  const targetWeather = weatherTypes[weekNumber % 4];
+  console.log(`   이번 주 날씨 타입: ${targetWeather}`);
+
+  const weatherOfType = weather.filter(w => w.weather === targetWeather);
+
+  // 날씨 전용 이미지 할당 (bg-75~87)
+  const weatherImageMap = { rain: [75,76,77], snow: [78,79,80], cloudy: [81,82,83], sunny: [84,85,86,87] };
+  const weatherImages = weatherImageMap[targetWeather].map(n => `/images/bg-${String(n).padStart(2, '0')}.jpg`);
+  const usedWeatherImages = new Set(weatherOfType.map(w => w.bgImage));
+  const availWeatherImages = weatherImages.filter(img => !usedWeatherImages.has(img));
+  // 부족 시 최소 사용 이미지 재사용
+  const weatherImgPool = availWeatherImages.length >= 2
+    ? availWeatherImages
+    : [...availWeatherImages, ...weatherImages.filter(img => usedWeatherImages.has(img))];
+
+  // 다음 날씨 ID 계산 (w-sunny-XX 형식)
+  const weatherIdNums = weatherOfType
+    .map(w => parseInt(w.id.split('-').pop()))
+    .filter(n => !isNaN(n));
+  const nextWeatherNum = weatherIdNums.length > 0 ? Math.max(...weatherIdNums) + 1 : 1;
+
+  try {
+    let generated;
+    if (DRY_RUN) {
+      generated = [
+        { quote: `[테스트] ${targetWeather} 날씨 구절 1`, author: '시편 1:1', source: '성경 개역한글', weather: targetWeather, explanation: '테스트 설명' },
+        { quote: `[테스트] ${targetWeather} 날씨 구절 2`, author: '시편 2:1', source: '성경 개역한글', weather: targetWeather, explanation: '테스트 설명' },
+      ];
+      console.log(`   DRY_RUN: 더미 데이터 ${generated.length}개`);
+    } else {
+      // 날씨 프롬프트는 user(existing, weatherType) 형태로 호출
+      const userMessage = WEATHER_PROMPT.user(weatherOfType, targetWeather);
+      const response = await (await import('./lib/openai-client.mjs')).generateContent(
+        { system: WEATHER_PROMPT.system, user: () => userMessage },
+        weatherOfType
+      );
+      generated = response;
+      console.log(`   API 응답: ${generated.length}개 생성`);
+    }
+
+    // 검증 (weather 카테고리는 bible 형식과 유사)
+    const validated = generated.filter(item =>
+      item.quote && item.quote.length >= 5 &&
+      item.author && /^.+\s\d+:\d+/.test(item.author) &&
+      item.source && item.weather === targetWeather && item.explanation
+    );
+    console.log(`   검증 통과: ${validated.length}개`);
+
+    // 중복 검사
+    const unique = checkDuplicates(validated, weather);
+    console.log(`   중복 제거 후: ${unique.length}개`);
+
+    if (unique.length > 0) {
+      const enriched = unique.slice(0, 2).map((item, i) => ({
+        id: `w-${targetWeather}-${String(nextWeatherNum + i).padStart(2, '0')}`,
+        quote: item.quote,
+        author: item.author,
+        source: item.source,
+        bgImage: weatherImgPool[i % weatherImgPool.length],
+        weather: targetWeather,
+        explanation: item.explanation,
+      }));
+
+      const updatedWeather = [...weather, ...enriched];
+      await writeJSON('weather.json', updatedWeather);
+
+      totalAdded += enriched.length;
+      console.log(`   ${enriched.length}개 추가 완료 (ID: ${enriched.map(e => e.id).join(', ')})\n`);
+    } else {
+      console.log(`   추가할 항목 없음\n`);
+    }
+  } catch (error) {
+    console.error(`   오류: ${error.message}`);
+    console.warn(`   [weather] 건너뜀\n`);
+  }
+
+  // 5. 결과 요약
   console.log('=== 완료 ===');
-  console.log(`총 ${totalAdded}개 콘텐츠 추가됨`);
-  console.log(`새 총 콘텐츠 수: ${bible.length + quotes.length + poems.length + writings.length + totalAdded}개\n`);
+  console.log(`총 ${totalAdded}개 콘텐츠 추가됨\n`);
 
   if (totalAdded === 0) {
     console.log('추가된 콘텐츠가 없으므로 커밋 불필요');
