@@ -180,5 +180,19 @@
     "author": "데이비드 리빙스턴",
     "source": "리빙스턴의 전기, 공개 도메인 (1813-1873)",
     "bgImage": "/images/bg-08.jpg"
+  },
+  {
+    "id": 123,
+    "quote": "하나님 안에서 우리는 진정한 자유를 찾습니다.",
+    "author": "존 칼빈",
+    "source": "기독교 강요, 공개 도메인 (1509-1564)",
+    "bgImage": "/images/bg-22.jpg"
+  },
+  {
+    "id": 124,
+    "quote": "믿음은 어둠 속에서 빛을 찾는 눈입니다.",
+    "author": "리처드 시벳",
+    "source": "The Bruised Reed, 공개 도메인 (1577-1635)",
+    "bgImage": "/images/bg-23.jpg"
   }
 ]

@@ -173,5 +173,19 @@
     "author": "시편 62:1",
     "source": "성경 개역한글",
     "bgImage": "/images/bg-19.jpg"
+  },
+  {
+    "id": 127,
+    "quote": "여호와여 내가 주를 의뢰하오니 나로 영영히 수치를 당케 마시고",
+    "author": "시편 31:1",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-26.jpg"
+  },
+  {
+    "id": 128,
+    "quote": "너는 하나님 앞에 서있음이 두려워 떨며 그를 섬기라",
+    "author": "히브리서 12:28",
+    "source": "성경 개역한글",
+    "bgImage": "/images/bg-28.jpg"
   }
 ]
