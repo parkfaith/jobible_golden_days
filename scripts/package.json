@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "generate": "node generate-content.mjs",
-    "dry-run": "cross-env DRY_RUN=true node generate-content.mjs"
+    "dry-run": "cross-env DRY_RUN=true node generate-content.mjs",
+    "download-images": "node download-images.mjs"
   },
   "dependencies": {
     "openai": "^4.0.0"
