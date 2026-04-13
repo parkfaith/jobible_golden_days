@@ -37,13 +37,14 @@ jobs:
       - name: 변경 사항 확인
         id: check-changes
         run: |
-          if git diff --quiet client/public/images/; then
+          # git diff는 기존 파일 변경만 감지 — 새 파일(untracked)은 git status로 확인
+          if [ -z "$(git status --porcelain client/public/images/)" ]; then
             echo "changed=false" >> $GITHUB_OUTPUT
             echo "변경 사항 없음"
           else
             echo "changed=true" >> $GITHUB_OUTPUT
             echo "추가된 파일:"
-            git diff --stat client/public/images/
+            git status --short client/public/images/
           fi
 
       - name: 변경 사항 커밋 및 푸시
