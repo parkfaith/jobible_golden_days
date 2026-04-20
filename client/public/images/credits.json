@@ -70,5 +70,41 @@
     "unsplashUrl": "https://unsplash.com/photos/colorful-tulips-and-daffodils-bloom-along-a-garden-fence-NOpZvXtxwsE?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-04-15T02:53:28.214Z",
     "query": "spring garden flowers colorful bloom"
+  },
+  {
+    "filename": "bg-96.jpg",
+    "unsplashId": "Kkbb_2UEjLw",
+    "photographer": "Navi",
+    "photographerUrl": "https://unsplash.com/@navi_photography?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-body-of-water-with-trees-and-mountains-in-the-background-Kkbb_2UEjLw?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-20T03:33:46.213Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-97.jpg",
+    "unsplashId": "SXiEYFqd7Tk",
+    "photographer": "Noah Dustin von Weissenfluh",
+    "photographerUrl": "https://unsplash.com/@noah_dustin?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-sunset-over-a-mountain-range-SXiEYFqd7Tk?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-20T03:33:46.873Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-98.jpg",
+    "unsplashId": "p6fb29eHerQ",
+    "photographer": "Happysurd Photography",
+    "photographerUrl": "https://unsplash.com/@happysurd?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/the-sun-is-setting-over-the-clouds-in-the-sky-p6fb29eHerQ?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-20T03:33:47.786Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-99.jpg",
+    "unsplashId": "pHV9kGIY1Wg",
+    "photographer": "Marek Piwnicki",
+    "photographerUrl": "https://unsplash.com/@marekpiwnicki?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/mystical-mountains-are-seen-through-colorful-mist-pHV9kGIY1Wg?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-20T03:33:48.748Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
