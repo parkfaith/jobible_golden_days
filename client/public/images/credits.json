@@ -106,5 +106,41 @@
     "unsplashUrl": "https://unsplash.com/photos/mystical-mountains-are-seen-through-colorful-mist-pHV9kGIY1Wg?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-04-20T03:33:48.748Z",
     "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-100.jpg",
+    "unsplashId": "Ks9WaCCi9gI",
+    "photographer": "Luc Tribolet",
+    "photographerUrl": "https://unsplash.com/@luctribolet?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-of-mountains-Ks9WaCCi9gI?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-22T02:55:59.998Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-101.jpg",
+    "unsplashId": "lxoecryHUCI",
+    "photographer": "Marek Piwnicki",
+    "photographerUrl": "https://unsplash.com/@marekpiwnicki?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-mountain-range-with-a-pink-and-blue-sky-in-the-background-lxoecryHUCI?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-22T02:56:00.619Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-102.jpg",
+    "unsplashId": "4OdPBBr5wpk",
+    "photographer": "Isaac Maffeis",
+    "photographerUrl": "https://unsplash.com/@isaacmaffeis?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/the-sun-is-setting-over-a-mountain-range-4OdPBBr5wpk?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-22T02:56:02.598Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-103.jpg",
+    "unsplashId": "jL4yFp7qI5E",
+    "photographer": "Nikola  Tomašić",
+    "photographerUrl": "https://unsplash.com/@3kolone?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-of-mountains-against-a-vibrant-sunset-sky-jL4yFp7qI5E?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-04-22T02:56:03.738Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
