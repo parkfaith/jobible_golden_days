@@ -285,5 +285,19 @@
     "author": "여호수아 1:9",
     "source": "개역한글판",
     "bgImage": "/images/bg-97.jpg"
+  },
+  {
+    "id": 165,
+    "quote": "여호와께서 네 모든 죄악을 사하시며 네 모든 병을 고치시며",
+    "author": "시편 103:3",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-100.jpg"
+  },
+  {
+    "id": 166,
+    "quote": "여호와의 인자와 긍휼이 무궁하시므로 우리가 진멸되지 아니함이니이다",
+    "author": "예레미야애가 3:22",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-101.jpg"
   }
 ]

@@ -271,5 +271,19 @@
     "author": "존 퍼시벌",
     "source": "주님의 영광을 바라보세 (1874)",
     "bgImage": "/images/bg-56.jpg"
+  },
+  {
+    "id": 169,
+    "quote": "오 그 놀라운 구세주 예수 내 주 찬송하리여 주의 사랑 넘치네",
+    "author": "프랜시스 하버갈",
+    "source": "오 그 놀라운 구세주 (1874)",
+    "bgImage": "/images/bg-61.jpg"
+  },
+  {
+    "id": 170,
+    "quote": "예수 이름 높이세 온 땅 위에 찬양하라 주의 사랑 영원하리",
+    "author": "에드워드 모트",
+    "source": "예수 이름 높이세 (1834)",
+    "bgImage": "/images/bg-67.jpg"
   }
 ]
