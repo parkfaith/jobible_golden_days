@@ -299,5 +299,19 @@
     "author": "예레미야애가 3:22",
     "source": "개역한글판",
     "bgImage": "/images/bg-101.jpg"
+  },
+  {
+    "id": 171,
+    "quote": "하나님이여 나를 긍휼히 여기소서 주의 인자하심을 좇아 내 죄악을 도말하소서",
+    "author": "시편 51:1",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-104.jpg"
+  },
+  {
+    "id": 172,
+    "quote": "수고하고 애통하는 자는 복이 있나니 저희가 위로를 받을 것임이요",
+    "author": "마태복음 5:4",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-105.jpg"
   }
 ]
