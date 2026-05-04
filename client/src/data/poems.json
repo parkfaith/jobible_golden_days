@@ -299,5 +299,19 @@
     "author": "조지프 하틀",
     "source": "오 거룩하신 주님 (1861)",
     "bgImage": "/images/bg-69.jpg"
+  },
+  {
+    "id": 180,
+    "quote": "주 날개 밑 나 쉬어가네 주님의 사랑 품으시며",
+    "author": "윌리엄 쿠싱",
+    "source": "주 날개 밑 나 쉬어가네 (1896)",
+    "bgImage": "/images/bg-111.jpg"
+  },
+  {
+    "id": 181,
+    "quote": "나의 영혼이 잠잠히 하나님만 바라며 나의 구원이 그에게서 나오는도다",
+    "author": "아이작 왓츠",
+    "source": "나의 영혼이 잠잠히 (1719)",
+    "bgImage": "/images/bg-70.jpg"
   }
 ]
