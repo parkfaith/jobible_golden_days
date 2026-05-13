@@ -348,5 +348,19 @@
     "author": "시편 28:7",
     "source": "개역한글판",
     "bgImage": "/images/bg-117.jpg"
+  },
+  {
+    "id": 194,
+    "quote": "여호와를 기다리는 너희들아 너희 마음을 강하게 하라",
+    "author": "시편 31:24",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-120.jpg"
+  },
+  {
+    "id": 195,
+    "quote": "너희는 세상의 소금이니 소금이 만일 그 맛을 잃으면 무엇으로 짜게 하리요",
+    "author": "마태복음 5:13",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-121.jpg"
   }
 ]

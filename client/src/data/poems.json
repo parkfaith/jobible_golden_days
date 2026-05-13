@@ -341,5 +341,19 @@
     "author": "아이작 왓츠",
     "source": "십자가를 바라보니 (1707)",
     "bgImage": "/images/bg-88.jpg"
+  },
+  {
+    "id": 198,
+    "quote": "주님의 자비가 나를 채우시니 내 영혼이 주를 찬양하리",
+    "author": "존 바우링",
+    "source": "주님의 자비가 (1825)",
+    "bgImage": "/images/bg-89.jpg"
+  },
+  {
+    "id": 199,
+    "quote": "내 주의 사랑 강같이 흐르니 내 맘의 소망 되시네",
+    "author": "윌리엄 쿠퍼",
+    "source": "내 주의 사랑 강같이 (1772)",
+    "bgImage": "/images/bg-90.jpg"
   }
 ]
