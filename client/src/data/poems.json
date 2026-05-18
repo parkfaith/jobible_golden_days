@@ -355,5 +355,12 @@
     "author": "윌리엄 쿠퍼",
     "source": "내 주의 사랑 강같이 (1772)",
     "bgImage": "/images/bg-90.jpg"
+  },
+  {
+    "id": 203,
+    "quote": "주의 영광 온 땅 위에 충만하도다",
+    "author": "아이작 왓츠",
+    "source": "주의 영광 온 땅 위에 (1719)",
+    "bgImage": "/images/bg-127.jpg"
   }
 ]
