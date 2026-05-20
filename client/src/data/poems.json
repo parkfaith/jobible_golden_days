@@ -362,5 +362,19 @@
     "author": "아이작 왓츠",
     "source": "주의 영광 온 땅 위에 (1719)",
     "bgImage": "/images/bg-127.jpg"
+  },
+  {
+    "id": 208,
+    "quote": "주 예수 나의 맘에 기쁨 주시네 주님의 사랑 나를 채우시네",
+    "author": "윌리엄 윌리엄스",
+    "source": "주 예수 나의 맘에 (1745)",
+    "bgImage": "/images/bg-91.jpg"
+  },
+  {
+    "id": 209,
+    "quote": "오 주의 은혜 넘치네 주 찬양하리라 나의 주님 영원히",
+    "author": "존 몬셀",
+    "source": "오 주의 은혜 넘치네 (1866)",
+    "bgImage": "/images/bg-92.jpg"
   }
 ]
