@@ -383,5 +383,19 @@
     "author": "에드워드 모트",
     "source": "예수 이름 찬양하라 (1834)",
     "bgImage": "/images/bg-93.jpg"
+  },
+  {
+    "id": 219,
+    "quote": "주님의 신실한 약속 믿고 나아가네 주의 사랑 변함없네",
+    "author": "조지 메티슨",
+    "source": "주님의 신실한 약속 (1882)",
+    "bgImage": "/images/bg-94.jpg"
+  },
+  {
+    "id": 220,
+    "quote": "주 예수 내 맘에 기쁨 주시네 주님의 사랑 나를 채우시네",
+    "author": "케이티 샌키",
+    "source": "주 예수 내 맘에 기쁨 주시네 (1877)",
+    "bgImage": "/images/bg-95.jpg"
   }
 ]
