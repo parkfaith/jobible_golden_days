@@ -538,5 +538,41 @@
     "unsplashUrl": "https://unsplash.com/photos/a-single-red-and-yellow-leaf-lies-on-the-ground-a-eU5B_fzBM?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-06-01T04:53:27.146Z",
     "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-148.jpg",
+    "unsplashId": "Pr2For8drJ4",
+    "photographer": "Cinara Sommer",
+    "photographerUrl": "https://unsplash.com/@cisommer?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-tree-with-orange-leaves-Pr2For8drJ4?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-03T04:40:32.870Z",
+    "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-149.jpg",
+    "unsplashId": "Kt97S0vRaz0",
+    "photographer": "Bernd 📷 Dittrich",
+    "photographerUrl": "https://unsplash.com/@hdbernd?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-close-up-of-leaves-on-a-tree-Kt97S0vRaz0?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-03T04:40:33.391Z",
+    "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-150.jpg",
+    "unsplashId": "8GhUvWjCXMc",
+    "photographer": "Kamekichi Photos",
+    "photographerUrl": "https://unsplash.com/@kamekichi_photos?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-close-up-of-a-tree-with-red-leaves-8GhUvWjCXMc?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-03T04:40:34.034Z",
+    "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-151.jpg",
+    "unsplashId": "i4GRBayIvig",
+    "photographer": "Julia Ly",
+    "photographerUrl": "https://unsplash.com/@jujuly?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/autumn-leaves-and-red-berries-on-a-branch-i4GRBayIvig?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-03T04:40:34.905Z",
+    "query": "autumn leaves colorful red orange"
   }
 ]
