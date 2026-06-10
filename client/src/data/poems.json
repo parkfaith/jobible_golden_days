@@ -425,5 +425,19 @@
     "author": "캐롤라인 샌델",
     "source": "이 세상 끝날까지 (1865)",
     "bgImage": "/images/bg-150.jpg"
+  },
+  {
+    "id": 235,
+    "quote": "이 세상 험하고 나 비록 약하나 늘 기도하며 주님만 의지해",
+    "author": "제임스 몽고메리",
+    "source": "기도하는 마음 (1818)",
+    "bgImage": "/images/bg-154.jpg"
+  },
+  {
+    "id": 236,
+    "quote": "주 예수 앞에 나의 맘을 드리네 나의 주님 영원히 찬양하리",
+    "author": "찰스 웨슬리",
+    "source": "주 예수 앞에 (1740)",
+    "bgImage": "/images/bg-155.jpg"
   }
 ]
