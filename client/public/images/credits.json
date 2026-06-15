@@ -646,5 +646,41 @@
     "unsplashUrl": "https://unsplash.com/photos/sunset-over-rolling-hills-with-clouds-gunuTQvUPsM?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-06-10T04:05:55.614Z",
     "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-160.jpg",
+    "unsplashId": "zPFTXfRamGY",
+    "photographer": "Dhilan Dhruv Patel",
+    "photographerUrl": "https://unsplash.com/@ddp_photography17?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/pink-rose-in-bloom-during-daytime-zPFTXfRamGY?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-15T05:03:41.458Z",
+    "query": "vibrant roses garden colorful"
+  },
+  {
+    "filename": "bg-161.jpg",
+    "unsplashId": "E1wNzVlqkj8",
+    "photographer": "Jeffrey Eisen",
+    "photographerUrl": "https://unsplash.com/@jeisen?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-close-up-of-a-flower-E1wNzVlqkj8?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-15T05:03:42.117Z",
+    "query": "vibrant roses garden colorful"
+  },
+  {
+    "filename": "bg-162.jpg",
+    "unsplashId": "nMLaGdPPMmQ",
+    "photographer": "Siegfried Poepperl",
+    "photographerUrl": "https://unsplash.com/@siegfriedpoepperl?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-beautiful-rose-blossoms-with-vibrant-colors-nMLaGdPPMmQ?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-15T05:03:43.046Z",
+    "query": "vibrant roses garden colorful"
+  },
+  {
+    "filename": "bg-163.jpg",
+    "unsplashId": "hI75NMD-X_U",
+    "photographer": "J. Young Jeong",
+    "photographerUrl": "https://unsplash.com/@jayossana?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-vibrant-garden-filled-with-many-colorful-blooming-roses-hI75NMD-X_U?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-15T05:03:43.781Z",
+    "query": "vibrant roses garden colorful"
   }
 ]
