@@ -439,5 +439,19 @@
     "author": "창세기 12:2",
     "source": "개역한글판",
     "bgImage": "/images/bg-151.jpg"
+  },
+  {
+    "id": 237,
+    "quote": "여호와께서 네게 복을 주시고 너를 지키시기를 원하며",
+    "author": "민수기 6:24",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-156.jpg"
+  },
+  {
+    "id": 238,
+    "quote": "우리는 그가 만드신 바라 그리스도 예수 안에서 선한 일을 위하여 지으심을 받은 자니",
+    "author": "에베소서 2:10",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-157.jpg"
   }
 ]
