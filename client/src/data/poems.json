@@ -453,5 +453,19 @@
     "author": "토마스 오 크리쇼",
     "source": "오 신실하신 주 (1923)",
     "bgImage": "/images/bg-97.jpg"
+  },
+  {
+    "id": 247,
+    "quote": "주 예수 이름 높여 다 찬양하여라 온 땅과 하늘 높이서 주 영광 찬양하라",
+    "author": "에드워드 페론",
+    "source": "주 예수 이름 높여 (1795)",
+    "bgImage": "/images/bg-98.jpg"
+  },
+  {
+    "id": 248,
+    "quote": "내 맘의 주여 소망 되소서 주 없이 모든 일 헛되네",
+    "author": "아이작 왓츠",
+    "source": "내 맘의 주여 소망 되소서 (1709)",
+    "bgImage": "/images/bg-99.jpg"
   }
 ]
