@@ -467,5 +467,19 @@
     "author": "아이작 왓츠",
     "source": "내 맘의 주여 소망 되소서 (1709)",
     "bgImage": "/images/bg-99.jpg"
+  },
+  {
+    "id": 251,
+    "quote": "내 영혼이 은총 입어 주와 함께 하리라",
+    "author": "존 엘러튼",
+    "source": "주와 함께 하리라 (1868)",
+    "bgImage": "/images/bg-166.jpg"
+  },
+  {
+    "id": 252,
+    "quote": "마음의 문을 여소서 주님 오시옵소서 나의 모든 짐을 주께 맡기니",
+    "author": "프랜시스 하버갈",
+    "source": "마음의 문을 여소서 (1872)",
+    "bgImage": "/images/bg-167.jpg"
   }
 ]
