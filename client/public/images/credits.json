@@ -790,5 +790,41 @@
     "unsplashUrl": "https://unsplash.com/photos/vibrant-field-of-pink-and-white-tulips-in-full-bloom-lhfJVluTav0?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-06-24T03:56:46.402Z",
     "query": "spring garden flowers colorful bloom"
+  },
+  {
+    "filename": "bg-176.jpg",
+    "unsplashId": "tOm17s3YbFc",
+    "photographer": "Natalia Arkusha",
+    "photographerUrl": "https://unsplash.com/@nataliarkush?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-close-up-of-a-patch-of-grass-with-red-and-yellow-flowers-tOm17s3YbFc?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-29T04:41:17.964Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-177.jpg",
+    "unsplashId": "LAwBCDjGiNY",
+    "photographer": "Natalia Arkusha",
+    "photographerUrl": "https://unsplash.com/@nataliarkush?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-view-of-a-city-and-a-body-of-water-LAwBCDjGiNY?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-29T04:41:18.469Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-178.jpg",
+    "unsplashId": "EiC4uNmuYQ0",
+    "photographer": "john xiao",
+    "photographerUrl": "https://unsplash.com/@xiaotojohn?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-landscape-with-hills-in-the-back-EiC4uNmuYQ0?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-29T04:41:19.408Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-179.jpg",
+    "unsplashId": "Rv9_oFDVrZY",
+    "photographer": "Lison Zhao",
+    "photographerUrl": "https://unsplash.com/@lison?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/the-sun-is-setting-over-the-mountains-in-the-distance-Rv9_oFDVrZY?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-06-29T04:41:20.530Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
