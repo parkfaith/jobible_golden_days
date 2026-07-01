@@ -826,5 +826,41 @@
     "unsplashUrl": "https://unsplash.com/photos/the-sun-is-setting-over-the-mountains-in-the-distance-Rv9_oFDVrZY?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-06-29T04:41:20.530Z",
     "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-180.jpg",
+    "unsplashId": "NiOyEHxAlpQ",
+    "photographer": "Leon JL",
+    "photographerUrl": "https://unsplash.com/@leoncooper?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/mountain-during-golden-hour-NiOyEHxAlpQ?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-07-01T04:15:07.727Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-181.jpg",
+    "unsplashId": "sDCG1hTV8mI",
+    "photographer": "NOAA",
+    "photographerUrl": "https://unsplash.com/@noaa?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/aerial-view-of-mountains-during-sunset-sDCG1hTV8mI?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-07-01T04:15:08.233Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-182.jpg",
+    "unsplashId": "ESjToAszo-4",
+    "photographer": "Sven Pieren",
+    "photographerUrl": "https://unsplash.com/@sven_pieren?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/mountains-under-orange-and-blue-sky-ESjToAszo-4?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-07-01T04:15:09.368Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-183.jpg",
+    "unsplashId": "zAYEdL2S2TA",
+    "photographer": "Jonny Gios",
+    "photographerUrl": "https://unsplash.com/@supergios?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/green-grass-field-under-blue-sky-during-daytime-zAYEdL2S2TA?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-07-01T04:15:10.128Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
