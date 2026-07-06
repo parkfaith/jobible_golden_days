@@ -474,5 +474,19 @@
     "author": "시편 107:8",
     "source": "개역한글판",
     "bgImage": "/images/bg-168.jpg"
+  },
+  {
+    "id": 262,
+    "quote": "여호와를 기다리는 자에게는 여호와께서 선을 베푸시나니",
+    "author": "예레미야애가 3:25",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-180.jpg"
+  },
+  {
+    "id": 263,
+    "quote": "너는 오른손이 하는 것을 왼손이 모르게 하라",
+    "author": "마태복음 6:3",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-178.jpg"
   }
 ]
