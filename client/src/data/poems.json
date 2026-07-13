@@ -530,5 +530,19 @@
     "author": "윌리엄 헌터",
     "source": "예수께로 가면 (1857)",
     "bgImage": "/images/bg-185.jpg"
+  },
+  {
+    "id": 274,
+    "quote": "시온의 영광이 빛나는 아침 어둡던 이 땅이 밝아오네",
+    "author": "토마스 켈리",
+    "source": "시온의 영광이 빛나는 아침 (1806)",
+    "bgImage": "/images/bg-188.jpg"
+  },
+  {
+    "id": 275,
+    "quote": "참 놀라운 구세주 예수 내 주 주 나를 품어주시네",
+    "author": "프랜시스 크로스비",
+    "source": "참 놀라운 구세주 (1885)",
+    "bgImage": "/images/bg-189.jpg"
   }
 ]
