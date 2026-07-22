@@ -558,5 +558,19 @@
     "author": "아이작 왓츠",
     "source": "하나님 아버지 사랑 (1715)",
     "bgImage": "/images/bg-195.jpg"
+  },
+  {
+    "id": 284,
+    "quote": "오 놀라운 주의 사랑 그 크신 은혜 내 맘에 넘치네 주님께 찬양하리",
+    "author": "존 바우링",
+    "source": "오 놀라운 주의 사랑 (1825)",
+    "bgImage": "/images/bg-203.jpg"
+  },
+  {
+    "id": 285,
+    "quote": "주 예수 나의 맘에 기쁨 주시네 주의 사랑 넘치네",
+    "author": "찰스 웨슬리",
+    "source": "주 예수 나의 기쁨 (1740)",
+    "bgImage": "/images/bg-200.jpg"
   }
 ]
