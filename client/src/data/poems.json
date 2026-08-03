@@ -593,5 +593,19 @@
     "author": "존 에드먼드슨",
     "source": "주와 같이 길 가는 것 (1891)",
     "bgImage": "/images/bg-211.jpg"
+  },
+  {
+    "id": 295,
+    "quote": "나의 주님께 가까이 가오니 내 모든 짐을 주께 맡기네",
+    "author": "찰스 웨슬리",
+    "source": "나의 주님께 가까이 (1740)",
+    "bgImage": "/images/bg-197.jpg"
+  },
+  {
+    "id": 296,
+    "quote": "주님의 사랑 그 끝이 없으니 내 영혼이 주를 찬양하리",
+    "author": "조사이어 콘더",
+    "source": "주님의 사랑 (1836)",
+    "bgImage": "/images/bg-212.jpg"
   }
 ]
