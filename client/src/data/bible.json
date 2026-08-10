@@ -516,5 +516,19 @@
     "author": "로마서 16:20",
     "source": "개역한글판",
     "bgImage": "/images/bg-191.jpg"
+  },
+  {
+    "id": 301,
+    "quote": "나의 힘이 되신 여호와여 내가 주를 사랑하나이다",
+    "author": "시편 18:1",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-215.jpg"
+  },
+  {
+    "id": 302,
+    "quote": "여호와의 인자하심이 영원하고 그 진실하심이 대대에 이르리로다",
+    "author": "시편 100:5",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-220.jpg"
   }
 ]
