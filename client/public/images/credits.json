@@ -1258,5 +1258,41 @@
     "unsplashUrl": "https://unsplash.com/photos/autumn-trees-and-foliage-on-a-grassy-hillside-NUBcd4Wties?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-08-10T02:11:54.895Z",
     "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-228.jpg",
+    "unsplashId": "mUqfGWYJH44",
+    "photographer": "Viktor Forgacs",
+    "photographerUrl": "https://unsplash.com/@sonance?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/selective-focus-photography-of-maple-leaves-mUqfGWYJH44?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-12T02:11:52.177Z",
+    "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-229.jpg",
+    "unsplashId": "aPv1GQ5JUrA",
+    "photographer": "Bournes senruoB",
+    "photographerUrl": "https://unsplash.com/@0ruofei0?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-tree-with-yellow-leaves-in-the-fall-aPv1GQ5JUrA?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-12T02:11:52.729Z",
+    "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-230.jpg",
+    "unsplashId": "NosT50lZmrY",
+    "photographer": "Nastia Petruk",
+    "photographerUrl": "https://unsplash.com/@mineral_of_demon?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-close-up-of-leaves-on-a-tree-NosT50lZmrY?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-12T02:11:53.558Z",
+    "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-231.jpg",
+    "unsplashId": "myil3MWxk_A",
+    "photographer": "Pascal Debrunner",
+    "photographerUrl": "https://unsplash.com/@debrupas?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/autumn-trees-reflected-in-a-misty-lake-myil3MWxk_A?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-12T02:11:54.360Z",
+    "query": "autumn leaves colorful red orange"
   }
 ]
