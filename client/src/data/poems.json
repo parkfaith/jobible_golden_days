@@ -628,5 +628,19 @@
     "author": "헨리 프랜시스 라이트",
     "source": "찬양하라 내 영혼아 (1834)",
     "bgImage": "/images/bg-218.jpg"
+  },
+  {
+    "id": 310,
+    "quote": "주의 임재 안에 거하며 주의 사랑 안에서 쉬리라",
+    "author": "제임스 몽고메리",
+    "source": "주의 임재 안에 (1819)",
+    "bgImage": "/images/bg-223.jpg"
+  },
+  {
+    "id": 311,
+    "quote": "주 하나님 나를 지키시며 나의 보호자 되시네",
+    "author": "존 엘러튼",
+    "source": "주 하나님 나를 지키시며 (1871)",
+    "bgImage": "/images/bg-216.jpg"
   }
 ]
