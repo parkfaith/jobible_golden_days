@@ -544,5 +544,19 @@
     "author": "느헤미야 8:10",
     "source": "개역한글판",
     "bgImage": "/images/bg-226.jpg"
+  },
+  {
+    "id": 312,
+    "quote": "네가 나의 하나님 여호와를 사랑하라 저가 너를 기르리라",
+    "author": "시편 52:1",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-224.jpg"
+  },
+  {
+    "id": 313,
+    "quote": "주는 선하시며 주의 인자하심이 영원하사 주의 약속을 이루실 것이라",
+    "author": "시편 138:8",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-227.jpg"
   }
 ]
