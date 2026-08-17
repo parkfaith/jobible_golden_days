@@ -1294,5 +1294,41 @@
     "unsplashUrl": "https://unsplash.com/photos/autumn-trees-reflected-in-a-misty-lake-myil3MWxk_A?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-08-12T02:11:54.360Z",
     "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-232.jpg",
+    "unsplashId": "9XKhX3FiCV8",
+    "photographer": "Philippe BONTEMPS",
+    "photographerUrl": "https://unsplash.com/@philippeb?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/dramatic-sunset-over-a-calm-body-of-water-9XKhX3FiCV8?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-17T01:40:01.728Z",
+    "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-233.jpg",
+    "unsplashId": "pA2817e_9Og",
+    "photographer": "Will Corrigan",
+    "photographerUrl": "https://unsplash.com/@willcorrigan06?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/sun-setting-over-a-dark-horizon-with-clouds-pA2817e_9Og?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-17T01:40:02.231Z",
+    "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-234.jpg",
+    "unsplashId": "XXc6FZld8Ow",
+    "photographer": "Orlando Duarte",
+    "photographerUrl": "https://unsplash.com/@orlandodua?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/vibrant-sunset-over-a-distant-building-and-silhouetted-trees-XXc6FZld8Ow?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-17T01:40:02.775Z",
+    "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-235.jpg",
+    "unsplashId": "pHd-hJ2at6U",
+    "photographer": "Matthias Fiesel",
+    "photographerUrl": "https://unsplash.com/@matthias_fiesel?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/tree-in-grassy-field-at-low-sun-pHd-hJ2at6U?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-08-17T01:40:03.227Z",
+    "query": "sunset golden hour beautiful landscape"
   }
 ]
