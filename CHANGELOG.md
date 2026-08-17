@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2026-08-17]
+
+### 방문자 카운터 장애 복구 및 Vercel Web Analytics 적용
+
+- **화면 종료 오류 해결**: 서비스가 종료된 CounterAPI V1 기반 방문자 카운터를 화면에서 제거하여 API 오류가 전체 React 화면을 중단시키지 않도록 수정
+- **방문 통계 교체**: 별도 서버나 데이터베이스가 필요 없는 Vercel Web Analytics를 React 애플리케이션에 연결
+- **의존성 추가**: `@vercel/analytics` 패키지 추가
+
+**수정 파일 목록 (Modified Files)**:
+
+- `client/src/App.jsx`
+- `client/src/pages/Home.jsx`
+- `client/package.json`
+- `client/package-lock.json`
+- `CHANGELOG.md`
+
+---
+
 ## [2026-04-20]
 
 ### 글귀(writings) 카테고리 콘텐츠 전면 교체 — 성경 구절에서 기독교 묵상 산문/기도문/신앙시로 변경
