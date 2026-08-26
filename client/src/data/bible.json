@@ -565,5 +565,19 @@
     "author": "시편 116:1",
     "source": "개역한글판",
     "bgImage": "/images/bg-238.jpg"
+  },
+  {
+    "id": 323,
+    "quote": "여호와는 마음이 상한 자를 가까이 하시고 충심으로 통회하는 자를 구원하시는도다",
+    "author": "시편 34:18",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-233.jpg"
+  },
+  {
+    "id": 324,
+    "quote": "내가 산에서부터 나의 소리를 들었으니 나는 그들의 약속을 영원히 지키리로다",
+    "author": "시편 119:90",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-234.jpg"
   }
 ]
