@@ -579,5 +579,19 @@
     "author": "시편 119:90",
     "source": "개역한글판",
     "bgImage": "/images/bg-234.jpg"
+  },
+  {
+    "id": 329,
+    "quote": "여호와는 나의 능력이시요 나의 방패시며 나의 피난처시라",
+    "author": "시편 28:8",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-243.jpg"
+  },
+  {
+    "id": 330,
+    "quote": "주의 인자하심이 생명보다 나으므로 내 입술이 주를 찬양할 것이라",
+    "author": "시편 63:3",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-244.jpg"
   }
 ]
