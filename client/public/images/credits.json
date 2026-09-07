@@ -1510,5 +1510,41 @@
     "unsplashUrl": "https://unsplash.com/photos/pink-flowers-in-terracotta-pots-in-a-vibrant-garden-DXGjgUqv998?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-09-02T03:42:12.729Z",
     "query": "spring garden flowers colorful bloom"
+  },
+  {
+    "filename": "bg-256.jpg",
+    "unsplashId": "wpMQWrjwPLs",
+    "photographer": "Alberto Restifo",
+    "photographerUrl": "https://unsplash.com/@albertorestifo?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/landscape-photo-of-mountains-during-golden-hour-wpMQWrjwPLs?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-07T03:59:46.298Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-257.jpg",
+    "unsplashId": "twukN12EN7c",
+    "photographer": "simon",
+    "photographerUrl": "https://unsplash.com/@simon_berger?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/landscape-photography-of-mountains-twukN12EN7c?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-07T03:59:46.693Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-258.jpg",
+    "unsplashId": "fYtSWs7LQuQ",
+    "photographer": "Vincentiu Solomon",
+    "photographerUrl": "https://unsplash.com/@vincentiu?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-of-mountain-on-sunset-fYtSWs7LQuQ?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-07T03:59:47.614Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-259.jpg",
+    "unsplashId": "6yPiMRZzFH0",
+    "photographer": "Shafagh Faridifar",
+    "photographerUrl": "https://unsplash.com/@shafagh58?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/green-grass-field-near-green-trees-and-mountains-during-daytime-6yPiMRZzFH0?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-07T03:59:48.158Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
