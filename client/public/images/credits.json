@@ -1546,5 +1546,41 @@
     "unsplashUrl": "https://unsplash.com/photos/green-grass-field-near-green-trees-and-mountains-during-daytime-6yPiMRZzFH0?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-09-07T03:59:48.158Z",
     "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-260.jpg",
+    "unsplashId": "sjN_Cddns-U",
+    "photographer": "Tommaso Ripani",
+    "photographerUrl": "https://unsplash.com/@ripus_?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/landscape-photography-sjN_Cddns-U?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-09T03:53:18.771Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-261.jpg",
+    "unsplashId": "f6FdIjVW5ow",
+    "photographer": "Markus Voetter",
+    "photographerUrl": "https://unsplash.com/@markusvoetter?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-photo-of-mountain-f6FdIjVW5ow?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-09T03:53:19.337Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-262.jpg",
+    "unsplashId": "KGzXJB6zneM",
+    "photographer": "Ivana Cajina",
+    "photographerUrl": "https://unsplash.com/@von_co?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/black-and-green-mountain-silhouette-KGzXJB6zneM?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-09T03:53:20.883Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-263.jpg",
+    "unsplashId": "D8MeX2nUBUM",
+    "photographer": "Marek Piwnicki",
+    "photographerUrl": "https://unsplash.com/@marekpiwnicki?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-view-of-a-mountain-range-at-sunset-D8MeX2nUBUM?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-09T03:53:21.535Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
