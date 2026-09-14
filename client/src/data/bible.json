@@ -614,5 +614,19 @@
     "author": "디모데후서 1:7",
     "source": "개역한글판",
     "bgImage": "/images/bg-256.jpg"
+  },
+  {
+    "id": 348,
+    "quote": "여호와께서 자기 백성을 위로하셨고 예루살렘을 구속하셨도다",
+    "author": "이사야 52:9",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-260.jpg"
+  },
+  {
+    "id": 349,
+    "quote": "내게 능력 주시는 자 안에서 내가 모든 것을 할 수 있느니라",
+    "author": "빌립보서 4:13",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-261.jpg"
   }
 ]
