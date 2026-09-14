@@ -1582,5 +1582,41 @@
     "unsplashUrl": "https://unsplash.com/photos/a-view-of-a-mountain-range-at-sunset-D8MeX2nUBUM?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-09-09T03:53:21.535Z",
     "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-264.jpg",
+    "unsplashId": "KBnDj_-LZ-M",
+    "photographer": "Pauline Bernfeld",
+    "photographerUrl": "https://unsplash.com/@pizbern?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/yellow-petaled-flowers-KBnDj_-LZ-M?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-14T04:23:51.386Z",
+    "query": "wildflowers meadow colorful"
+  },
+  {
+    "filename": "bg-265.jpg",
+    "unsplashId": "iGCkSfoZHdo",
+    "photographer": "Jake Anthony",
+    "photographerUrl": "https://unsplash.com/@jakeanthony_online?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-field-full-of-wildflowers-and-trees-iGCkSfoZHdo?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-14T04:23:51.896Z",
+    "query": "wildflowers meadow colorful"
+  },
+  {
+    "filename": "bg-266.jpg",
+    "unsplashId": "Vsq-mJjguUY",
+    "photographer": "sourmarb",
+    "photographerUrl": "https://unsplash.com/@sourmarb?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/purple-lupine-flowers-bloom-in-a-garden-Vsq-mJjguUY?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-14T04:23:52.203Z",
+    "query": "wildflowers meadow colorful"
+  },
+  {
+    "filename": "bg-267.jpg",
+    "unsplashId": "kFY5No1zaKc",
+    "photographer": "MARIOLA GROBELSKA",
+    "photographerUrl": "https://unsplash.com/@mariolagr?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/wildflowers-in-vibrant-sunlit-meadow-kFY5No1zaKc?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-09-14T04:23:52.841Z",
+    "query": "wildflowers meadow colorful"
   }
 ]
