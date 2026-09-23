@@ -740,5 +740,19 @@
     "author": "제임스 몽고메리",
     "source": "영광의 왕께 다 경배하며 (1822)",
     "bgImage": "/images/bg-271.jpg"
+  },
+  {
+    "id": 364,
+    "quote": "오 주여 나의 맘을 다하여 주께 영광 돌리네",
+    "author": "호라티우스 보나르",
+    "source": "오 주여 나의 맘을 다하여 (1861)",
+    "bgImage": "/images/bg-274.jpg"
+  },
+  {
+    "id": 365,
+    "quote": "주의 친절한 목소리가 내 맘을 부드럽게 하네",
+    "author": "윌리엄 랄프 페더볼",
+    "source": "주의 친절한 목소리 (1876)",
+    "bgImage": "/images/bg-275.jpg"
   }
 ]
