@@ -754,5 +754,19 @@
     "author": "윌리엄 랄프 페더볼",
     "source": "주의 친절한 목소리 (1876)",
     "bgImage": "/images/bg-275.jpg"
+  },
+  {
+    "id": 370,
+    "quote": "주 예수 진리의 빛 내 맘에 비치니 내 갈 길 밝히 보여 주시네",
+    "author": "앤 브론테",
+    "source": "빛의 찬송 (1840)",
+    "bgImage": "/images/bg-105.jpg"
+  },
+  {
+    "id": 371,
+    "quote": "오 나의 주님 예수여 나의 전부 되시며 나의 모든 것 되시옵소서",
+    "author": "샬롯 엘리엇",
+    "source": "주님의 사랑 (1835)",
+    "bgImage": "/images/bg-106.jpg"
   }
 ]
