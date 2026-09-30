@@ -768,5 +768,19 @@
     "author": "샬롯 엘리엇",
     "source": "주님의 사랑 (1835)",
     "bgImage": "/images/bg-106.jpg"
+  },
+  {
+    "id": 375,
+    "quote": "주 예수 나의 마음에 기쁨 주시네 주님의 사랑 넘치네",
+    "author": "윌리엄 윌리엄스",
+    "source": "주 예수 나의 마음에 (1745)",
+    "bgImage": "/images/bg-283.jpg"
+  },
+  {
+    "id": 376,
+    "quote": "주의 말씀은 내 발의 등불이요 내 길의 빛이로다",
+    "author": "아이작 왓츠",
+    "source": "주의 말씀은 내 발의 등불 (1719)",
+    "bgImage": "/images/bg-107.jpg"
   }
 ]
