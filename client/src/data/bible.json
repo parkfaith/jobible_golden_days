@@ -663,5 +663,19 @@
     "author": "이사야 40:28",
     "source": "개역한글판",
     "bgImage": "/images/bg-280.jpg"
+  },
+  {
+    "id": 377,
+    "quote": "여호와께 감사하라 그는 선하시며 그 인자하심이 영원함이로다",
+    "author": "시편 107:1",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-284.jpg"
+  },
+  {
+    "id": 378,
+    "quote": "너희는 두려워 말고 강하고 담대하라",
+    "author": "신명기 31:6",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-285.jpg"
   }
 ]
