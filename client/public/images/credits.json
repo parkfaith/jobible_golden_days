@@ -1834,5 +1834,41 @@
     "unsplashUrl": "https://unsplash.com/photos/field-of-sunflowers-under-a-cloudy-sky-Sb5F83Oy6co?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-10-05T05:03:38.883Z",
     "query": "vibrant sunflower field golden"
+  },
+  {
+    "filename": "bg-292.jpg",
+    "unsplashId": "79RuacUiXUI",
+    "photographer": "Jordan Cormack",
+    "photographerUrl": "https://unsplash.com/@jordancormack?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/yellow-sunflower-field-79RuacUiXUI?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-07T05:07:21.045Z",
+    "query": "vibrant sunflower field golden"
+  },
+  {
+    "filename": "bg-293.jpg",
+    "unsplashId": "gHJiLIVu5MQ",
+    "photographer": "Elias Null",
+    "photographerUrl": "https://unsplash.com/@eliasnull?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-large-field-of-sunflowers-under-a-blue-sky-gHJiLIVu5MQ?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-07T05:07:21.668Z",
+    "query": "vibrant sunflower field golden"
+  },
+  {
+    "filename": "bg-294.jpg",
+    "unsplashId": "uV27OOK_9rU",
+    "photographer": "Olga Prudnikova",
+    "photographerUrl": "https://unsplash.com/@_florens_spenser_?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-field-of-sunflowers-uV27OOK_9rU?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-07T05:07:22.079Z",
+    "query": "vibrant sunflower field golden"
+  },
+  {
+    "filename": "bg-295.jpg",
+    "unsplashId": "oZDypWhABlg",
+    "photographer": "Kristaps Ungurs",
+    "photographerUrl": "https://unsplash.com/@kristapsungurs?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/sunflowers-in-field-under-low-sun-oZDypWhABlg?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-07T05:07:22.879Z",
+    "query": "vibrant sunflower field golden"
   }
 ]
