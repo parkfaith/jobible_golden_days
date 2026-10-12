@@ -1870,5 +1870,41 @@
     "unsplashUrl": "https://unsplash.com/photos/sunflowers-in-field-under-low-sun-oZDypWhABlg?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-10-07T05:07:22.879Z",
     "query": "vibrant sunflower field golden"
+  },
+  {
+    "filename": "bg-296.jpg",
+    "unsplashId": "TAL206p8WPg",
+    "photographer": "Amelia Cui",
+    "photographerUrl": "https://unsplash.com/@ameliacui?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-row-of-trees-with-pink-flowers-on-them-TAL206p8WPg?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-12T05:24:54.881Z",
+    "query": "cherry blossom spring beautiful pink"
+  },
+  {
+    "filename": "bg-297.jpg",
+    "unsplashId": "UAS6Bg81trM",
+    "photographer": "Юлия Журавлева",
+    "photographerUrl": "https://unsplash.com/@xreniksik?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/cherry-blossoms-bloom-brightly-against-a-blue-sky-UAS6Bg81trM?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-12T05:24:55.621Z",
+    "query": "cherry blossom spring beautiful pink"
+  },
+  {
+    "filename": "bg-298.jpg",
+    "unsplashId": "gO_0iQSawQ0",
+    "photographer": "Юлия Журавлева",
+    "photographerUrl": "https://unsplash.com/@xreniksik?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/pink-cherry-blossoms-bloom-against-a-blue-sky-gO_0iQSawQ0?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-12T05:24:56.382Z",
+    "query": "cherry blossom spring beautiful pink"
+  },
+  {
+    "filename": "bg-299.jpg",
+    "unsplashId": "Lk30SWHW2Eo",
+    "photographer": "Débora Silva",
+    "photographerUrl": "https://unsplash.com/@debphotos_?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/vibrant-pink-bougainvillea-flowers-against-a-white-sky-Lk30SWHW2Eo?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-12T05:24:56.968Z",
+    "query": "cherry blossom spring beautiful pink"
   }
 ]
