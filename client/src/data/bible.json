@@ -691,5 +691,19 @@
     "author": "신명기 3:22",
     "source": "개역한글판",
     "bgImage": "/images/bg-292.jpg"
+  },
+  {
+    "id": 391,
+    "quote": "나의 하나님이 나의 피난처시요 내가 그에게 피하리이다",
+    "author": "시편 144:2",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-295.jpg"
+  },
+  {
+    "id": 392,
+    "quote": "하나님이 그의 백성을 위로하시며 자기 땅을 긍휼히 여기시리라",
+    "author": "스가랴 1:17",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-296.jpg"
   }
 ]
