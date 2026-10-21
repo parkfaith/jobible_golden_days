@@ -712,5 +712,19 @@
     "author": "여호수아 1:5",
     "source": "개역한글판",
     "bgImage": "/images/bg-300.jpg"
+  },
+  {
+    "id": 400,
+    "quote": "내가 그들에게 영원한 기쁨과 즐거움을 주리라",
+    "author": "이사야 51:11",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-303.jpg"
+  },
+  {
+    "id": 401,
+    "quote": "여호와여 주의 긍휼이 크시니 내게 은총을 베푸소서",
+    "author": "시편 119:77",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-304.jpg"
   }
 ]
