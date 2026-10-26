@@ -2014,5 +2014,41 @@
     "unsplashUrl": "https://unsplash.com/photos/colorful-autumn-leaves-against-a-bright-blue-sky-iJJ-Q-hc5p0?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-10-21T03:56:55.455Z",
     "query": "autumn leaves colorful red orange"
+  },
+  {
+    "filename": "bg-312.jpg",
+    "unsplashId": "JCa8xxcC8aY",
+    "photographer": "Karsten Winegeart",
+    "photographerUrl": "https://unsplash.com/@_karsten?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/body-of-water-near-trees-during-daytime-JCa8xxcC8aY?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-26T04:12:24.119Z",
+    "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-313.jpg",
+    "unsplashId": "9R1_UYPAhUI",
+    "photographer": "Enio Pereira da Silva",
+    "photographerUrl": "https://unsplash.com/@eniooficial_2026?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/golden-sunset-over-water-with-a-dark-silhouetted-landmass-9R1_UYPAhUI?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-26T04:12:24.629Z",
+    "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-314.jpg",
+    "unsplashId": "of_bU6qSoP8",
+    "photographer": "Jeffrey Eisen",
+    "photographerUrl": "https://unsplash.com/@jeisen?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/calm-water-under-warm-orange-sky-of_bU6qSoP8?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-26T04:12:25.090Z",
+    "query": "sunset golden hour beautiful landscape"
+  },
+  {
+    "filename": "bg-315.jpg",
+    "unsplashId": "2umrl0dBWlA",
+    "photographer": "Bernd 📷 Dittrich",
+    "photographerUrl": "https://unsplash.com/@hdbernd?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/low-sun-over-dark-horizon-2umrl0dBWlA?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-10-26T04:12:25.629Z",
+    "query": "sunset golden hour beautiful landscape"
   }
 ]
