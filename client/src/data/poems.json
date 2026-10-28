@@ -852,5 +852,19 @@
     "author": "아이작 왓츠",
     "source": "주의 도를 아는 자 (1719)",
     "bgImage": "/images/bg-311.jpg"
+  },
+  {
+    "id": 413,
+    "quote": "주 날개 밑 내가 쉬리니 거기서 평안하리라",
+    "author": "윌리엄 오브스터",
+    "source": "주 날개 밑 내가 쉬리니 (1885)",
+    "bgImage": "/images/bg-315.jpg"
+  },
+  {
+    "id": 414,
+    "quote": "오 주여 나의 기도 들어주소서 나의 간구를 들어주소서",
+    "author": "제임스 몽고메리",
+    "source": "나의 기도 들어주소서 (1824)",
+    "bgImage": "/images/bg-113.jpg"
   }
 ]
