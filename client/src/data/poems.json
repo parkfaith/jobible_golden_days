@@ -887,5 +887,19 @@
     "author": "헨리 반 다이크",
     "source": "기뻐하며 경배하세 (1907)",
     "bgImage": "/images/bg-323.jpg"
+  },
+  {
+    "id": 425,
+    "quote": "주 믿는 형제들아 다 일어나 주의 말씀을 전파하라",
+    "author": "존 폴리",
+    "source": "주 믿는 형제들아 (1837)",
+    "bgImage": "/images/bg-326.jpg"
+  },
+  {
+    "id": 426,
+    "quote": "주 예수여 우리를 불쌍히 여기소서 우리에게 평화를 주소서",
+    "author": "존 포크너",
+    "source": "주 예수여 우리를 불쌍히 (1854)",
+    "bgImage": "/images/bg-327.jpg"
   }
 ]
