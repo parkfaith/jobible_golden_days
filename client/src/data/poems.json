@@ -901,5 +901,19 @@
     "author": "존 포크너",
     "source": "주 예수여 우리를 불쌍히 (1854)",
     "bgImage": "/images/bg-327.jpg"
+  },
+  {
+    "id": 430,
+    "quote": "주님께 귀한 것 드리리 주의 뜻에 따라 살리라",
+    "author": "조지 워싱턴 도안",
+    "source": "주님께 귀한 것 드리리 (1875)",
+    "bgImage": "/images/bg-331.jpg"
+  },
+  {
+    "id": 431,
+    "quote": "주께서 나를 지키시니 내 영혼이 평안하리라",
+    "author": "제임스 네덜튼",
+    "source": "주께서 나를 지키시니 (1862)",
+    "bgImage": "/images/bg-114.jpg"
   }
 ]
