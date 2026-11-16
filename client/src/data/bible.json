@@ -747,5 +747,19 @@
     "author": "시편 25:4",
     "source": "개역한글판",
     "bgImage": "/images/bg-328.jpg"
+  },
+  {
+    "id": 432,
+    "quote": "주께서 나를 지키시고 나의 오른손을 붙드셨나이다",
+    "author": "시편 139:10",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-332.jpg"
+  },
+  {
+    "id": 433,
+    "quote": "여호와의 인자하심이 아침마다 새로우니 주의 성실하심이 크도소이다",
+    "author": "예레미야애가 3:23",
+    "source": "개역한글판",
+    "bgImage": "/images/bg-333.jpg"
   }
 ]
