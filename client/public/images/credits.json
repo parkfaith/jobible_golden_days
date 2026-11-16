@@ -2230,5 +2230,41 @@
     "unsplashUrl": "https://unsplash.com/photos/rows-of-colorful-tulips-in-a-field-rWNhJeQbRIM?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-11-11T05:25:20.362Z",
     "query": "spring garden flowers colorful bloom"
+  },
+  {
+    "filename": "bg-336.jpg",
+    "unsplashId": "P2-_9Gm1pzQ",
+    "photographer": "Anton Darius",
+    "photographerUrl": "https://unsplash.com/@thesollers?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-of-mountain-under-cloudy-sky-during-sunset-P2-_9Gm1pzQ?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-16T05:50:51.335Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-337.jpg",
+    "unsplashId": "gTAY41RLIt0",
+    "photographer": "Kyle Loftus",
+    "photographerUrl": "https://unsplash.com/@kyleloftusstudios?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/birds-eye-view-of-mountain-with-fog-gTAY41RLIt0?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-16T05:50:51.676Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-338.jpg",
+    "unsplashId": "tjghsiDzAJw",
+    "photographer": "Huanrui He",
+    "photographerUrl": "https://unsplash.com/@huan1997?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-landscape-with-hills-and-a-sunset-tjghsiDzAJw?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-16T05:50:52.075Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-339.jpg",
+    "unsplashId": "bD7LQzVbuCs",
+    "photographer": "Ömer Evren",
+    "photographerUrl": "https://unsplash.com/@omerevren?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-of-a-hill-reflected-in-water-at-sunset-bD7LQzVbuCs?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-16T05:50:52.557Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
