@@ -2266,5 +2266,41 @@
     "unsplashUrl": "https://unsplash.com/photos/silhouette-of-a-hill-reflected-in-water-at-sunset-bD7LQzVbuCs?utm_source=golden_days&utm_medium=referral",
     "downloadedAt": "2026-11-16T05:50:52.557Z",
     "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-340.jpg",
+    "unsplashId": "ItQlzUlCUow",
+    "photographer": "Patrick Tomasso",
+    "photographerUrl": "https://unsplash.com/@impatrickt?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/silhouette-of-mountain-ItQlzUlCUow?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-18T06:38:13.478Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-341.jpg",
+    "unsplashId": "dY3rdLOQfOo",
+    "photographer": "Tomáš Malík",
+    "photographerUrl": "https://unsplash.com/@malcoo?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/blue-mountains-under-a-clear-sky-during-golden-hour-dY3rdLOQfOo?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-18T06:38:14.467Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-342.jpg",
+    "unsplashId": "jHQgyj1cL3o",
+    "photographer": "Navi",
+    "photographerUrl": "https://unsplash.com/@navi_photography?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/green-mountains-under-blue-sky-during-daytime-jHQgyj1cL3o?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-18T06:38:14.858Z",
+    "query": "mountain sunrise colorful landscape"
+  },
+  {
+    "filename": "bg-343.jpg",
+    "unsplashId": "N3dedIIU7mE",
+    "photographer": "B T",
+    "photographerUrl": "https://unsplash.com/@bttalic?utm_source=golden_days&utm_medium=referral",
+    "unsplashUrl": "https://unsplash.com/photos/a-plane-flying-in-the-sky-at-sunset-N3dedIIU7mE?utm_source=golden_days&utm_medium=referral",
+    "downloadedAt": "2026-11-18T06:38:15.778Z",
+    "query": "mountain sunrise colorful landscape"
   }
 ]
